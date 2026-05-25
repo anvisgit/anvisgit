@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Anvi Wadhwa - CS undergrad at VIT Chennai. ML for space and physical sciences, reinforcement learning, probabilistic inference, writing, projects, experience, and graph experiments.">
+<meta property="og:title" content="Anvi Wadhwa · Mission Control">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://avatars.githubusercontent.com/anvisgit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Anvi Wadhwa · Mission Control">
+<title>Anvi Wadhwa · Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Luckiest+Guy&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Permanent+Marker&family=Press+Start+2P&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#010802;--green:#33ff00;--green-dim:#1a8000;--green-pale:#0d3d00;
+  --green-glow:rgba(51,255,0,0.18);--yellow:#ffe600;--pink:#ff2d78;
+  --cyan:#00ffe0;--blue:#00aaff;--red:#de453b;--jam-blue:#00318f;--jam-blue-light:#39b9ff;
+  --text:#ddebd5;--text-sub:#8faa86;--muted:#4a7a3a;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--green);font-family:'Outfit',sans-serif;
+  font-size:15px;line-height:1.85;min-height:100vh;overflow-x:hidden;cursor:crosshair;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.09) 2px,rgba(0,0,0,0.09) 4px);
+  pointer-events:none;z-index:9999;
+}
+#cosmos{position:fixed;inset:0;pointer-events:none;z-index:0}
+button,a,input,textarea{font:inherit}
+
+#boot-screen{
+  position:fixed;inset:0;background:var(--bg);z-index:10000;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:60px 80px;font-family:'Space Mono',monospace;
+}
+#boot-lines{max-width:760px;width:100%}
+.boot-line{color:var(--green);display:block;margin-bottom:3px;opacity:0;font-size:13px;letter-spacing:.5px}
+.boot-line.ok::after{content:' [OK]';color:var(--green-dim)}
+.boot-line.warn::after{content:' [WARN]';color:var(--yellow)}
+.boot-cursor{display:inline-block;width:10px;height:16px;background:var(--green);animation:blink .7s step-end infinite;vertical-align:middle;margin-left:3px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#boot-skip{
+  position:absolute;bottom:32px;right:40px;font-size:11px;color:var(--muted);
+  border:1px solid var(--muted);background:none;padding:6px 16px;cursor:pointer;letter-spacing:2px;
+}
+#boot-skip:hover{color:var(--green);border-color:var(--green)}
+
+#main-shell{position:relative;z-index:1;opacity:0;transition:opacity .6s ease}
+#main-shell.visible{opacity:1}
+#clock-widget{position:fixed;top:14px;right:22px;z-index:500;text-align:right;pointer-events:none}
+#clock-time{font-family:'Space Mono',monospace;font-size:13px;color:var(--green);letter-spacing:2px;line-height:1.3}
+#clock-meta,#clock-sidereal,#clock-jd,#clock-constellation{font-family:'Space Mono',monospace;text-transform:uppercase;line-height:1.55}
+#clock-meta{font-size:8.5px;color:var(--muted);letter-spacing:2.5px;margin-top:2px}
+#clock-sidereal{font-size:7.5px;color:var(--green-pale);letter-spacing:1.5px}
+#clock-jd{font-size:7px;color:var(--green-pale);letter-spacing:1px;opacity:.7}
+#clock-constellation{font-size:7px;color:var(--green);letter-spacing:1.5px;opacity:.75}
+
+#landing{
+  position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:26px 20px 42px;
+}
+.name-block{text-align:center;margin-bottom:8px}
+.badge-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.nbadge{
+  font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid;padding:3px 10px;white-space:nowrap;
+}
+.nb-y{color:var(--yellow);border-color:var(--yellow);background:rgba(255,230,0,.04)}
+.nb-p{color:var(--pink);border-color:var(--pink);background:rgba(255,45,120,.04)}
+.nb-g{color:var(--green);border-color:var(--green);background:rgba(51,255,0,.04);animation:blink 2.2s step-end infinite}
+.jam-name{
+  display:flex;justify-content:center;align-items:center;gap:clamp(8px,1.5vw,18px);
+  flex-wrap:nowrap;max-width:1180px;line-height:.82;user-select:none;
+  filter:drop-shadow(0 0 22px rgba(0,39,168,.32));
+}
+.jam-word{display:inline-flex;gap:clamp(0px,.18vw,2px);white-space:nowrap}
+.jam-letter{
+  display:inline-block;font-family:'Luckiest Guy','Boogaloo','Permanent Marker',cursive;
+  font-size:clamp(38px,8.6vw,106px);font-weight:400;text-transform:uppercase;
+  color:var(--red);letter-spacing:.015em;
+  -webkit-text-stroke:clamp(1.8px,.34vw,4px) var(--yellow);
+  paint-order:stroke fill;
+  text-shadow:
+    -2px -2px 0 var(--jam-blue-light),2px -2px 0 var(--jam-blue-light),
+    -3px 3px 0 var(--jam-blue-light),3px 3px 0 var(--jam-blue-light),
+    -6px 6px 0 var(--jam-blue),-9px 9px 0 #001b63,
+    1px 1px 0 #f6ad1b,0 0 2px #ffe600;
+  transform:rotate(var(--r)) translateY(var(--y));
+}
+.jam-letter:nth-child(2n){font-size:clamp(37px,8.2vw,100px)}
+.name-tagline{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:5px;color:rgba(51,255,0,.38);
+  text-transform:uppercase;margin-top:18px;display:block;
+}
+
+#solar-wrap{width:100%;max-width:1040px;margin-top:8px}
+#solar-label-row{text-align:center;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:12px}
+#solar-label{
+  font-family:'Press Start 2P',monospace;font-size:10px;letter-spacing:4px;
+  color:rgba(51,255,0,.56);text-transform:uppercase;animation:blink 2.5s step-end infinite;
+}
+.solar-label-line{flex:1;max-width:120px;height:1px;background:rgba(51,255,0,.2)}
+#solar-stage{position:relative;width:100%;height:min(52vw,520px);min-height:410px}
+#solar-svg-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.sol-planet-btn{
+  position:absolute;display:flex;flex-direction:column;align-items:center;gap:7px;background:none;border:none;
+  cursor:pointer;transform:translate(-50%,-50%);z-index:10;transition:transform .25s;pointer-events:all;
+}
+.sol-planet-btn:hover{transform:translate(-50%,-50%) scale(1.12)}
+.sol-orb{border-radius:50%;display:block;transition:filter .25s}
+.sol-planet-btn:hover .sol-orb{filter:drop-shadow(0 0 18px rgba(51,255,0,.65))}
+.sol-planet-label{
+  font-family:'Press Start 2P',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(51,255,0,.72);white-space:nowrap;text-shadow:2px 2px 0 #001800,0 0 14px rgba(51,255,0,.35);
+  line-height:1.6;transition:color .2s;
+}
+.sol-planet-sub{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;color:rgba(51,255,0,.3);text-transform:uppercase;margin-top:-4px}
+
+#content-shell{display:none;position:relative;z-index:1;min-height:100vh}
+#content-shell.visible{display:block}
+#mini-nav{
+  position:sticky;top:0;z-index:100;display:flex;align-items:center;overflow-x:auto;width:100%;
+  background:rgba(1,8,2,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(51,255,0,.14);
+  font-family:'Press Start 2P',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;
+}
+.mnav-btn{
+  background:none;border:none;border-right:1px solid rgba(51,255,0,.1);color:var(--muted);cursor:pointer;
+  padding:13px 18px;font-family:'Press Start 2P',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;
+  transition:color .18s,background .18s;
+}
+.mnav-btn:hover{color:var(--green);background:rgba(51,255,0,.05)}
+.mnav-btn.active{color:var(--yellow)}
+#mnav-home{border-right:2px solid rgba(51,255,0,.25)}
+#mnav-home::before{content:'< ';font-size:9px}
+.content-inner{max-width:980px;margin:0 auto;padding:50px 32px 130px}
+.page{display:none}
+.page.active{display:block}
+.sec-head{
+  font-family:'Press Start 2P',monospace;font-size:16px;color:var(--green);text-transform:uppercase;letter-spacing:2px;
+  border-bottom:3px solid rgba(51,255,0,.35);padding-bottom:16px;margin-bottom:18px;
+  text-shadow:3px 3px 0 #001800,0 0 20px rgba(51,255,0,.25);line-height:1.6;
+}
+.intro-grid{display:block;max-width:690px}
+.intro-body{font-size:15px;color:var(--text);font-weight:300;line-height:1.95;margin-bottom:16px}
+.links-section{margin-top:40px;border-top:1px solid rgba(51,255,0,.1);padding-top:28px}
+.find-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:6px;color:rgba(51,255,0,.25);text-transform:uppercase;margin-bottom:16px;display:block}
+.link-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.link-btn{
+  display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(51,255,0,.14);background:rgba(51,255,0,.06);
+  color:var(--text-sub);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  padding:12px 20px;text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s,color .2s,transform .15s;
+}
+.link-btn:hover{border-color:rgba(51,255,0,.38);background:rgba(51,255,0,.14);color:var(--green);transform:translateX(4px)}
+.link-btn svg{width:14px;height:14px;opacity:.7;flex-shrink:0}
+
+.proj-item,.xp-item{padding:28px 0;border-bottom:1px solid rgba(51,255,0,.12);transition:border-color .25s}
+.proj-item:hover,.xp-item:hover{border-bottom-color:rgba(0,170,255,.35)}
+.proj-name,.xp-role{
+  font-family:'Courier Prime',monospace;font-size:18px;font-weight:700;color:var(--text);margin:0 0 10px;
+  line-height:1.35;letter-spacing:.5px;transition:color .2s;
+}
+.proj-item:hover .proj-name,.xp-item:hover .xp-role{color:var(--blue)}
+.proj-desc,.xp-org,.xp-list{font-size:14px;color:var(--text-sub);line-height:1.85;margin:0 0 16px;max-width:760px;font-weight:300}
+.xp-org{font-family:'Space Mono',monospace;color:var(--green);font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.xp-title{font-family:'Courier Prime',monospace;color:var(--text);font-size:16px;margin-bottom:12px}
+.xp-list{padding-left:20px}
+.xp-list li{margin-bottom:8px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:7px}
+.proj-badge,.proj-tag{
+  border:1px solid rgba(51,255,0,.35);background:rgba(51,255,0,.07);color:var(--green);
+  font-family:'Space Mono',monospace;font-size:9px;padding:4px 11px;letter-spacing:1px;
+}
+.proj-tag{border-color:rgba(51,255,0,.12);color:var(--muted);background:transparent}
+.badge-ongoing{border:1px solid var(--pink);color:var(--pink);font-family:'Space Mono',monospace;font-size:8px;padding:2px 8px;letter-spacing:2px;text-transform:uppercase;vertical-align:middle;margin-left:10px;animation:blink 1.4s step-end infinite;position:relative;top:-3px}
+.writing-item{
+  padding:22px 0;border-bottom:1px solid rgba(51,255,0,.12);display:flex;align-items:flex-start;justify-content:space-between;
+  gap:20px;text-decoration:none;cursor:pointer;transition:padding-left .2s,border-color .2s;
+}
+.writing-item:hover{padding-left:10px;border-bottom-color:rgba(0,170,255,.35)}
+.writing-title{font-family:'Courier Prime',monospace;font-size:17px;font-weight:700;color:var(--text);margin:0 0 7px;line-height:1.4;transition:color .2s}
+.writing-item:hover .writing-title{color:var(--blue)}
+.writing-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.75;margin:0;max-width:650px}
+.writing-arrow{font-family:'Space Mono',monospace;font-size:14px;color:rgba(51,255,0,.2);flex-shrink:0;margin-top:6px;transition:color .2s,transform .2s}
+.writing-item:hover .writing-arrow{color:var(--blue);transform:translateX(5px)}
+.writing-meta{display:flex;gap:18px;margin-bottom:8px;align-items:center}
+.writing-meta-item{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.writing-meta-item.accent{color:var(--green);opacity:.7}
+.writing-footer{display:inline-block;margin-top:34px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.writing-footer:hover{color:var(--green)}
+
+.desmos-shell{
+  display:grid;grid-template-columns:minmax(280px,320px) 1fr;gap:18px;margin-top:24px;
+  border-top:1px solid rgba(51,255,0,.15);padding-top:22px;
+}
+.graph-panel,.expr-panel{border:1px solid rgba(51,255,0,.16);background:rgba(1,8,2,.76)}
+.expr-panel{padding:14px}
+.graph-panel{min-height:560px;position:relative;overflow:hidden}
+#graph-canvas{display:block;width:100%;height:100%;min-height:560px;background:#020b04}
+.field-label{display:block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.graph-input,.graph-select,.expr-row input{
+  width:100%;background:rgba(51,255,0,.06);border:1px solid rgba(51,255,0,.18);color:var(--text);
+  padding:10px 11px;font-family:'Space Mono',monospace;font-size:12px;outline:none;
+}
+.graph-input:focus,.expr-row input:focus,.graph-select:focus{border-color:rgba(51,255,0,.48)}
+.graph-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 16px}
+.graph-btn{
+  background:rgba(51,255,0,.07);border:1px solid rgba(51,255,0,.2);color:var(--green);
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:9px;cursor:pointer;
+}
+.graph-btn:hover{background:rgba(51,255,0,.14)}
+.expr-row{display:grid;grid-template-columns:20px 1fr 28px;gap:8px;align-items:center;margin-bottom:8px}
+.swatch{width:16px;height:16px;border-radius:50%;box-shadow:0 0 14px currentColor}
+.delete-expr{height:28px;border:1px solid rgba(255,45,120,.35);background:rgba(255,45,120,.08);color:var(--pink);cursor:pointer}
+.graph-help{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);line-height:1.7;margin-top:12px}
+.project-list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.project-chip{display:flex;justify-content:space-between;gap:8px;align-items:center;border:1px solid rgba(51,255,0,.12);background:rgba(51,255,0,.04);padding:8px;color:var(--text-sub);font-family:'Space Mono',monospace;font-size:10px}
+.project-chip button{background:none;border:0;color:var(--green);cursor:pointer;font-size:10px}
+#graph-status{position:absolute;left:12px;bottom:10px;font-family:'Space Mono',monospace;font-size:9px;color:rgba(51,255,0,.5);pointer-events:none}
+
+#rocky-wrap{position:fixed;bottom:24px;right:24px;z-index:500;width:190px;font-family:'Space Mono',monospace;transition:opacity .3s,transform .35s}
+#rocky-wrap.rocky-hidden{opacity:0;pointer-events:none;transform:translateY(16px)}
+#rocky-box{border:1px solid rgba(51,255,0,.22);background:rgba(1,8,2,.96);position:relative}
+#rocky-titlebar{background:var(--green-pale);border-bottom:1px solid rgba(51,255,0,.15);padding:4px 10px;display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:2px;color:var(--green);text-transform:uppercase}
+#rocky-titlebar .rk-status{font-size:8px;color:var(--muted);animation:blink 2s step-end infinite}
+#rocky-body{padding:10px 12px;min-height:72px;font-size:11px;color:var(--green);line-height:1.6;letter-spacing:.3px}
+#rocky-typing{color:var(--muted);font-size:10px;display:none;letter-spacing:2px;animation:blink .8s step-end infinite}
+#rocky-typing.show{display:block}
+#rocky-btn-row{border-top:1px solid rgba(51,255,0,.1);display:flex}
+.rocky-btn{flex:1;background:none;border:none;border-right:1px solid rgba(51,255,0,.08);color:var(--muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;padding:6px 0;cursor:pointer;text-transform:uppercase}
+.rocky-btn:hover{background:var(--green-pale);color:var(--green)}
+#rocky-glitch{position:absolute;inset:0;pointer-events:none;opacity:0;background:rgba(51,255,0,.04);transition:opacity .05s}
+#rocky-glitch.flash{opacity:1}
+#rocky-label{font-size:7px;color:var(--green-pale);letter-spacing:2px;text-align:center;margin-top:3px;display:block;text-transform:uppercase}
+@keyframes rocky-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes rocky-excited{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.08) rotate(-3deg)}75%{transform:scale(1.08) rotate(3deg)}}
+@keyframes txt-glitch{0%,88%,100%{clip-path:none;transform:translate(0);color:var(--green)}89%{clip-path:inset(30% 0 50% 0);transform:translate(-3px,0);color:var(--pink)}90%{clip-path:inset(60% 0 10% 0);transform:translate(3px,0);color:var(--cyan)}91%{clip-path:none;transform:translate(0);color:var(--green)}}
+#rocky-svg{animation:rocky-float 4s ease-in-out infinite}
+#rocky-svg.talking{animation:rocky-excited .35s ease-in-out 2,rocky-float 4s ease-in-out infinite .7s}
+#rocky-text.glitching{animation:txt-glitch .25s steps(1) 3}
+.rk-eye{animation:rocky-float 2.5s ease-in-out infinite}
+
+@media(max-width:760px){
+  #boot-screen{padding:34px 24px}.boot-line{font-size:11px}
+  #clock-widget,#rocky-wrap{display:none}
+  #solar-stage{height:640px;min-height:640px}
+  .jam-name{gap:10px}
+  .jam-letter{font-size:clamp(32px,8.4vw,58px)}
+  .jam-letter:nth-child(2n){font-size:clamp(31px,8vw,55px)}
+  .desmos-shell{grid-template-columns:1fr}
+  .graph-panel,#graph-canvas{min-height:420px}
+}
+@media(max-width:600px){
+  .link-buttons{grid-template-columns:1fr}
+  .content-inner{padding:34px 20px 100px}
+  .mnav-btn{padding:12px 14px}
+}
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<div id="boot-screen">
+  <div id="boot-lines"></div>
+  <button id="boot-skip">SKIP &gt;&gt;</button>
+</div>
+
+<div id="clock-widget">
+  <div id="clock-time">--:--:--</div>
+  <div id="clock-meta">Chennai, India · IST</div>
+  <div id="clock-sidereal">LST --h --m</div>
+  <div id="clock-jd">JD ----------.-----</div>
+  <div id="clock-constellation">↑ --------</div>
+</div>
+
+<div id="rocky-wrap" class="rocky-hidden">
+  <div id="rocky-box">
+    <div id="rocky-glitch"></div>
+    <div id="rocky-titlebar">ROCKY.EXE<span class="rk-status">● ONLINE</span></div>
+    <div style="text-align:center;padding:10px 0 4px;border-bottom:1px solid rgba(51,255,0,.08)">
+      <svg id="rocky-svg" width="80" height="80" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(100,100)">
+          <circle cx="0" cy="0" r="80" fill="none" stroke="#80cf64" opacity=".1"/>
+          <g id="arms">
+            <g><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(72)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(144)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(216)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(288)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+          </g>
+          <circle cx="0" cy="0" r="52" fill="#0a1f08" stroke="#4d8f3a"/>
+          <circle cx="0" cy="0" r="24" fill="#071505" stroke="#80cf64"/>
+          <circle class="rk-eye" cx="0" cy="0" r="9" fill="#80cf64"/>
+          <circle cx="0" cy="0" r="2" fill="#ddebd5"/>
+        </g>
+      </svg>
+    </div>
+    <div id="rocky-body"><div id="rocky-typing"></div><div id="rocky-text">click me</div></div>
+    <div id="rocky-btn-row">
+      <button class="rocky-btn" onclick="rockySpeak()">[ speak ]</button>
+      <button class="rocky-btn" onclick="rockyFact()">[ fact ]</button>
+    </div>
+  </div>
+  <span id="rocky-label">Rocky · Eridian life form</span>
+</div>
+
+<div id="main-shell">
+  <div id="landing">
+    <div class="name-block">
+      <div class="badge-row">
+        <span class="nbadge nb-y">★ cs + space ★</span>
+        <span class="nbadge nb-g">● online</span>
+        <span class="nbadge nb-p">est. 2024</span>
+      </div>
+      <h1 class="jam-name" aria-label="Anvi Wadhwa">
+        <span class="jam-word">
+          <span class="jam-letter" style="--r:-5deg;--y:2px">A</span><span class="jam-letter" style="--r:3deg;--y:-3px">n</span><span class="jam-letter" style="--r:-2deg;--y:4px">v</span><span class="jam-letter" style="--r:5deg;--y:-2px">i</span>
+        </span>
+        <span class="jam-word">
+          <span class="jam-letter" style="--r:-4deg;--y:-1px">W</span><span class="jam-letter" style="--r:4deg;--y:3px">a</span><span class="jam-letter" style="--r:-3deg;--y:-3px">d</span><span class="jam-letter" style="--r:2deg;--y:4px">h</span><span class="jam-letter" style="--r:-5deg;--y:1px">w</span><span class="jam-letter" style="--r:3deg;--y:-2px">a</span>
+        </span>
+      </h1>
+    </div>
+
+    <div id="solar-wrap">
+      <div id="solar-label-row">
+        <div class="solar-label-line"></div><span id="solar-label">▼ Select Destination ▼</span><div class="solar-label-line"></div>
+      </div>
+      <div id="solar-stage">
+        <svg id="solar-svg-bg" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="sunG" cx="40%" cy="35%"><stop offset="0%" stop-color="#fff8c0"/><stop offset="40%" stop-color="#ffcc00"/><stop offset="100%" stop-color="#cc6600"/></radialGradient>
+            <radialGradient id="earthG" cx="38%" cy="32%"><stop offset="0%" stop-color="#aaf078"/><stop offset="50%" stop-color="#2a8a1a"/><stop offset="100%" stop-color="#083005"/></radialGradient>
+            <radialGradient id="satG" cx="36%" cy="30%"><stop offset="0%" stop-color="#ffeeaa"/><stop offset="55%" stop-color="#e0952a"/><stop offset="100%" stop-color="#7a4010"/></radialGradient>
+            <radialGradient id="nepG" cx="35%" cy="28%"><stop offset="0%" stop-color="#aaddff"/><stop offset="50%" stop-color="#2265dd"/><stop offset="100%" stop-color="#060f3a"/></radialGradient>
+            <radialGradient id="marsG" cx="35%" cy="28%"><stop offset="0%" stop-color="#ffd1a3"/><stop offset="52%" stop-color="#c2481c"/><stop offset="100%" stop-color="#421006"/></radialGradient>
+            <radialGradient id="violetG" cx="35%" cy="28%"><stop offset="0%" stop-color="#f2c4ff"/><stop offset="50%" stop-color="#8b42ff"/><stop offset="100%" stop-color="#15042f"/></radialGradient>
+          </defs>
+          <ellipse cx="450" cy="260" rx="150" ry="88" fill="none" stroke="rgba(51,255,0,.22)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="450" cy="260" rx="260" ry="145" fill="none" stroke="rgba(51,255,0,.15)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="450" cy="260" rx="330" ry="190" fill="none" stroke="rgba(51,255,0,.12)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="450" cy="260" rx="405" ry="230" fill="none" stroke="rgba(51,255,0,.10)" stroke-width="1" stroke-dasharray="6 4"/>
+          <circle cx="450" cy="260" r="52" fill="rgba(255,190,0,.05)"/>
+          <circle cx="450" cy="260" r="44" fill="rgba(255,210,0,.07)"/>
+          <circle cx="450" cy="260" r="36" fill="url(#sunG)"/>
+          <text x="450" y="310" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="rgba(255,210,0,.5)" letter-spacing="2">SOL</text>
+        </svg>
+
+        <button class="sol-planet-btn" id="nav-intro" onclick="showPage('intro')" data-svgx="300" data-svgy="260">
+          <svg class="sol-orb" width="84" height="84" viewBox="0 0 84 84"><circle cx="42" cy="42" r="39" fill="url(#earthG)"/><ellipse cx="32" cy="32" rx="10" ry="7" fill="#1a6010" opacity=".5"/><ellipse cx="52" cy="48" rx="11" ry="6" fill="#1a6010" opacity=".4"/></svg>
+          <span class="sol-planet-label">Intro</span><span class="sol-planet-sub">/ about me</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-projects" onclick="showPage('projects')" data-svgx="617" data-svgy="149">
+          <svg class="sol-orb" width="104" height="104" viewBox="0 0 104 104" overflow="visible"><ellipse cx="52" cy="52" rx="69" ry="14" fill="none" stroke="rgba(255,200,80,.55)" stroke-width="3.5"/><circle cx="52" cy="52" r="38" fill="url(#satG)"/><ellipse cx="52" cy="52" rx="69" ry="14" fill="none" stroke="rgba(255,210,100,.4)" stroke-width="2.5" clip-path="inset(50% 0 0 0)"/></svg>
+          <span class="sol-planet-label">Projects</span><span class="sol-planet-sub">/ build log</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-writing" onclick="showPage('writing')" data-svgx="617" data-svgy="371">
+          <svg class="sol-orb" width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="35" fill="url(#nepG)"/><ellipse cx="38" cy="33" rx="21" ry="5" fill="rgba(130,200,255,.25)"/><ellipse cx="38" cy="42" rx="17" ry="3" fill="rgba(100,170,255,.18)"/></svg>
+          <span class="sol-planet-label">Writing</span><span class="sol-planet-sub">/ essays</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-experience" onclick="showPage('experience')" data-svgx="120" data-svgy="260">
+          <svg class="sol-orb" width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="42" fill="url(#marsG)"/><ellipse cx="31" cy="35" rx="10" ry="5" fill="rgba(90,20,0,.32)"/><ellipse cx="58" cy="54" rx="15" ry="6" fill="rgba(255,220,160,.18)"/></svg>
+          <span class="sol-planet-label">Experiences</span><span class="sol-planet-sub">/ field notes</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-desmos" onclick="showPage('desmos')" data-svgx="855" data-svgy="260">
+          <svg class="sol-orb" width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="39" fill="url(#violetG)"/><path d="M12 44c14-22 25 22 37 0s20-8 25 2" fill="none" stroke="#dffcff" stroke-width="4" opacity=".82"/><path d="M10 54h66M43 10v66" stroke="rgba(255,255,255,.18)" stroke-width="2"/></svg>
+          <span class="sol-planet-label">Desmos</span><span class="sol-planet-sub">/ graph lab</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-shell">
+    <div id="mini-nav">
+      <button class="mnav-btn" id="mnav-home" onclick="showLanding()">Home</button>
+      <button class="mnav-btn" id="mnav-intro" onclick="showPage('intro')">Intro</button>
+      <button class="mnav-btn" id="mnav-projects" onclick="showPage('projects')">Projects</button>
+      <button class="mnav-btn" id="mnav-writing" onclick="showPage('writing')">Writing</button>
+      <button class="mnav-btn" id="mnav-experience" onclick="showPage('experience')">Experiences</button>
+      <button class="mnav-btn" id="mnav-desmos" onclick="showPage('desmos')">Desmos</button>
+    </div>
+
+    <div class="content-inner">
+      <div id="page-intro" class="page">
+        <div class="intro-grid">
+          <p class="intro-body">Hi everyone, I am Anvi Wadhwa, a CS undergrad from VIT Chennai. My interests lean toward ML for physical and space sciences, modeling high-dimensional systems, probabilistic inference, and uncertainty quantification.</p>
+          <p class="intro-body">Deep into deep learning architectures, ANNs and GNNs, and currently going all the way down into reinforcement learning. PPO, GRPO, the math underneath all of it.</p>
+          <p class="intro-body">I am into business innovation, critical thinking, philosophy, art, and literature. I love writing and chasing ideas that push boundaries. Anything that makes me question the obvious.</p>
+          <p class="intro-body">You'll find me listening to music, sleeping, coding, or reading a banger philosophy book. The world has so much to offer, and I'm here for all of it.</p>
+        </div>
+        <div class="links-section">
+          <span class="find-label">Find me</span>
+          <div class="link-buttons">
+            <a href="mailto:anvi.wadhwa2024@vitstudent.ac.in" class="link-btn">Email</a>
+            <a href="https://github.com/anvisgit" target="_blank" class="link-btn">GitHub</a>
+            <a href="https://linkedin.com/in/anvi-wadhwa" target="_blank" class="link-btn">LinkedIn</a>
+            <a href="https://medium.com/@anviwadhwa7" target="_blank" class="link-btn">Medium</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-projects" class="page">
+        <div class="sec-head">Projects</div>
+        <div class="proj-item">
+          <p class="proj-name">Algorithmic Trading with Reinforcement Learning</p>
+          <p class="proj-desc">RL-based trading system for Indian equities using PPO and custom environments. Sharpe ratio, Calmar ratio, and max drawdown analysis across a full backtesting suite.</p>
+          <div class="proj-tags"><span class="proj-badge">~30% total return</span><span class="proj-badge">~78% max drawdown</span><span class="proj-tag">PPO</span><span class="proj-tag">RL</span><span class="proj-tag">Backtesting</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">Feature Adaptation for Emotion Recognition in Speech</p>
+          <p class="proj-desc">Multi-branch 1D-CNN fusion using MFCC, Mel spectrogram, and Chroma features on RAVDESS. 5-fold stratified cross-validation for robust evaluation.</p>
+          <div class="proj-tags"><span class="proj-badge">75.7% accuracy</span><span class="proj-badge">75.5% F1</span><span class="proj-tag">1D-CNN</span><span class="proj-tag">Audio ML</span><span class="proj-tag">RAVDESS</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">Systematic Intraday Trading via GARCH Forecasts</p>
+          <p class="proj-desc">Rolling GARCH volatility forecasts paired with 5-minute market indicators. Systematic signal generation and end-to-end backtesting pipeline.</p>
+          <div class="proj-tags"><span class="proj-tag">GARCH</span><span class="proj-tag">Time Series</span><span class="proj-tag">Backtesting</span><span class="proj-tag">Quant</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">AI Physiotherapy &amp; Rehabilitation System <span class="badge-ongoing">Ongoing</span></p>
+          <p class="proj-desc">Real-time lower-limb movement analysis for remote physiotherapy. Pose estimation via MediaPipe and OpenCV, hip, knee, and ankle tracking from live webcam streams.</p>
+          <div class="proj-tags"><span class="proj-tag">MediaPipe</span><span class="proj-tag">OpenCV</span><span class="proj-tag">Computer Vision</span><span class="proj-badge">IIT BHU</span></div>
+        </div>
+      </div>
+
+      <div id="page-writing" class="page">
+        <div class="sec-head">Writing</div>
+        <a href="https://medium.com/@anviwadhwa7/the-bayes-awakening" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 6 min read</span><span class="writing-meta-item">Apr 2025</span></div><p class="writing-title">The Bayes' Awakening</p><p class="writing-desc">On how Bayesian reasoning quietly reshapes the way we update beliefs under uncertainty.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/can-we-just-stick-to-a-tesseract" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 5 min read</span><span class="writing-meta-item">Mar 2025</span></div><p class="writing-title">Can we Just Stick to a Tesseract?</p><p class="writing-desc">A dive into higher-dimensional geometry and why our brains resist it so stubbornly.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/god-serves-man-but-he-is-not-a-servant" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 4 min read</span><span class="writing-meta-item">Feb 2025</span></div><p class="writing-title">God Serves Man, but He is Not a Servant</p><p class="writing-desc">On the tension between utility and dignity.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/the-philosophical-and-political-dimensions-of-punishment" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 8 min read</span><span class="writing-meta-item">Jan 2025</span></div><p class="writing-title">The Philosophical and Political Dimensions of Punishment</p><p class="writing-desc">Punishment as deterrence, retribution, rehabilitation: three philosophies, three different societies.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7" target="_blank" class="writing-footer">All writing on Medium →</a>
+      </div>
+
+      <div id="page-experience" class="page">
+        <div class="sec-head">Experiences</div>
+        <div class="xp-item">
+          <p class="xp-role">Computer Vision Research Intern</p>
+          <p class="xp-org">Indian Institute of Technology (BHU) Varanasi</p>
+          <p class="xp-title">Lower-Limb Pose Estimation for Physiotherapy Monitoring</p>
+          <ul class="xp-list">
+            <li>Developed a real-time lower-limb tracking system using MediaPipe and OpenCV.</li>
+            <li>Implemented pose estimation pipelines to detect and track hip, knee, and ankle landmarks from webcam video streams.</li>
+            <li>Built joint-angle estimation modules to compute knee and hip flexion angles during physiotherapy exercises using geometric analysis.</li>
+            <li>Improved robustness across varying lighting conditions, occlusions, and camera viewpoints for reliable real-time tracking.</li>
+            <li>Generated motion logs and CSV-based datasets for movement analysis and future model evaluation.</li>
+            <li>Visualized joint trajectories and movement patterns to assist physiotherapy assessment and rehabilitation monitoring.</li>
+            <li>Assisted in organizing and preprocessing exercise datasets collected from multiple users for training and testing workflows.</li>
+          </ul>
+        </div>
+        <div class="xp-item">
+          <p class="xp-role">R&amp;D and Curation Lead</p>
+          <p class="xp-org">Business Innovation Community (BIC), VIT Chennai</p>
+          <ul class="xp-list">
+            <li>Led research initiatives on emerging trends in technology, startups, AI, and business innovation.</li>
+            <li>Curated technical and business-focused content for community events, workshops, and social media outreach.</li>
+            <li>Managed content strategy and branding across Instagram and LinkedIn to improve engagement and visibility.</li>
+            <li>Coordinated cross-functional teams for smooth execution of events, collaborations, and operational activities.</li>
+            <li>Contributed to ideation and planning for innovation-driven initiatives within the community.</li>
+          </ul>
+        </div>
+        <div class="xp-item">
+          <p class="xp-role">Core Committee Member &amp; Evaluator</p>
+          <p class="xp-org">DEFY Hackathons (2024-2025)</p>
+          <ul class="xp-list">
+            <li>Evaluated startup, Web3, and technology-focused hackathon projects on innovation, scalability, and product-market fit.</li>
+            <li>Mentored participants on pitching, business strategy, and solution validation.</li>
+            <li>Designed judging rubrics and assisted in streamlining evaluation workflows.</li>
+            <li>Managed event operations, participant onboarding, outreach, and sponsorship coordination.</li>
+            <li>Collaborated with organizing teams to execute large-scale hackathon activities and engagement initiatives.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="page-desmos" class="page">
+        <div class="sec-head">Desmos</div>
+        <p class="intro-body">Graph equations, collect projects, and come back later. Expressions and project data are saved in this browser automatically.</p>
+        <div class="desmos-shell">
+          <div class="expr-panel">
+            <label class="field-label" for="project-name">Project name</label>
+            <input class="graph-input" id="project-name" value="Untitled orbit">
+            <div class="graph-actions">
+              <button class="graph-btn" id="add-expression">Add line</button>
+              <button class="graph-btn" id="save-project">Save</button>
+              <button class="graph-btn" id="new-project">New</button>
+              <button class="graph-btn" id="reset-view">Reset view</button>
+            </div>
+            <label class="field-label">Expressions</label>
+            <div id="expr-list"></div>
+            <p class="graph-help">Try: <br>y=sin(x)<br>y=x^2/4-3<br>y=sqrt(25-x^2)<br>Use mouse wheel to zoom and drag the graph to pan.</p>
+            <label class="field-label" style="margin-top:18px">Saved projects</label>
+            <div id="project-list" class="project-list"></div>
+          </div>
+          <div class="graph-panel">
+            <canvas id="graph-canvas"></canvas>
+            <div id="graph-status">ready</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('content-shell').classList.add('visible');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const rocky = document.getElementById('rocky-wrap');
+  if (id === 'intro') { rocky.classList.remove('rocky-hidden'); setTimeout(rockySpeak, 700); }
+  else { rocky.classList.add('rocky-hidden'); }
+  ['intro','projects','writing','experience','desmos'].forEach(p => {
+    document.getElementById('mnav-'+p).classList.toggle('active', p === id);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id === 'desmos') setTimeout(drawGraph, 80);
+}
+function showLanding() {
+  document.getElementById('landing').style.display = 'flex';
+  document.getElementById('content-shell').classList.remove('visible');
+  document.getElementById('rocky-wrap').classList.add('rocky-hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function positionPlanets() {
+  const stage = document.getElementById('solar-stage');
+  const W = stage.offsetWidth, H = stage.offsetHeight;
+  document.querySelectorAll('.sol-planet-btn').forEach(btn => {
+    btn.style.left = (parseFloat(btn.dataset.svgx) / 900 * W) + 'px';
+    btn.style.top = (parseFloat(btn.dataset.svgy) / 520 * H) + 'px';
+  });
+}
+positionPlanets(); window.addEventListener('resize', positionPlanets);
+
+const BOOT_LINES=[
+  {t:'BIOS v2.048 · VIT Chennai node',c:'ok',d:0},
+  {t:'loading /var/log/ideas ... buffer overflow',c:'warn',d:240},
+  {t:'mounting /mnt/brain/rl ... send help',c:'ok',d:480},
+  {t:'starting rocky.exe ... 5-armed eridian reporting',c:'ok',d:720},
+  {t:'initialising starfield ... 300 stars, 2 galaxies',c:'ok',d:960},
+  {t:'adding orbit: experiences',c:'ok',d:1200},
+  {t:'adding orbit: graph lab',c:'ok',d:1440},
+  {t:'BOOT COMPLETE. welcome.',c:'ok',d:1780}
+];
+const bootLines=document.getElementById('boot-lines'),bootScreen=document.getElementById('boot-screen'),mainShell=document.getElementById('main-shell');
+function endBoot(){bootScreen.style.transition='opacity .7s';bootScreen.style.opacity='0';setTimeout(()=>{bootScreen.style.display='none';mainShell.classList.add('visible')},700)}
+function runBoot(){
+  BOOT_LINES.forEach((line,i)=>setTimeout(()=>{
+    const el=document.createElement('span');el.className='boot-line '+line.c;el.textContent=line.t;bootLines.appendChild(el);
+    void el.offsetWidth;el.style.opacity='1';el.style.transition='opacity .12s';
+    if(i===BOOT_LINES.length-1){const cur=document.createElement('span');cur.className='boot-cursor';bootLines.appendChild(cur);setTimeout(endBoot,850)}
+  },line.d));
+}
+document.getElementById('boot-skip').addEventListener('click',()=>{bootScreen.style.display='none';mainShell.classList.add('visible')});
+runBoot();
+
+const ROCKY_SPEAK=[
+  {line:'⌬ 2·3·5·7·11·13 ⌬',sub:'prime sequence - first contact'},
+  {line:'∿∿ 1.618 ∿∿',sub:'phi - the golden signal'},
+  {line:'⋈ c = 299,792,458 ⋈',sub:'speed of light, confirmed'},
+  {line:'⊳ 5 arms · 1 mind ⊳',sub:'self-description'}
+];
+const ROCKY_FACTS=[
+  {line:'⌬ neutron stars spin 700 times/sec ⌬',sub:'faster than your blender'},
+  {line:'⋈ a day on Venus > a year on Venus ⋈',sub:'chaotic neutral planet'},
+  {line:'⌖ your atoms were forged in stellar cores ⌖',sub:'literal stardust status'},
+  {line:'⊞ the sun loses 4M tons/sec to fusion ⊞',sub:'still has 5B years left'}
+];
+let rockyTyping=false,lastSpeak=-1,lastFact=-1;
+const rockyTextEl=document.getElementById('rocky-text'),rockyTypingEl=document.getElementById('rocky-typing'),rockySvg=document.getElementById('rocky-svg'),rockyGlitch=document.getElementById('rocky-glitch');
+function glitchRocky(){rockyGlitch.classList.add('flash');rockyTextEl.classList.add('glitching');setTimeout(()=>rockyGlitch.classList.remove('flash'),80);setTimeout(()=>rockyTextEl.classList.remove('glitching'),300)}
+function typeRocky(entry){
+  if(rockyTyping)return;rockyTyping=true;glitchRocky();rockyTextEl.textContent='';rockyTypingEl.textContent='...';rockyTypingEl.classList.add('show');
+  rockySvg.classList.remove('talking');void rockySvg.offsetWidth;rockySvg.classList.add('talking');
+  setTimeout(()=>{
+    rockyTypingEl.classList.remove('show');rockyTypingEl.textContent='';
+    const lineEl=document.createElement('div');lineEl.style.cssText='font-family:Space Mono,monospace;font-size:11px;color:var(--green);letter-spacing:1px;margin-bottom:4px';
+    const subEl=document.createElement('div');subEl.style.cssText='font-family:Space Mono,monospace;font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase';subEl.textContent=entry.sub;
+    rockyTextEl.append(lineEl,subEl);let i=0;const tick=setInterval(()=>{lineEl.textContent+=entry.line[i];i++;if(i>=entry.line.length){clearInterval(tick);rockyTyping=false}},38);
+  },450);
+}
+function rockySpeak(){let idx;do{idx=Math.floor(Math.random()*ROCKY_SPEAK.length)}while(idx===lastSpeak);lastSpeak=idx;typeRocky(ROCKY_SPEAK[idx])}
+function rockyFact(){let idx;do{idx=Math.floor(Math.random()*ROCKY_FACTS.length)}while(idx===lastFact);lastFact=idx;typeRocky(ROCKY_FACTS[idx])}
+document.getElementById('rocky-wrap').addEventListener('mouseenter',rockySpeak);
+
+const VIT_LON=80.1534;
+function pad(n){return String(Math.floor(n)).padStart(2,'0')}
+function getJD(){return(Date.now()/86400000)+2440587.5}
+function getLST(lon){const D=getJD()-2451545.0;let G=18.697374558+24.06570982441908*D;G=((G%24)+24)%24;return((G+lon/15)%24+24)%24}
+const CONSTELLATIONS=[{ra:0,name:'Pegasus'},{ra:1,name:'Pisces'},{ra:2.5,name:'Perseus'},{ra:5,name:'Orion'},{ra:7,name:'Canis Major'},{ra:9.5,name:'Leo'},{ra:11.5,name:'Virgo'},{ra:15.5,name:'Scorpius'},{ra:17.5,name:'Sagittarius'},{ra:20,name:'Cygnus'},{ra:21.5,name:'Aquarius'},{ra:23,name:'Cetus'}];
+function getConst(lst){let b=CONSTELLATIONS[0];for(let i=CONSTELLATIONS.length-1;i>=0;i--){if(lst>=CONSTELLATIONS[i].ra){b=CONSTELLATIONS[i];break}}return b.name}
+function updateClock(){
+  const now=new Date(),ist=new Date(now.getTime()+now.getTimezoneOffset()*60000+5.5*3600000),lst=getLST(VIT_LON);
+  document.getElementById('clock-time').textContent=`${pad(ist.getHours())}:${pad(ist.getMinutes())}:${pad(ist.getSeconds())}`;
+  document.getElementById('clock-sidereal').textContent=`LST ${pad(Math.floor(lst))}h ${pad((lst%1)*60)}m`;
+  document.getElementById('clock-jd').textContent=`JD ${getJD().toFixed(5)}`;
+  document.getElementById('clock-constellation').textContent=`↑ ${getConst(lst)}`;
+}
+updateClock();setInterval(updateClock,1000);
+
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}resize();window.addEventListener('resize',resize);
+const stars=Array.from({length:300},()=>({x:Math.random(),y:Math.random(),r:.25+Math.random()*1.1,baseA:.18+Math.random()*.55,phase:Math.random()*Math.PI*2,spd:.007+Math.random()*.022,cross:Math.random()>.85}));
+function makeGalPts(n){return Array.from({length:n},()=>{const a=Math.random()*Math.PI*2,d=Math.pow(Math.random(),1.8);return{nx:Math.cos(a)*d,ny:Math.sin(a)*d*.48,r:.12+Math.random()*.72,a:.06+Math.random()*.30,phase:Math.random()*Math.PI*2,spd:.002+Math.random()*.005}})}
+const galaxies=[{fx:.80,fy:.20,fr:.085,pts:makeGalPts(160)},{fx:.14,fy:.78,fr:.055,pts:makeGalPts(100)}];let shooters=[],nextShot=3000+Math.random()*2000,shotAcc=0,lastFrame=performance.now();
+function spawnShooter(){const fromTop=Math.random()>.3;let sx,sy,angle;if(fromTop){sx=Math.random()*W;sy=-8;angle=Math.PI*(.2+Math.random()*.35)}else{sx=-8;sy=Math.random()*H*.65;angle=Math.PI*(-.08+Math.random()*.16)}const speed=6+Math.random()*5;shooters.push({x:sx,y:sy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,decay:.010+Math.random()*.009,trail:[],trailMax:28+Math.floor(Math.random()*16)})}
+function draw(now){
+  const dt=Math.min(now-lastFrame,50);lastFrame=now;shotAcc+=dt;if(shotAcc>=nextShot){spawnShooter();shotAcc=0;nextShot=3000+Math.random()*2000}
+  ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='source-over';
+  stars.forEach(s=>{s.phase+=s.spd;const tw=s.baseA*(.25+.75*Math.pow(Math.max(0,Math.sin(s.phase)),1.4));if(tw<.04)return;ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(240,240,255,${tw})`;ctx.fill();if(s.cross&&s.r>.75&&tw>.45){const len=s.r*4.5*tw;ctx.strokeStyle=`rgba(210,215,255,${tw*.4})`;ctx.lineWidth=.55;ctx.beginPath();ctx.moveTo(s.x*W-len,s.y*H);ctx.lineTo(s.x*W+len,s.y*H);ctx.moveTo(s.x*W,s.y*H-len);ctx.lineTo(s.x*W,s.y*H+len);ctx.stroke()}});
+  ctx.globalCompositeOperation='screen';galaxies.forEach(g=>{const gcx=g.fx*W,gcy=g.fy*H,gr=g.fr*Math.min(W,H),cg=ctx.createRadialGradient(gcx,gcy,0,gcx,gcy,gr);cg.addColorStop(0,'hsla(230,40%,70%,.18)');cg.addColorStop(.72,'hsla(210,20%,35%,.04)');cg.addColorStop(1,'hsla(200,10%,10%,0)');ctx.beginPath();ctx.arc(gcx,gcy,gr,0,Math.PI*2);ctx.fillStyle=cg;ctx.fill();g.pts.forEach(p=>{p.phase+=p.spd;ctx.beginPath();ctx.arc(gcx+p.nx*gr,gcy+p.ny*gr,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,225,255,${p.a*(.35+.65*Math.abs(Math.sin(p.phase)))})`;ctx.fill()})});
+  ctx.globalCompositeOperation='source-over';shooters=shooters.filter(s=>s.life>0);shooters.forEach(s=>{s.trail.push({x:s.x,y:s.y});if(s.trail.length>s.trailMax)s.trail.shift();s.x+=s.vx;s.y+=s.vy;s.life-=s.decay;for(let i=1;i<s.trail.length;i++){const prog=i/s.trail.length;ctx.beginPath();ctx.moveTo(s.trail[i-1].x,s.trail[i-1].y);ctx.lineTo(s.trail[i].x,s.trail[i].y);ctx.strokeStyle=`rgba(235,235,255,${prog*s.life*.82})`;ctx.lineWidth=prog*1.8;ctx.lineCap='round';ctx.stroke()}});
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+
+const storeKey='anvi-desmos-projects-v1';
+const graphCanvas=document.getElementById('graph-canvas'),gctx=graphCanvas.getContext('2d'),exprList=document.getElementById('expr-list'),projectList=document.getElementById('project-list'),projectName=document.getElementById('project-name'),graphStatus=document.getElementById('graph-status');
+const colors=['#33ff00','#00aaff','#ff2d78','#ffe600','#00ffe0','#f2c4ff'];
+let graphState={name:'Untitled orbit',exprs:['y=sin(x)','y=x^2/4-3'],xMin:-10,xMax:10,yMin:-10,yMax:10};
+function projects(){try{return JSON.parse(localStorage.getItem(storeKey)||'[]')}catch{return[]}}
+function setProjects(list){localStorage.setItem(storeKey,JSON.stringify(list));renderProjects()}
+function compileExpr(raw){
+  let expr=raw.trim().replace(/^y\s*=/i,'').replace(/\^/g,'**');
+  expr=expr.replace(/\b(sin|cos|tan|asin|acos|atan|sqrt|abs|log|ln|exp|floor|ceil|round|min|max)\b/g,m=>m==='ln'?'Math.log':'Math.'+m);
+  if(!/^[0-9xX+\-*/().,\s*MathPIEabsincotqlgrpexflrundm]+$/.test(expr)) throw new Error('blocked characters');
+  expr=expr.replace(/\bPI\b/g,'Math.PI').replace(/\bE\b/g,'Math.E');
+  return new Function('x','return '+expr);
+}
+function resizeGraph(){
+  const rect=graphCanvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+  graphCanvas.width=Math.max(1,Math.floor(rect.width*dpr));graphCanvas.height=Math.max(1,Math.floor(rect.height*dpr));
+  gctx.setTransform(dpr,0,0,dpr,0,0);
+}
+function sx(x){return (x-graphState.xMin)/(graphState.xMax-graphState.xMin)*graphCanvas.clientWidth}
+function sy(y){return graphCanvas.clientHeight-(y-graphState.yMin)/(graphState.yMax-graphState.yMin)*graphCanvas.clientHeight}
+function drawGrid(){
+  const w=graphCanvas.clientWidth,h=graphCanvas.clientHeight;gctx.clearRect(0,0,w,h);gctx.fillStyle='#020b04';gctx.fillRect(0,0,w,h);
+  const xStep=niceStep((graphState.xMax-graphState.xMin)/10),yStep=niceStep((graphState.yMax-graphState.yMin)/10);
+  gctx.lineWidth=1;gctx.font='10px Space Mono';gctx.textBaseline='top';
+  for(let x=Math.ceil(graphState.xMin/xStep)*xStep;x<=graphState.xMax;x+=xStep){const px=sx(x);gctx.strokeStyle=Math.abs(x)<1e-9?'rgba(255,230,0,.55)':'rgba(51,255,0,.12)';gctx.beginPath();gctx.moveTo(px,0);gctx.lineTo(px,h);gctx.stroke();gctx.fillStyle='rgba(143,170,134,.7)';if(Math.abs(x)>1e-9)gctx.fillText(Number(x.toFixed(2)),px+3,sy(0)+4)}
+  for(let y=Math.ceil(graphState.yMin/yStep)*yStep;y<=graphState.yMax;y+=yStep){const py=sy(y);gctx.strokeStyle=Math.abs(y)<1e-9?'rgba(255,230,0,.55)':'rgba(51,255,0,.12)';gctx.beginPath();gctx.moveTo(0,py);gctx.lineTo(w,py);gctx.stroke();gctx.fillStyle='rgba(143,170,134,.7)';if(Math.abs(y)>1e-9)gctx.fillText(Number(y.toFixed(2)),sx(0)+4,py+3)}
+}
+function niceStep(v){const p=Math.pow(10,Math.floor(Math.log10(v))),n=v/p;return(n<2?1:n<5?2:5)*p}
+function drawGraph(){
+  resizeGraph();drawGrid();let ok=0,bad=0;
+  graphState.exprs.forEach((raw,idx)=>{
+    if(!raw.trim())return;
+    let fn;try{fn=compileExpr(raw)}catch{bad++;return}
+    gctx.strokeStyle=colors[idx%colors.length];gctx.lineWidth=2;gctx.beginPath();let started=false;
+    const w=graphCanvas.clientWidth;
+    for(let px=0;px<=w;px++){
+      const x=graphState.xMin+px/w*(graphState.xMax-graphState.xMin);let y;
+      try{y=fn(x)}catch{started=false;continue}
+      if(!Number.isFinite(y)||Math.abs(y)>1e6){started=false;continue}
+      const py=sy(y);if(!started){gctx.moveTo(px,py);started=true}else gctx.lineTo(px,py);
+    }
+    gctx.stroke();ok++;
+  });
+  graphStatus.textContent=bad?`${ok} plotted · ${bad} invalid`:`${ok} plotted`;
+}
+function renderExprs(){
+  exprList.innerHTML='';
+  graphState.exprs.forEach((expr,idx)=>{
+    const row=document.createElement('div');row.className='expr-row';
+    row.innerHTML=`<span class="swatch" style="color:${colors[idx%colors.length]};background:${colors[idx%colors.length]}"></span><input value="${expr.replace(/"/g,'&quot;')}" aria-label="Expression ${idx+1}"><button class="delete-expr" aria-label="Delete expression">x</button>`;
+    row.querySelector('input').addEventListener('input',e=>{graphState.exprs[idx]=e.target.value;drawGraph();autosaveDraft()});
+    row.querySelector('button').addEventListener('click',()=>{graphState.exprs.splice(idx,1);renderExprs();drawGraph();autosaveDraft()});
+    exprList.appendChild(row);
+  });
+}
+function renderProjects(){
+  projectList.innerHTML='';
+  projects().forEach((p,idx)=>{
+    const row=document.createElement('div');row.className='project-chip';
+    row.innerHTML=`<span>${p.name}</span><span><button data-load="${idx}">load</button> <button data-del="${idx}">del</button></span>`;
+    row.querySelector('[data-load]').addEventListener('click',()=>loadProject(idx));
+    row.querySelector('[data-del]').addEventListener('click',()=>{const list=projects();list.splice(idx,1);setProjects(list)});
+    projectList.appendChild(row);
+  });
+}
+function saveProject(){
+  graphState.name=projectName.value.trim()||'Untitled orbit';
+  const list=projects(),existing=list.findIndex(p=>p.name===graphState.name);
+  const payload=JSON.parse(JSON.stringify(graphState));
+  if(existing>=0)list[existing]=payload;else list.unshift(payload);
+  setProjects(list.slice(0,24));graphStatus.textContent='saved';
+}
+function loadProject(idx){const p=projects()[idx];if(!p)return;graphState=JSON.parse(JSON.stringify(p));projectName.value=graphState.name;renderExprs();drawGraph();autosaveDraft()}
+function autosaveDraft(){localStorage.setItem(storeKey+'-draft',JSON.stringify({...graphState,name:projectName.value.trim()||graphState.name}))}
+function loadDraft(){try{const draft=JSON.parse(localStorage.getItem(storeKey+'-draft')||'null');if(draft){graphState=draft;projectName.value=draft.name}}catch{}}
+document.getElementById('add-expression').addEventListener('click',()=>{graphState.exprs.push('y=');renderExprs();drawGraph();autosaveDraft()});
+document.getElementById('save-project').addEventListener('click',saveProject);
+document.getElementById('new-project').addEventListener('click',()=>{graphState={name:'Untitled orbit',exprs:['y=sin(x)'],xMin:-10,xMax:10,yMin:-10,yMax:10};projectName.value=graphState.name;renderExprs();drawGraph();autosaveDraft()});
+document.getElementById('reset-view').addEventListener('click',()=>{graphState.xMin=-10;graphState.xMax=10;graphState.yMin=-10;graphState.yMax=10;drawGraph();autosaveDraft()});
+projectName.addEventListener('input',autosaveDraft);
+let dragging=false,lastPt=null;
+graphCanvas.addEventListener('mousedown',e=>{dragging=true;lastPt={x:e.clientX,y:e.clientY}});
+window.addEventListener('mouseup',()=>dragging=false);
+window.addEventListener('mousemove',e=>{if(!dragging||!lastPt)return;const dx=e.clientX-lastPt.x,dy=e.clientY-lastPt.y,xr=graphState.xMax-graphState.xMin,yr=graphState.yMax-graphState.yMin;graphState.xMin-=dx/graphCanvas.clientWidth*xr;graphState.xMax-=dx/graphCanvas.clientWidth*xr;graphState.yMin+=dy/graphCanvas.clientHeight*yr;graphState.yMax+=dy/graphCanvas.clientHeight*yr;lastPt={x:e.clientX,y:e.clientY};drawGraph();autosaveDraft()});
+graphCanvas.addEventListener('wheel',e=>{e.preventDefault();const factor=e.deltaY>0?1.12:.88,rect=graphCanvas.getBoundingClientRect(),mx=e.clientX-rect.left,my=e.clientY-rect.top,cx=graphState.xMin+mx/rect.width*(graphState.xMax-graphState.xMin),cy=graphState.yMax-my/rect.height*(graphState.yMax-graphState.yMin);graphState.xMin=cx+(graphState.xMin-cx)*factor;graphState.xMax=cx+(graphState.xMax-cx)*factor;graphState.yMin=cy+(graphState.yMin-cy)*factor;graphState.yMax=cy+(graphState.yMax-cy)*factor;drawGraph();autosaveDraft()},{passive:false});
+window.addEventListener('resize',()=>{positionPlanets();drawGraph()});
+loadDraft();renderExprs();renderProjects();
+</script>
+</body>
+</html>
