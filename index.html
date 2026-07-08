@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Anvi Wadhwa - CS undergrad at VIT Chennai. ML for space and physical sciences, reinforcement learning, probabilistic inference, writing, projects, experience, and graph experiments.">
+<meta property="og:title" content="Anvi Wadhwa ">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://avatars.githubusercontent.com/anvisgit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Anvi Wadhwa ">
+<title>Anvi's LarpLand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Luckiest+Guy&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Permanent+Marker&family=Press+Start+2P&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<div id="boot-screen">
+  <div id="boot-lines"></div>
+  <button id="boot-skip">SKIP &gt;&gt;</button>
+</div>
+
+<div id="clock-widget">
+  <div id="clock-time">--:--:--</div>
+  <div id="clock-meta">Chennai, India · IST</div>
+  <div id="clock-sidereal">LST --h --m</div>
+  <div id="clock-jd">JD ----------.-----</div>
+  <div id="clock-constellation">↑ --------</div>
+</div>
+
+<div id="rocky-wrap" class="rocky-hidden">
+  <div id="rocky-box">
+    <div id="rocky-glitch"></div>
+    <div style="text-align:center;padding:10px 0 4px;border-bottom:1px solid rgba(51,255,0,.08)">
+      <svg id="rocky-svg" width="80" height="80" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(100,100)">
+          <circle cx="0" cy="0" r="80" fill="none" stroke="#80cf64" opacity=".1"/>
+          <g id="arms">
+            <g><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(72)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(144)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(216)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+            <g transform="rotate(288)"><rect x="-4" y="-95" width="8" height="50" rx="2" fill="#1a3d12" stroke="#80cf64"/><circle cx="0" cy="-48" r="5" fill="#80cf64"/></g>
+          </g>
+          <circle cx="0" cy="0" r="52" fill="#0a1f08" stroke="#4d8f3a"/>
+          <circle cx="0" cy="0" r="24" fill="#071505" stroke="#80cf64"/>
+          <circle class="rk-eye" cx="0" cy="0" r="9" fill="#80cf64"/>
+          <circle cx="0" cy="0" r="2" fill="#ddebd5"/>
+        </g>
+      </svg>
+    </div>
+    <div id="rocky-body"><div id="rocky-typing"></div><div id="rocky-text">click me</div></div>
+    <div id="rocky-btn-row">
+      <button class="rocky-btn" onclick="rockySpeak()">[ speak ]</button>
+      <button class="rocky-btn" onclick="rockyFact()">[ fact ]</button>
+    </div>
+  </div>
+  <span id="rocky-label">Rocky · Eridian life form</span>
+</div>
+
+<div id="main-shell">
+  <div id="landing">
+    <div class="name-block">
+      <h1 class="jam-name" aria-label="Anvi Wadhwa">
+        <span class="jam-word">
+          <span class="jam-letter" style="--r:-5deg;--y:2px">A</span><span class="jam-letter" style="--r:3deg;--y:-3px">n</span><span class="jam-letter" style="--r:-2deg;--y:4px">v</span><span class="jam-letter" style="--r:5deg;--y:-2px">i</span>
+        </span>
+        <span class="jam-word">
+          <span class="jam-letter" style="--r:-4deg;--y:-1px">W</span><span class="jam-letter" style="--r:4deg;--y:3px">a</span><span class="jam-letter" style="--r:-3deg;--y:-3px">d</span><span class="jam-letter" style="--r:2deg;--y:4px">h</span><span class="jam-letter" style="--r:-5deg;--y:1px">w</span><span class="jam-letter" style="--r:3deg;--y:-2px">a</span>
+        </span>
+      </h1>
+    </div>
+
+    <div id="solar-wrap">
+      <div id="solar-label-row">
+        <div class="solar-label-line"></div><span id="solar-label">▼ Select Destination ▼</span><div class="solar-label-line"></div>
+      </div>
+      <div id="solar-stage">
+        <svg id="solar-svg-bg" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="sunG" cx="40%" cy="35%"><stop offset="0%" stop-color="#fff8c0"/><stop offset="40%" stop-color="#ffcc00"/><stop offset="100%" stop-color="#cc6600"/></radialGradient>
+            <radialGradient id="earthG" cx="38%" cy="32%"><stop offset="0%" stop-color="#ffd6ea"/><stop offset="50%" stop-color="#ff2d78"/><stop offset="100%" stop-color="#3d0018"/></radialGradient>
+            <radialGradient id="satG" cx="36%" cy="30%"><stop offset="0%" stop-color="#ffeeaa"/><stop offset="55%" stop-color="#e0952a"/><stop offset="100%" stop-color="#7a4010"/></radialGradient>
+            <radialGradient id="nepG" cx="35%" cy="28%"><stop offset="0%" stop-color="#aaddff"/><stop offset="50%" stop-color="#2265dd"/><stop offset="100%" stop-color="#060f3a"/></radialGradient>
+            <radialGradient id="marsG" cx="35%" cy="28%"><stop offset="0%" stop-color="#ffd1a3"/><stop offset="52%" stop-color="#c2481c"/><stop offset="100%" stop-color="#421006"/></radialGradient>
+            <radialGradient id="violetG" cx="35%" cy="28%"><stop offset="0%" stop-color="#f2c4ff"/><stop offset="50%" stop-color="#8b42ff"/><stop offset="100%" stop-color="#15042f"/></radialGradient>
+            <radialGradient id="tealG" cx="35%" cy="28%"><stop offset="0%" stop-color="#c7fff2"/><stop offset="50%" stop-color="#14b8a6"/><stop offset="100%" stop-color="#042f2b"/></radialGradient>
+          </defs>
+          <ellipse cx="450" cy="260" rx="150" ry="88" fill="none" stroke="rgba(51,255,0,.22)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="450" cy="260" rx="260" ry="145" fill="none" stroke="rgba(51,255,0,.15)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="450" cy="260" rx="330" ry="190" fill="none" stroke="rgba(51,255,0,.12)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="450" cy="260" rx="405" ry="230" fill="none" stroke="rgba(51,255,0,.10)" stroke-width="1" stroke-dasharray="6 4"/>
+          <circle cx="450" cy="260" r="52" fill="rgba(255,190,0,.05)"/>
+          <circle cx="450" cy="260" r="44" fill="rgba(255,210,0,.07)"/>
+          <circle cx="450" cy="260" r="36" fill="url(#sunG)"/>
+          <text x="450" y="310" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="rgba(255,210,0,.5)" letter-spacing="2">SOL</text>
+        </svg>
+
+        <button class="sol-planet-btn" id="nav-intro" onclick="showPage('intro')" data-svgx="300" data-svgy="260">
+          <svg class="sol-orb" width="84" height="84" viewBox="0 0 84 84"><circle cx="42" cy="42" r="39" fill="url(#earthG)"/><ellipse cx="32" cy="32" rx="10" ry="7" fill="#7a0030" opacity=".42"/><ellipse cx="52" cy="48" rx="11" ry="6" fill="#3d0018" opacity=".34"/></svg>
+          <span class="sol-planet-label">Intro</span><span class="sol-planet-sub">/ about me</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-projects" onclick="showPage('projects')" data-svgx="617" data-svgy="149">
+          <svg class="sol-orb" width="104" height="104" viewBox="0 0 104 104" overflow="visible"><ellipse cx="52" cy="52" rx="69" ry="14" fill="none" stroke="rgba(255,200,80,.55)" stroke-width="3.5"/><circle cx="52" cy="52" r="38" fill="url(#satG)"/><ellipse cx="52" cy="52" rx="69" ry="14" fill="none" stroke="rgba(255,210,100,.4)" stroke-width="2.5" clip-path="inset(50% 0 0 0)"/></svg>
+          <span class="sol-planet-label">Projects</span><span class="sol-planet-sub">/ build log</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-writing" onclick="showPage('writing')" data-svgx="617" data-svgy="371">
+          <svg class="sol-orb" width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="35" fill="url(#nepG)"/><ellipse cx="38" cy="33" rx="21" ry="5" fill="rgba(130,200,255,.25)"/><ellipse cx="38" cy="42" rx="17" ry="3" fill="rgba(100,170,255,.18)"/></svg>
+          <span class="sol-planet-label">Writing</span><span class="sol-planet-sub">/ essays</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-experience" onclick="showPage('experience')" data-svgx="120" data-svgy="260">
+          <svg class="sol-orb" width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="42" fill="url(#marsG)"/><ellipse cx="31" cy="35" rx="10" ry="5" fill="rgba(90,20,0,.32)"/><ellipse cx="58" cy="54" rx="15" ry="6" fill="rgba(255,220,160,.18)"/></svg>
+          <span class="sol-planet-label">Experience</span><span class="sol-planet-sub">/ internships</span>
+        </button>
+        <button class="sol-planet-btn" id="nav-campus" onclick="showPage('campus')" data-svgx="350" data-svgy="500">
+          <svg class="sol-orb" width="66" height="66" viewBox="0 0 66 66" overflow="visible">
+            <circle cx="33" cy="33" r="28" fill="url(#violetG)"/>
+            <circle cx="33" cy="33" r="28" fill="none" stroke="rgba(20,5,40,.5)" stroke-width="1.5"/>
+          </svg>
+          <span class="sol-planet-label">Campus</span><span class="sol-planet-sub">/ community</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-shell">
+    <div id="mini-nav">
+      <button class="mnav-btn" id="mnav-home" onclick="showLanding()">Home</button>
+      <button class="mnav-btn" id="mnav-intro" onclick="showPage('intro')">Intro</button>
+      <button class="mnav-btn" id="mnav-projects" onclick="showPage('projects')">Projects</button>
+      <button class="mnav-btn" id="mnav-writing" onclick="showPage('writing')">Writing</button>
+      <button class="mnav-btn" id="mnav-experience" onclick="showPage('experience')">Experience</button>
+      <button class="mnav-btn" id="mnav-campus" onclick="showPage('campus')">Campus</button>
+    </div>
+
+    <div class="content-inner">
+      <div id="page-intro" class="page">
+        <div class="intro-grid">
+          <div class="intro-hero">
+            <p class="intro-greeting">Hi,<br>I'm Anvi,<br>CS undergraduate at VIT Chennai.</p>
+          </div>
+          <div class="intro-copy">
+            <p class="intro-body">Welcome to my website. I'd like to give you a neat, well-defined answer to who I am, but I don't really have one. The only thing I'm reasonably certain about is that I enjoy an unhealthy amount of larping. So, for now, let me just be Anvi Wadhwa, and welcome to Larpland.</p>
+            <p class="intro-body">Most of my curiosity currently lives in machine learning, particularly in areas involving physical and space sciences, probabilistic modeling, uncertainty quantification, and high-dimensional systems. Lately, I've been spending most of my time going deeper into reinforcement learning and trying to understand the mathematics behind how agents learn, make decisions, and optimize behavior. Partly because it's interesting. Partly because humans don't seem particularly good at it either.</p>
+            <p class="intro-body">Outside of computer science, I'm into philosophy, business, psychology, literature, and art. I love writing and chasing ideas that push boundaries. I appreciate anything that makes me question the obvious and look at the world sideways.</p>
+            <p class="intro-body">I don't have a grand philosophy beyond staying curious. There are too many interesting things to learn, too many ideas to explore, and too many questions worth asking. Anyway, that's everything I currently know about myself, and now you know it too.</p>
+            <p class="intro-body">Congratulations, Now you're about as me as I am.</p>
+          </div>
+        </div>
+        <div class="links-section">
+          <span class="find-label">Find me</span>
+          <div class="link-buttons">
+            <div class="email-popover-wrap">
+              <button type="button" class="link-btn" id="email-popover-trigger" aria-expanded="false" aria-controls="email-popover" onclick="toggleEmailPopup(event)">Email</button>
+              <div class="email-popover" id="email-popover" aria-hidden="true">
+                <button type="button" class="email-popup-close" aria-label="Close email popup" onclick="closeEmailPopup()">x</button>
+                <div class="email-row"><span class="email-kind">Student</span><span class="email-address">anvi.wadhwa2024@vitstudent.ac.in</span></div>
+                <div class="email-row"><span class="email-kind">Personal</span><span class="email-address">anviwadhwa7@gmail.com</span></div>
+              </div>
+            </div>
+            <a href="https://github.com/anvisgit" target="_blank" class="link-btn">GitHub</a>
+            <a href="https://www.linkedin.com/in/anviwadhwa/" target="_blank" class="link-btn">LinkedIn</a>
+            <a href="https://medium.com/@anviwadhwa7" target="_blank" class="link-btn">Medium</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-projects" class="page">
+        <div class="sec-head">Projects</div>
+        <div class="proj-item">
+          <p class="proj-name">Comparative Analysis of PPO and GRPO for Solving Wordle</p>
+          <p class="proj-desc">Trained PPO and GRPO agents to solve Wordle across 2,309 official answer words, then compared them on win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO looked competitive early on, then collapsed under extended training, exposing a sharp gap between information-seeking and actually acting on information.</p>
+          <div class="proj-tags"><span class="proj-badge">89.6% PPO win rate</span><span class="proj-badge">5.8% GRPO win rate</span><span class="proj-tag">PPO</span><span class="proj-tag">GRPO</span><span class="proj-tag">RL</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">Predicting Failure in Offline Reinforcement Learning from Dataset Quality <span class="badge-ongoing">Ongoing</span></p>
+          <p class="proj-desc">Investigating how the quality and coverage of a fixed offline dataset drives the failure modes of conservative offline RL algorithms (CQL, IQL) on the D4RL benchmark, through systematic coverage-reduction, quality-degradation, and noise-injection studies, with the goal of predicting failure before training even starts. Currently working through a CQL collapse under degraded data quality.</p>
+          <div class="proj-tags"><span class="proj-tag">CQL</span><span class="proj-tag">IQL</span><span class="proj-tag">D4RL</span><span class="proj-tag">Offline RL</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">Deep Sequence Learning for Stellar Photometry</p>
+          <p class="proj-desc">Attention-based Bidirectional LSTM for predicting stellar light curves from synthetic astronomical data, using sliding-window sequence prediction evaluated across multiple noise levels and window sizes with R², MAE, and MSE.</p>
+          <div class="proj-tags"><span class="proj-tag">Attention</span><span class="proj-tag">BiLSTM</span><span class="proj-tag">PyTorch</span><span class="proj-tag">Astro ML</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">Applied Reinforcement Learning</p>
+          <p class="proj-desc">A growing library of RL implementations built from scratch across Gymnasium environments (CartPole, BipedalWalker, Ant-v4), with training and evaluation pipelines for classical and deep RL methods including Q-Learning, DQN variants, PPO, and actor-critic algorithms.</p>
+          <div class="proj-tags"><span class="proj-tag">RL</span><span class="proj-tag">Gymnasium</span><span class="proj-tag">DQN</span><span class="proj-tag">PPO</span></div>
+        </div>
+        <div class="proj-item">
+          <p class="proj-name">Algorithmic Trading with Reinforcement Learning</p>
+          <p class="proj-desc">RL-based trading system for Indian equities using PPO and custom environments. Sharpe ratio, Calmar ratio, and max drawdown analysis across a full backtesting suite.</p>
+          <div class="proj-tags"><span class="proj-tag">PPO</span><span class="proj-tag">RL</span><span class="proj-tag">Backtesting</span></div>
+        </div>
+        <a href="https://github.com/anvisgit?tab=repositories" target="_blank" class="writing-footer">More on GitHub →</a>
+      </div>
+
+      <div id="page-writing" class="page">
+        <div class="sec-head">Writing</div>
+        <a href="https://medium.com/@anviwadhwa7/sex-work-machines-and-the-fear-of-becoming-unnecessary-bb423668304c" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 4 min read</span><span class="writing-meta-item">Jun 2026</span></div><p class="writing-title">Sex Work, Machines, and the Fear of Becoming Unnecessary</p><p class="writing-desc">On labour, intimacy, artificial companions, and the fear that machines may unsettle identity as much as work.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/can-we-just-stick-to-a-tesseract-657c9b8df08a" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 5 min read</span><span class="writing-meta-item">Apr 2026</span></div><p class="writing-title">Can we Just Stick to a Tesseract?</p><p class="writing-desc">A dive into higher-dimensional geometry and why our brains resist it so stubbornly.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/god-serves-man-but-he-is-not-a-servant-821517560c3a" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 4 min read</span><span class="writing-meta-item">Apr 2026</span></div><p class="writing-title">God Serves Man, but He is Not a Servant</p><p class="writing-desc">On the tension between utility and dignity.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/the-philosophical-and-political-dimensions-of-punishment-teaching-suffering-and-power-ab18340b3044" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 8 min read</span><span class="writing-meta-item">Feb 2026</span></div><p class="writing-title">The Philosophical and Political Dimensions of Punishment</p><p class="writing-desc">Punishment as deterrence, retribution, rehabilitation: three philosophies, three different societies.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/the-bayes-awakening-5af7ffcdd2e2" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 6 min read</span><span class="writing-meta-item">Sep 2025</span></div><p class="writing-title">The Bayes' Awakening</p><p class="writing-desc">On how Bayesian reasoning quietly reshapes the way we update beliefs under uncertainty.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/a-mans-need-for-fiction-triumphs-over-the-evidence-of-absurdity-7e4325b39f78" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 6 min read</span><span class="writing-meta-item">Aug 2025</span></div><p class="writing-title">A Man's Need For Fiction Triumphs Over The Evidence Of Absurdity</p><p class="writing-desc">On absurdity, suffering, religion, and the human instinct to invent meaning when the universe offers none.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/pls-spell-vheck-me-3481fce8e891" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 3 min read</span><span class="writing-meta-item">Jul 2025</span></div><p class="writing-title">pls spell vheck me</p><p class="writing-desc">A compact walkthrough of edit distance, Levenshtein distance, dynamic programming, and spell checkers.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7/the-adventures-of-schrodingers-cat-469c28f8c04d" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 18 min read</span><span class="writing-meta-item">Jul 2025</span></div><p class="writing-title">The Adventures of Schrodinger's Cat</p><p class="writing-desc">A long-form exploration of superposition, observation, entanglement, and the strange philosophical life of the famous cat.</p></div><span class="writing-arrow">→</span></a>
+        <a href="https://medium.com/@anviwadhwa7" target="_blank" class="writing-footer">More on Medium →</a>
+      </div>
+      <div id="page-experience" class="page">
+        <div class="sec-head">Experience</div>
+        <div class="xp-item">
+          <p class="xp-role">Research Intern</p>
+          <p class="xp-org">Indian Institute of Science Education and Research (IISER) Bhopal</p>
+          <p class="xp-timeline">Jun 2026 – Present <span class="badge-ongoing">Ongoing</span></p>
+          <p class="xp-title">Advised by Prof. Vivek Delukar</p>
+          <p class="xp-title">Researching Grid Foundation Models (GridFMs) for scalable AI applications in electric power systems.</p>
+          <ul class="xp-list">
+            <li>Exploring self-supervised and graph-based learning methods for power grid representation learning.</li>
+            <li>Investigating foundation model adaptation and fine-tuning for downstream grid analytics and forecasting.</li>
+            <li>Conducting literature review and experimental analysis on AI techniques for next-generation power systems.</li>
+          </ul>
+        </div>
+        <div class="xp-item">
+          <p class="xp-role">Computer Vision Research Intern</p>
+          <p class="xp-org">Indian Institute of Technology (BHU) Varanasi</p>
+          <p class="xp-timeline">May – July</p>
+          <p class="xp-title">Advised by Prof. Pankhuri Jain</p>
+          <p class="xp-title">Lower-Limb Pose Estimation for Physiotherapy Monitoring</p>
+          <ul class="xp-list">
+            <li>Developed a real-time lower-limb tracking system using MediaPipe and OpenCV.</li>
+            <li>Implemented pose estimation pipelines to detect and track hip, knee, and ankle landmarks from webcam video streams.</li>
+            <li>Built joint-angle estimation modules to compute knee and hip flexion angles during physiotherapy exercises using geometric analysis.</li>
+            <li>Improved robustness across varying lighting conditions, occlusions, and camera viewpoints for reliable real-time tracking.</li>
+            <li>Generated motion logs and CSV-based datasets for movement analysis and future model evaluation.</li>
+            <li>Visualized joint trajectories and movement patterns to assist physiotherapy assessment and rehabilitation monitoring.</li>
+            <li>Assisted in organizing and preprocessing exercise datasets collected from multiple users for training and testing workflows.</li>
+          </ul>
+        </div>
+      </div>
+      <div id="page-campus" class="page">
+        <div class="sec-head">Campus</div>
+        <div class="xp-item">
+          <p class="xp-role">Business Innovation Community (BIC), VIT Chennai</p>
+          <p class="xp-org">Role progression · Aug 2024 – Present</p>
+          <div class="xp-tl">
+            <div class="xp-tl-node current">
+              <p class="xp-tl-role">Vice Chairperson</p>
+              <span class="xp-tl-time">Jul 2025 – Present</span>
+              <ul class="xp-tl-list">
+                <li>Managed content strategy and branding across Instagram and LinkedIn to improve engagement and visibility.</li>
+                <li>Coordinated cross-functional teams for smooth execution of events, collaborations, and operational activities.</li>
+              </ul>
+            </div>
+            <div class="xp-tl-node">
+              <p class="xp-tl-role">R&amp;D and Curation Lead</p>
+              <span class="xp-tl-time">May 2025 – Jul 2025</span>
+              <ul class="xp-tl-list">
+                <li>Led research initiatives on emerging trends in technology, startups, AI, and business innovation.</li>
+                <li>Contributed to ideation and planning for innovation-driven initiatives within the community.</li>
+              </ul>
+            </div>
+            <div class="xp-tl-node">
+              <p class="xp-tl-role">Curation Member</p>
+              <span class="xp-tl-time">Aug 2024 – Apr 2025</span>
+              <ul class="xp-tl-list">
+                <li>Assisted in R&amp;D and social media content creation for community initiatives.</li>
+                <li>Curated technical and business-focused content for community events, workshops, and social media outreach.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="xp-item">
+          <p class="xp-role">Core Committee Member &amp; Evaluator</p>
+          <p class="xp-org">DEFY Hackathons (2024-2025)</p>
+          <ul class="xp-list">
+            <li>Evaluated startup, Web3, and technology-focused hackathon projects on innovation, scalability, and product-market fit.</li>
+            <li>Mentored participants on pitching, business strategy, and solution validation.</li>
+            <li>Designed judging rubrics and assisted in streamlining evaluation workflows.</li>
+            <li>Managed event operations, participant onboarding, outreach, and sponsorship coordination.</li>
+            <li>Collaborated with organizing teams to execute large-scale hackathon activities and engagement initiatives.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
