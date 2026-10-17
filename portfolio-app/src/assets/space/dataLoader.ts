@@ -60,7 +60,7 @@ function makeArchivePlanet(categorySlug: string, categoryName: string, projects:
   const archiveName = categorySlug === 'about-anvi' ? 'Anvi Wadhwa' : `${categoryName} Archive`
   const description = categorySlug === 'about-anvi'
     ? (projects[0]?.description ?? 'About Anvi Wadhwa')
-    : `${count} ${categoryName.toLowerCase()} entries. Select this planet to browse every item and its details.`
+    : `${count} ${categoryName.toLowerCase()} entries. Browse the system menu to explore every item and its details.`
   const displaytext = `<div class="archive-content"><p class="archive-intro">${escapeHtml(categorySlug === 'about-anvi' ? 'Profile · research · interests · contact' : `${count} ${categoryName.toLowerCase()} entries · select a link to explore further`)}</p>${projects.map((project) => {
     const date = project.date ? `<time>${escapeHtml(project.date)}</time>` : ''
     const tags = (project.tags ?? []).map((tag) => `<span class="archive-chip">${escapeHtml(tag)}</span>`).join('')
@@ -78,7 +78,7 @@ function makeArchivePlanet(categorySlug: string, categoryName: string, projects:
     images: [],
     carousel: [],
     thumbnails: [],
-    tags: count > 1 ? [`${count} entries`, 'Click to explore'] : (projects[0]?.tags ?? []),
+    tags: count > 1 ? [`${count} entries`] : (projects[0]?.tags ?? []),
   }
 }
 
