@@ -7,7 +7,7 @@ import TextWritter from '@/components/elements/TextWritter.vue'
 import mousePointer from '@/components/elements/MousePointer.vue'
 import { selector, resetStore } from '@/stores/spaceStore'
 import { useProjectStore } from '@/stores/projectStore'
-import { middleMouseclickAppened } from '@/stores/globalStore'
+ 
 import { LocalTranslator } from '@/composables/UseLocalTranslator'
 import { useRandomToggle } from '@/composables/UseRandomToggle'
 import DraggableImageGallery from '@/components/DraggableImageGallery.vue'
@@ -24,7 +24,7 @@ import PerformancePanel from '../components/PerformancePanel.vue'
 import CategoryView from './CategoryView.vue'
 import CookiesPopup from '../components/CookiesPopup.vue'
 
-const githubLink = 'https://github.com/anvisgit'
+const githubLink = 'https://github.com/anvisgit/anvisgit'
 const publicBaseUrl = import.meta.env.BASE_URL
 const device = useDevice()
 const projectStore = useProjectStore()
@@ -117,16 +117,7 @@ onBeforeUnmount(() => {
         :speed="15"
       ></FakeCode>
 
-      <div
-        v-if="!middleMouseclickAppened && device.size > MediaQuery.sm"
-        class="col-start-6 col-end-8 row-start-11 row-end-13"
-      >
-        <div class="scroll-downs">
-          <div class="mousey">
-            <div class="scroller"></div>
-          </div>
-        </div>
-      </div>
+       
     </div>
     <div class="fixed top-0 left-0 bg-black w-2/6 h-1/4 blur-3xl"></div>
     <div
@@ -226,7 +217,7 @@ onBeforeUnmount(() => {
     <!-- Bottom Framing Dynamic Pannel -->
     <div class="notification" v-if="device.size > MediaQuery.sm">
       <div class="cutout-bottom text-center">
-        <span class="orbitron-text text-xl font-black">{{ LocalTranslator.getLT('dock') }}</span>
+         
       </div>
       <div
         class="notification-container"
