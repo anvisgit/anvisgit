@@ -61,12 +61,26 @@ function makeArchivePlanet(categorySlug: string, categoryName: string, projects:
   const description = categorySlug === 'about-anvi'
     ? (projects[0]?.description ?? 'About Anvi Wadhwa')
     : `${count} ${categoryName.toLowerCase()} entries. Browse the system menu to explore every item and its details.`
-  const displaytext = `<div class="archive-content"><p class="archive-intro">${escapeHtml(categorySlug === 'about-anvi' ? 'Profile · research · interests · contact' : `${count} ${categoryName.toLowerCase()} entries · select a link to explore further`)}</p>${projects.map((project) => {
-    const date = project.date ? `<time>${escapeHtml(project.date)}</time>` : ''
-    const tags = (project.tags ?? []).map((tag) => `<span class="archive-chip">${escapeHtml(tag)}</span>`).join('')
+  const isAbout = categorySlug === 'about-anvi'
+  const intro = isAbout ? '' : `<p class="archive-intro">${count} ${escapeHtml(categoryName.toUpperCase())} ENTRIES · SELECT A LINK TO EXPLORE FURTHER</p>`
+  const entries = projects.map((project) => {
     const details = project.displaytext || `<p>${escapeHtml(project.description)}</p>`
-    return `<article class="archive-entry"><header><h2>${escapeHtml(project.name)}</h2>${date}</header>${tags ? `<div class="archive-tags">${tags}</div>` : ''}<div class="archive-body">${details}</div></article>`
-  }).join('')}</div>`
+    const tags = (project.tags ?? []).map((tag) => `<span class="archive-chip">${escapeHtml(tag)}</span>`).join('')
+
+    if (isAbout) {
+      const aboutDetails = details.replace(/<\/h2>/i, `</h2>${tags ? `<div class="archive-tags">${tags}</div>` : ''}`)
+      return `<section class="archive-panel archive-about"><div class="archive-body">${aboutDetails}</div></section>`
+    }
+
+    const date = project.date
+      ? `<time>${categorySlug === 'campus-communities' ? project.date.split('; ').map(escapeHtml).join('<br>') : escapeHtml(project.date)}</time>`
+      : ''
+    const showTags = categorySlug !== 'writing-transmissions' && tags
+      ? `<div class="archive-tags">${tags}</div>`
+      : ''
+    return `<article class="archive-card"><header><h2>${escapeHtml(project.name)}</h2>${date}</header>${showTags}<div class="archive-body">${details}</div></article>`
+  }).join('')
+  const displaytext = `<div class="archive-portfolio archive-${escapeHtml(categorySlug)}">${intro}<div class="archive-card-grid">${entries}</div></div>`
 
   return {
     slug: 'archive',

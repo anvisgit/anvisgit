@@ -29,8 +29,44 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   background-image: linear-gradient(to right, rgba(68,255,0,.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(68,255,0,.12) 1px, transparent 1px);
 }
 #portfolio-root .grid-better { background-image: radial-gradient(rgba(255,255,255,.12) 1.5px, transparent 0); }
-#portfolio-root .frame-box { border-color: var(--retro-green); box-shadow: inset 0 0 24px rgba(68,255,0,.08), 0 0 12px rgba(68,255,0,.22); }
+#portfolio-root .frame-box { border-width: 4px; border-color: var(--retro-green); box-shadow: inset 0 0 24px rgba(68,255,0,.08), 0 0 12px rgba(68,255,0,.22); }
 #portfolio-root .frame-cutout { background-color: var(--retro-green); }
+#portfolio-root .archive-portfolio {
+  --archive-green: #65ff35;
+  --archive-panel: rgba(4, 18, 10, .9);
+  --archive-text: #c7e9c0;
+  --archive-muted: #86a88a;
+  --archive-border: rgba(130, 255, 100, .32);
+  box-sizing: border-box;
+  color: var(--archive-text);
+  font: 16px/1.7 'Courier New', monospace;
+}
+#portfolio-root .archive-intro { margin: 0 0 1.25rem; color: #00d8dc; font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+#portfolio-root .archive-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; }
+#portfolio-root .archive-card, #portfolio-root .archive-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--archive-border);
+  border-left: 3px solid var(--archive-green);
+  background: var(--archive-panel);
+}
+#portfolio-root .archive-about { grid-column: 1 / -1; padding: 22px; }
+#portfolio-root .archive-portfolio h2,
+#portfolio-root .archive-portfolio h3 { margin: 0 0 .65rem; color: var(--retro-white) !important; line-height: 1.3; }
+#portfolio-root .archive-card header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-bottom: .55rem; border-bottom: 1px solid var(--archive-border); }
+#portfolio-root .archive-card header h2 { margin: 0; }
+#portfolio-root .archive-card time, #portfolio-root .archive-muted { color: var(--archive-muted); font-size: 13px; }
+#portfolio-root .archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+#portfolio-root .archive-chip { padding: 2px 9px; border: 1px solid rgba(220, 115, 145, .65); color: #d987a0; font-size: 12px; }
+#portfolio-root .archive-body { overflow-wrap: anywhere; }
+#portfolio-root .archive-body p { margin: .65rem 0; }
+#portfolio-root .archive-body ul { padding-left: 1.2rem; }
+#portfolio-root .project-window .content .archive-body a { display: inline-block; color: var(--retro-white) !important; text-decoration: none !important; transition: transform .18s ease; transform-origin: left center; }
+#portfolio-root .project-window .content .archive-body a:hover { color: var(--retro-white) !important; transform: scale(1.06); }
+@media (max-width: 600px) {
+  #portfolio-root .archive-about { padding: 16px; }
+  #portfolio-root .archive-card header { flex-direction: column; gap: 4px; }
+}
 #portfolio-root .selectors::before, #portfolio-root .selectors::after { border-color: var(--retro-chalk); filter: drop-shadow(0 0 2px rgba(232,229,217,.25)); }
 #portfolio-root .cornerTL, #portfolio-root .cornerTR, #portfolio-root .cornerBL, #portfolio-root .cornerBR { filter: none; }
 #portfolio-root .glass-effect, #portfolio-root #menu {

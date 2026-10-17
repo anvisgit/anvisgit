@@ -31,7 +31,8 @@ const projectStore = useProjectStore()
 
 //Visual glitch toggle for the call to action button
 const isActiveGlitch = useRandomToggle(500, 4000)
-const isNameGlitch = useRandomToggle(333, 2667)
+// Reduce the title glitch frequency by 90% while keeping its existing effect.
+const isNameGlitch = useRandomToggle(3330, 26670)
 
 //Component toggles
 const showContactDetails = ref(false)
