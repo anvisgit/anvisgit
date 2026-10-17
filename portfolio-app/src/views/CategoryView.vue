@@ -50,40 +50,42 @@ const device = useDevice()
         <p class="category-description" v-html="props.data.description" />
       </header>
 
-      <h3 class="title category-section-title category-list-title">{{ t('inthissystem') }}</h3>
-      <div class="category-list">
-        <article class="category-entry" v-for="(project, index) in props.data.projects" :key="index">
-          <div class="category-entry-heading">
-            <span class="category-index">{{ String(index + 1).padStart(2, '0') }}</span>
-            <div class="category-entry-title">
-              <h3 class="title-2">{{ project.name }}</h3>
-              <p v-if="project.date" class="category-date">{{ project.date }}</p>
+      <section class="category-collection">
+        <h3 class="title category-section-title category-list-title">{{ t('inthissystem') }}</h3>
+        <div class="category-list">
+          <article class="category-entry" v-for="(project, index) in props.data.projects" :key="index">
+            <div class="category-entry-heading" v-if="props.data.slug !== 'about-anvi'">
+              <span class="category-index">{{ String(index + 1).padStart(2, '0') }}</span>
+              <div class="category-entry-title">
+                <h3 class="title-2">{{ project.name }}</h3>
+                <p v-if="project.date" class="category-date">{{ project.date }}</p>
+              </div>
             </div>
-          </div>
 
-          <div class="category-entry-body">
-            <FullscreenableImage
-              v-if="project.thumbnails?.length"
-              :src="'project_images/' + project.ressourcespath + project.thumbnails![0]"
-              :alt="project.name"
-              class="category-image"
-            />
-            <div class="category-copy" v-html="project.description" />
-          </div>
+            <div class="category-entry-body" :class="{ 'category-about-body': props.data.slug === 'about-anvi' }">
+              <FullscreenableImage
+                v-if="project.thumbnails?.length"
+                :src="'project_images/' + project.ressourcespath + project.thumbnails![0]"
+                :alt="project.name"
+                class="category-image"
+              />
+              <div class="category-copy" v-html="project.description" />
+            </div>
 
-          <div v-if="project.tags?.length" class="category-tags">
-            <TagComponent
-              v-for="(tag, tagIndex) in project.tags"
-              :key="tagIndex"
-              :toShow="tag"
-            />
-          </div>
-          <div v-if="project.pages?.length" class="category-pages">
-            <h4>{{ t('additionalcontent') }}</h4>
-            <span v-for="page in project.pages" :key="page.slug">{{ page.title }}</span>
-          </div>
-        </article>
-      </div>
+            <div v-if="project.tags?.length && props.data.slug !== 'about-anvi'" class="category-tags">
+              <TagComponent
+                v-for="(tag, tagIndex) in project.tags"
+                :key="tagIndex"
+                :toShow="tag"
+              />
+            </div>
+            <div v-if="project.pages?.length" class="category-pages">
+              <h4>{{ t('additionalcontent') }}</h4>
+              <span v-for="page in project.pages" :key="page.slug">{{ page.title }}</span>
+            </div>
+          </article>
+        </div>
+      </section>
     </div>
   </DraggableWindow>
 </template>
@@ -118,6 +120,7 @@ const device = useDevice()
   align-items: center;
 }
 .category-view {
+  container-type: inline-size;
   --category-cyan: #00e5ff;
   --category-yellow: #ffe600;
   --category-hot: #ff3b8d;
@@ -161,10 +164,10 @@ const device = useDevice()
 .category-section-title {
   margin: 0 0 .5rem;
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.6rem;
+  font-size: clamp(1.12rem, 1rem + .45cqi, 1.35rem);
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: .06em;
+  letter-spacing: .04em;
   text-transform: uppercase;
 }
 .category-description-title { color: var(--category-accent) !important; }
@@ -173,31 +176,31 @@ const device = useDevice()
   margin: .55rem 0 0;
   color: rgba(232, 229, 217, .75);
   font-family: 'Funnel Display', sans-serif;
-  font-size: 1rem;
+  font-size: clamp(.82rem, .78rem + .22cqi, .92rem);
   line-height: 1.65;
 }
-.category-list { display: grid; gap: 1rem; }
+.category-list { display: grid; gap: 0; }
 .category-entry {
   min-width: 0;
-  padding: 1rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--category-accent) 36%, transparent);
-  border-left: 3px solid var(--category-accent);
-  border-radius: .65rem;
-  background: linear-gradient(110deg, var(--category-accent-soft), rgba(8, 11, 9, .42) 58%);
+  padding: .75rem .2rem;
+  border: 0;
+  border-bottom: 1px solid rgba(232,229,217,.18);
+  border-radius: 0;
+  background: transparent;
 }
 .category-entry-heading { display: flex; align-items: flex-start; gap: .8rem; }
 .category-index {
   flex: 0 0 auto;
   padding-top: .15rem;
   color: var(--category-accent-alt);
-  font: 600 .75rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+  font: 600 .68rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 .category-entry-title { min-width: 0; }
 .category-entry-title h3 {
   margin: 0;
   color: var(--retro-chalk, #e8e5d9);
   font-family: 'Funnel Display', sans-serif;
-  font-size: 1.35rem;
+  font-size: clamp(1rem, .95rem + .45cqi, 1.2rem);
   font-weight: 600;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -205,12 +208,12 @@ const device = useDevice()
 .category-date {
   margin: .2rem 0 0;
   color: var(--category-accent-alt);
-  font: 700 .78rem/1.5 'Doto', monospace;
+  font: 700 .68rem/1.5 'Doto', monospace;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
-.category-entry-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: .85rem; margin: .8rem 0 0 2rem; }
-.category-copy { min-width: 0; color: rgba(232, 229, 217, .88); font: 350 1.05rem/1.8 'Funnel Display', sans-serif; overflow-wrap: anywhere; }
+.category-entry-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: .65rem; margin: .45rem 0 0; }
+.category-copy { min-width: 0; color: rgba(232, 229, 217, .88); font: 350 clamp(.8rem, .76rem + .24cqi, .9rem)/1.7 'Funnel Display', sans-serif; overflow-wrap: anywhere; }
 .category-copy :deep(p) { margin: 0 0 .65rem; }
 .category-copy :deep(p:last-child) { margin-bottom: 0; }
 .category-copy :deep(ul) { margin: .55rem 0 0; padding-left: 1.2rem; list-style: disc; }
@@ -219,19 +222,20 @@ const device = useDevice()
 .category-copy :deep(a) { color: var(--category-accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--category-accent) 55%, transparent); text-underline-offset: .2em; }
 .category-copy :deep(a:hover) { color: var(--retro-chalk, #e8e5d9); }
 .category-image { width: 100%; max-height: 18rem; border-radius: .45rem; object-fit: cover; }
-.category-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .85rem 0 0 2rem; }
+.category-tags { display: inline-flex; flex-wrap: wrap; gap: .35rem; margin: .5rem 0 0; }
 .category-tags :deep(.tag) {
-  padding: .1rem .45rem;
-  border-color: color-mix(in srgb, var(--category-accent-alt) 65%, transparent);
-  background: color-mix(in srgb, var(--category-accent) 10%, rgba(3, 7, 6, .9));
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--retro-chalk, #e8e5d9);
 }
 .category-tags :deep(.tag .text-sm) { color: var(--retro-chalk, #e8e5d9); }
-.category-entry:nth-child(even) { border-left-color: var(--category-accent-alt); }
-.category-entry:nth-child(3n) { border-left-color: var(--category-hot); }
-.category-pages { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .9rem 0 0 2rem; }
+.category-tags :deep(.tag .text-sm)::before { content: '· '; color: var(--category-accent); }
+.category-entry:nth-child(even) { border-left: 0; }
+.category-entry:nth-child(3n) { border-left: 0; }
+.category-pages { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: .6rem 0 0; }
 .category-pages h4 { width: 100%; margin: 0; color: var(--category-accent); font-size: .8rem; }
-.category-pages span { padding: .3rem .55rem; border: 1px solid color-mix(in srgb, var(--category-accent) 48%, transparent); border-radius: .35rem; color: var(--retro-chalk, #e8e5d9); font-size: .8rem; }
+.category-pages span { padding: 0; border: 0; border-radius: 0; color: var(--retro-chalk, #e8e5d9); font-size: .8rem; }
 @media (min-width: 800px) {
   .category-entry-body:has(.category-image) { grid-template-columns: minmax(10rem, .75fr) minmax(0, 1.5fr); }
 }
@@ -240,4 +244,7 @@ const device = useDevice()
   .category-entry { padding: .85rem; }
   .category-entry-body, .category-tags, .category-pages { margin-left: 0; }
 }
+.category-about-body { margin-top: 0; }
+.category-view-about-anvi .category-collection { margin-top: 1rem; }
+.category-view-about-anvi .category-list-title { display: none; }
 </style>
