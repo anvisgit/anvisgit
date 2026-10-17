@@ -16,6 +16,7 @@
 </head>
 <body>
 <canvas id="cosmos"></canvas>
+<div id="transition-wipe" aria-hidden="true"></div>
 
 <div id="boot-screen">
   <div id="boot-lines"></div>
@@ -60,6 +61,8 @@
   <span id="rocky-label">Rocky · Eridian life form</span>
 </div>
 
+<div id="mission-toast"><span class="mt-head">◆ SECTOR SCANNED</span><span id="mission-toast-body">—</span><span class="mt-sub" id="mission-toast-sub"></span></div>
+
 <div id="main-shell">
   <div id="landing">
     <div class="name-block">
@@ -98,23 +101,23 @@
           <text x="450" y="310" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="rgba(255,210,0,.5)" letter-spacing="2">SOL</text>
         </svg>
 
-        <button class="sol-planet-btn" id="nav-intro" onclick="showPage('intro')" data-svgx="300" data-svgy="260">
+        <button class="sol-planet-btn" id="nav-intro" onclick="handleDestinationClick(event,'intro')" data-svgx="300" data-svgy="260">
           <svg class="sol-orb" width="84" height="84" viewBox="0 0 84 84"><circle cx="42" cy="42" r="39" fill="url(#earthG)"/><ellipse cx="32" cy="32" rx="10" ry="7" fill="#12a88f" opacity=".42"/><ellipse cx="52" cy="48" rx="11" ry="6" fill="#063d33" opacity=".34"/></svg>
           <span class="sol-planet-label">Intro</span><span class="sol-planet-sub">/ about me</span>
         </button>
-        <button class="sol-planet-btn" id="nav-projects" onclick="showPage('projects')" data-svgx="617" data-svgy="149">
+        <button class="sol-planet-btn" id="nav-projects" onclick="handleDestinationClick(event,'projects')" data-svgx="617" data-svgy="149">
           <svg class="sol-orb" width="104" height="104" viewBox="0 0 104 104" overflow="visible"><ellipse cx="52" cy="52" rx="69" ry="14" fill="none" stroke="rgba(255,200,80,.55)" stroke-width="3.5"/><circle cx="52" cy="52" r="38" fill="url(#satG)"/><ellipse cx="52" cy="52" rx="69" ry="14" fill="none" stroke="rgba(255,210,100,.4)" stroke-width="2.5" clip-path="inset(50% 0 0 0)"/></svg>
           <span class="sol-planet-label">Projects</span><span class="sol-planet-sub">/ build log</span>
         </button>
-        <button class="sol-planet-btn" id="nav-writing" onclick="showPage('writing')" data-svgx="617" data-svgy="371">
+        <button class="sol-planet-btn" id="nav-writing" onclick="handleDestinationClick(event,'writing')" data-svgx="617" data-svgy="371">
           <svg class="sol-orb" width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="35" fill="url(#nepG)"/><ellipse cx="38" cy="33" rx="21" ry="5" fill="rgba(130,200,255,.25)"/><ellipse cx="38" cy="42" rx="17" ry="3" fill="rgba(100,170,255,.18)"/></svg>
           <span class="sol-planet-label">Writing</span><span class="sol-planet-sub">/ essays</span>
         </button>
-        <button class="sol-planet-btn" id="nav-experience" onclick="showPage('experience')" data-svgx="234" data-svgy="116">
+        <button class="sol-planet-btn" id="nav-experience" onclick="handleDestinationClick(event,'experience')" data-svgx="234" data-svgy="116">
           <svg class="sol-orb" width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="42" fill="url(#marsG)"/><ellipse cx="31" cy="35" rx="10" ry="5" fill="rgba(90,20,0,.32)"/><ellipse cx="58" cy="54" rx="15" ry="6" fill="rgba(255,220,160,.18)"/></svg>
           <span class="sol-planet-label">Experience</span><span class="sol-planet-sub">/ internships</span>
         </button>
-        <button class="sol-planet-btn" id="nav-campus" onclick="showPage('campus')" data-svgx="154" data-svgy="417">
+        <button class="sol-planet-btn" id="nav-campus" onclick="handleDestinationClick(event,'campus')" data-svgx="154" data-svgy="417">
           <svg class="sol-orb" width="66" height="66" viewBox="0 0 66 66" overflow="visible">
             <circle cx="33" cy="33" r="28" fill="url(#violetG)"/>
             <circle cx="33" cy="33" r="28" fill="none" stroke="rgba(20,5,40,.5)" stroke-width="1.5"/>
@@ -168,37 +171,54 @@
       </div>
 
       <div id="page-projects" class="page">
-        <div class="sec-head">Projects</div>
+        <div class="sec-head-row"><div class="sec-head">Projects</div><span class="sec-cat">CATALOG SOL-02 · 6 OBJECTS</span></div>
         <div class="proj-item">
-          <p class="proj-name">Comparative Analysis of PPO and GRPO for Solving Wordle</p>
-          <p class="proj-desc">Trained PPO and GRPO agents to solve Wordle across 2,309 official answer words, then compared them on win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO looked competitive early on, then collapsed under extended training, exposing a sharp gap between information-seeking and actually acting on information.</p>
-          <div class="proj-tags"><span class="proj-badge">89.6% PPO win rate</span><span class="proj-badge">5.8% GRPO win rate</span><span class="proj-tag">PPO</span><span class="proj-tag">GRPO</span><span class="proj-tag">RL</span></div>
-        </div>
-        <div class="proj-item">
+          <span class="cat-id">OBJ 01/06</span>
           <p class="proj-name">Predicting Failure in Offline Reinforcement Learning from Dataset Quality <span class="badge-ongoing">Ongoing</span></p>
           <p class="proj-desc">Investigating how the quality and coverage of a fixed offline dataset drives the failure modes of conservative offline RL algorithms (CQL, IQL) on the D4RL benchmark, through systematic coverage-reduction, quality-degradation, and noise-injection studies, with the goal of predicting failure before training even starts. Currently working through a CQL collapse under degraded data quality.</p>
           <div class="proj-tags"><span class="proj-tag">CQL</span><span class="proj-tag">IQL</span><span class="proj-tag">D4RL</span><span class="proj-tag">Offline RL</span></div>
+          <div class="proj-reveal"><div class="proj-reveal-row"><span>Status</span><span>In progress</span></div><div class="proj-reveal-row"><span>Class</span><span>Offline RL</span></div><div class="proj-reveal-row"><span>Focus</span><span>CQL collapse</span></div><div class="proj-reveal-row"><span>Signal</span><span>Degrading</span></div></div>
         </div>
         <div class="proj-item">
+          <span class="cat-id">OBJ 02/06</span>
+          <p class="proj-name">Comparative Analysis of PPO and GRPO for Solving Wordle</p>
+          <p class="proj-desc">Trained PPO and GRPO agents to solve Wordle across 2,309 official answer words, then compared them on win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO looked competitive early on, then collapsed under extended training, exposing a sharp gap between information-seeking and actually acting on information.</p>
+          <div class="proj-tags"><span class="proj-badge">89.6% PPO win rate</span><span class="proj-badge">5.8% GRPO win rate</span><span class="proj-tag">PPO</span><span class="proj-tag">GRPO</span><span class="proj-tag">RL</span></div>
+          <div class="proj-reveal"><div class="proj-reveal-row"><span>Status</span><span>Complete</span></div><div class="proj-reveal-row"><span>Class</span><span>Policy RL</span></div><div class="proj-reveal-row"><span>Delta</span><span>+83.8% win rate</span></div><div class="proj-reveal-row"><span>Signal</span><span>Strong</span></div></div>
+        </div>
+        <div class="proj-item">
+          <span class="cat-id">OBJ 03/06</span>
+          <p class="proj-name">Implementing Modern Large Language Models from First Principles</p>
+          <p class="proj-desc">A four-layer transformer language model built from scratch and trained on a small personal-essay corpus, used as a hands-on study of how training length and dataset size interact. An initial 10,000-step run overfit badly, with validation loss bottoming out around step 1,100 before climbing steadily; capping training at 1,200 steps stopped the memorization but revealed the deeper issue &mdash; the corpus itself was far too small for the model to learn coherent language structure, pointing toward scaling up the dataset next.</p>
+          <div class="proj-tags"><span class="proj-tag">Transformer</span><span class="proj-tag">PyTorch</span><span class="proj-tag">From Scratch</span><span class="proj-tag">NLP</span></div>
+          <div class="proj-reveal"><div class="proj-reveal-row"><span>Status</span><span>Complete</span></div><div class="proj-reveal-row"><span>Class</span><span>LLM / NLP</span></div><div class="proj-reveal-row"><span>Finding</span><span>Data-bound</span></div><div class="proj-reveal-row"><span>Signal</span><span>Diagnosed</span></div></div>
+        </div>
+        <div class="proj-item">
+          <span class="cat-id">OBJ 04/06</span>
+          <p class="proj-name">Reinforcement Learning for FTL Garbage Collection</p>
+          <p class="proj-desc">A flash translation layer (FTL) garbage-collection simulator in C, built to compare greedy and random victim-selection policies against a reinforcement-learning-based policy over a Python PPO agent connected via socket-based IPC. Benchmarks write amplification factor (WAF) and GC behavior across workloads; the RL policy currently trails both baselines (WAF 15.1 vs. 1.18 greedy / 1.53 random), with further training and tuning identified as next steps.</p>
+          <div class="proj-tags"><span class="proj-tag">PPO</span><span class="proj-tag">C</span><span class="proj-tag">IPC</span><span class="proj-tag">Systems</span></div>
+          <div class="proj-reveal"><div class="proj-reveal-row"><span>Status</span><span>In progress</span></div><div class="proj-reveal-row"><span>Class</span><span>Systems + RL</span></div><div class="proj-reveal-row"><span>WAF (RL)</span><span>15.10</span></div><div class="proj-reveal-row"><span>Signal</span><span>Underperforming</span></div></div>
+        </div>
+        <div class="proj-item">
+          <span class="cat-id">OBJ 05/06</span>
           <p class="proj-name">Deep Sequence Learning for Stellar Photometry</p>
           <p class="proj-desc">Attention-based Bidirectional LSTM for predicting stellar light curves from synthetic astronomical data, using sliding-window sequence prediction evaluated across multiple noise levels and window sizes with R², MAE, and MSE.</p>
           <div class="proj-tags"><span class="proj-tag">Attention</span><span class="proj-tag">BiLSTM</span><span class="proj-tag">PyTorch</span><span class="proj-tag">Astro ML</span></div>
+          <div class="proj-reveal"><div class="proj-reveal-row"><span>Status</span><span>Complete</span></div><div class="proj-reveal-row"><span>Class</span><span>Astro ML</span></div><div class="proj-reveal-row"><span>Domain</span><span>Light curves</span></div><div class="proj-reveal-row"><span>Signal</span><span>Stable</span></div></div>
         </div>
         <div class="proj-item">
+          <span class="cat-id">OBJ 06/06</span>
           <p class="proj-name">Applied Reinforcement Learning</p>
           <p class="proj-desc">A growing library of RL implementations built from scratch across Gymnasium environments (CartPole, BipedalWalker, Ant-v4), with training and evaluation pipelines for classical and deep RL methods including Q-Learning, DQN variants, PPO, and actor-critic algorithms.</p>
           <div class="proj-tags"><span class="proj-tag">RL</span><span class="proj-tag">Gymnasium</span><span class="proj-tag">DQN</span><span class="proj-tag">PPO</span></div>
-        </div>
-        <div class="proj-item">
-          <p class="proj-name">Algorithmic Trading with Reinforcement Learning</p>
-          <p class="proj-desc">RL-based trading system for Indian equities using PPO and custom environments. Sharpe ratio, Calmar ratio, and max drawdown analysis across a full backtesting suite.</p>
-          <div class="proj-tags"><span class="proj-tag">PPO</span><span class="proj-tag">RL</span><span class="proj-tag">Backtesting</span></div>
+          <div class="proj-reveal"><div class="proj-reveal-row"><span>Status</span><span>Growing</span></div><div class="proj-reveal-row"><span>Class</span><span>RL library</span></div><div class="proj-reveal-row"><span>Envs</span><span>3 active</span></div><div class="proj-reveal-row"><span>Signal</span><span>Nominal</span></div></div>
         </div>
         <a href="https://github.com/anvisgit?tab=repositories" target="_blank" class="writing-footer">More on GitHub →</a>
       </div>
 
       <div id="page-writing" class="page">
-        <div class="sec-head">Writing</div>
+        <div class="sec-head-row"><div class="sec-head">Writing</div><span class="sec-cat">CATALOG NEP-03 · 8 TRANSMISSIONS</span></div>
         <a href="https://medium.com/@anviwadhwa7/sex-work-machines-and-the-fear-of-becoming-unnecessary-bb423668304c" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 4 min read</span><span class="writing-meta-item">Jun 2026</span></div><p class="writing-title">Sex Work, Machines, and the Fear of Becoming Unnecessary</p><p class="writing-desc">On labour, intimacy, artificial companions, and the fear that machines may unsettle identity as much as work.</p></div><span class="writing-arrow">→</span></a>
         <a href="https://medium.com/@anviwadhwa7/can-we-just-stick-to-a-tesseract-657c9b8df08a" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 5 min read</span><span class="writing-meta-item">Apr 2026</span></div><p class="writing-title">Can we Just Stick to a Tesseract?</p><p class="writing-desc">A dive into higher-dimensional geometry and why our brains resist it so stubbornly.</p></div><span class="writing-arrow">→</span></a>
         <a href="https://medium.com/@anviwadhwa7/god-serves-man-but-he-is-not-a-servant-821517560c3a" target="_blank" class="writing-item"><div><div class="writing-meta"><span class="writing-meta-item accent">■ 4 min read</span><span class="writing-meta-item">Apr 2026</span></div><p class="writing-title">God Serves Man, but He is Not a Servant</p><p class="writing-desc">On the tension between utility and dignity.</p></div><span class="writing-arrow">→</span></a>
@@ -210,7 +230,7 @@
         <a href="https://medium.com/@anviwadhwa7" target="_blank" class="writing-footer">More on Medium →</a>
       </div>
       <div id="page-experience" class="page">
-        <div class="sec-head">Experience</div>
+        <div class="sec-head-row"><div class="sec-head">Experience</div><span class="sec-cat">CATALOG MARS-04 · 2 LOGS</span></div>
         <div class="xp-item">
           <p class="xp-role">Research Intern</p>
           <p class="xp-org">Indian Institute of Science Education and Research (IISER) Bhopal</p>
@@ -241,17 +261,19 @@
         </div>
       </div>
       <div id="page-campus" class="page">
-        <div class="sec-head">Campus</div>
+        <div class="sec-head-row"><div class="sec-head">Campus</div><span class="sec-cat">CATALOG VIO-05 · 2 ENTRIES</span></div>
         <div class="xp-item">
           <p class="xp-role">Business Innovation Community (BIC), VIT Chennai</p>
           <p class="xp-org">Role progression · Aug 2024 – Present</p>
           <div class="xp-tl">
             <div class="xp-tl-node current">
-              <p class="xp-tl-role">Vice Chairperson</p>
+              <p class="xp-tl-role">Chairperson</p>
               <span class="xp-tl-time">Jul 2025 – Present</span>
               <ul class="xp-tl-list">
-                <li>Managed content strategy and branding across Instagram and LinkedIn to improve engagement and visibility.</li>
-                <li>Coordinated cross-functional teams for smooth execution of events, collaborations, and operational activities.</li>
+                <li>Lead the community as Chairperson, setting overall direction and driving the core team's execution.</li>
+                <li>Host and organize BIC's flagship events, workshops, and speaker sessions.</li>
+                <li>Run BIC's <a href="https://medium.com/@businessinnovationcommunityvit" target="_blank">Medium publication</a>, writing and publishing blog content for the community.</li>
+                <li>Designed and built <a href="https://bic-vitcc.github.io/BIC-website/#home" target="_blank">BIC's official website</a>.</li>
               </ul>
             </div>
             <div class="xp-tl-node">

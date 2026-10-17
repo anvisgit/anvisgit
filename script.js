@@ -3,12 +3,28 @@
 (function () {
   'use strict';
 
+  var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ---------------- BOOT SEQUENCE ---------------- */
   var bootLinesEl = document.getElementById('boot-lines');
   var bootScreen = document.getElementById('boot-screen');
   var bootSkip = document.getElementById('boot-skip');
   var mainShell = document.getElementById('main-shell');
   var rockyWrap = document.getElementById('rocky-wrap');
+  var landing = document.getElementById('landing');
+
+  /* Rocky lives on the Intro content page only — never on the Home
+     (landing) splash or the Projects/Writing/Experience/Campus pages. */
+  function updateRockyVisibility() {
+    if (!rockyWrap) return;
+    var pageIntro = document.getElementById('page-intro');
+    var introVisible = pageIntro && pageIntro.classList.contains('active');
+    if (bootDone && introVisible) {
+      rockyWrap.classList.remove('rocky-hidden');
+    } else {
+      rockyWrap.classList.add('rocky-hidden');
+    }
+  }
 
   var BOOT_LINES = [
     { text: 'INIT larpland_os v2.6.26 ...', type: 'ok' },
@@ -35,8 +51,7 @@
       }, 520);
     }
     if (mainShell) mainShell.classList.add('visible');
-    // Rocky only ever appears on the intro page (see updateRockyVisibility),
-    // so we don't unconditionally reveal it here anymore.
+    updateRockyVisibility();
   }
 
   function runBoot() {
@@ -279,19 +294,110 @@
 
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
 
+  var footerTimeEls = document.querySelectorAll('.footer-time-val');
+  var footerSignalEls = document.querySelectorAll('.footer-signal-val');
+  var SIGNAL_VALUES = ['-83dB', '-84dB', '-86dB', '-82dB', '-85dB'];
+  var clockTicks = 0;
+
   function updateClock() {
     var now = new Date();
-    if (clockTime) {
-      clockTime.textContent = pad2(now.getHours()) + ':' + pad2(now.getMinutes()) + ':' + pad2(now.getSeconds());
-    }
+    var hms = pad2(now.getHours()) + ':' + pad2(now.getMinutes()) + ':' + pad2(now.getSeconds());
+    if (clockTime) clockTime.textContent = hms;
     var jd = julianDate(now);
     if (clockJd) clockJd.textContent = 'JD ' + jd.toFixed(5);
     if (clockSidereal) clockSidereal.textContent = 'LST ' + siderealTime(now, jd);
     if (clockConstellation) clockConstellation.textContent = '\u2191 ' + getConstellation(now);
+    for (var ft = 0; ft < footerTimeEls.length; ft++) footerTimeEls[ft].textContent = hms;
+    clockTicks++;
+    if (footerSignalEls.length && clockTicks % 7 === 0) {
+      var sig = SIGNAL_VALUES[Math.floor(Math.random() * SIGNAL_VALUES.length)];
+      for (var fs = 0; fs < footerSignalEls.length; fs++) footerSignalEls[fs].textContent = sig;
+    }
   }
 
   updateClock();
   setInterval(updateClock, 1000);
+
+  /* ---------------- INTRO CURSOR: GREEN LIGHT + TYPE FIELD ----------------
+     On the landing/intro screen only, the OS cursor is replaced by a small
+     green point-light. As it nears the wordmark, each letter is pushed and
+     very slightly compressed, as if the light carries a physical field.
+     Off the landing screen the cursor and field are both inert. */
+  (function () {
+    var cursorLight = document.getElementById('cursor-light');
+    var letters = document.querySelectorAll('.jam-letter');
+    if (REDUCED_MOTION || (!cursorLight && !letters.length)) return;
+
+    var RADIUS = 130;      // px, field influence range
+    var MAX_PUSH = 14;     // px, max displacement
+    var MAX_SQUEEZE = 0.05; // max fractional scale distortion
+    var LERP = 0.10;       // spring stiffness (lower = softer)
+
+    var state = [];
+    letters.forEach(function (el, i) {
+      var cs = getComputedStyle(el);
+      var baseR = cs.getPropertyValue('--r').trim() || '0deg';
+      var baseY = parseFloat(cs.getPropertyValue('--y')) || 0;
+      state.push({ el: el, baseR: baseR, baseY: baseY, phase: i * 0.85, curX: 0, curY: 0, curS: 1, rect: null });
+    });
+
+    var mouseX = -9999, mouseY = -9999;
+    var mouseActive = false;
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX; mouseY = e.clientY; mouseActive = true;
+      if (cursorLight) {
+        cursorLight.style.transform = 'translate(' + mouseX + 'px,' + mouseY + 'px) translate(-50%,-50%)';
+      }
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () { mouseActive = false; });
+
+    function refreshRects() {
+      state.forEach(function (s) {
+        s.rect = s.el.getBoundingClientRect();
+      });
+    }
+    refreshRects();
+    window.addEventListener('resize', refreshRects);
+
+    var t = 0;
+    function tick() {
+      t += 1;
+      var landingVisible = landing && landing.style.display !== 'none';
+      if (cursorLight) {
+        cursorLight.classList.toggle('active', landingVisible && mouseActive);
+      }
+      if (landingVisible) {
+        state.forEach(function (s) {
+          var idleY = Math.sin(t * 0.012 + s.phase) * 2.4;
+          var targetX = 0, targetY = 0, targetS = 1;
+          if (mouseActive && s.rect) {
+            var cx = s.rect.left + s.rect.width / 2;
+            var cy = s.rect.top + s.rect.height / 2;
+            var dx = cx - mouseX, dy = cy - mouseY;
+            var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            if (dist < RADIUS) {
+              var force = (1 - dist / RADIUS);
+              targetX = (dx / dist) * force * MAX_PUSH;
+              targetY = (dy / dist) * force * MAX_PUSH;
+              targetS = 1 - force * MAX_SQUEEZE;
+            }
+          }
+          s.curX += (targetX - s.curX) * LERP;
+          s.curY += (targetY - s.curY) * LERP;
+          s.curS += (targetS - s.curS) * LERP;
+          s.el.style.transform =
+            'rotate(' + s.baseR + ') translate(' + s.curX.toFixed(2) + 'px,' +
+            (s.baseY + idleY + s.curY).toFixed(2) + 'px) scale(' + s.curS.toFixed(3) + ')';
+        });
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // rects shift once boot screen clears / layout settles
+    setTimeout(refreshRects, 700);
+    setTimeout(refreshRects, 1600);
+  })();
 
   /* ---------------- SOLAR SYSTEM LANDING NAV ---------------- */
   var solarStage = document.getElementById('solar-stage');
@@ -311,20 +417,28 @@
   positionPlanets();
   window.addEventListener('resize', positionPlanets);
 
+  /* ---------------- PROJECT MASK-REVEAL TRACKING ---------------- */
+  (function () {
+    var items = document.querySelectorAll('.proj-item');
+    if (!items.length) return;
+    items.forEach(function (item) {
+      var panel = item.querySelector('.proj-reveal');
+      if (!panel) return;
+      item.addEventListener('mousemove', function (e) {
+        // clip-path percentages are relative to the panel's own box, not the card
+        var r = panel.getBoundingClientRect();
+        var mx = ((e.clientX - r.left) / r.width) * 100;
+        var my = ((e.clientY - r.top) / r.height) * 100;
+        panel.style.setProperty('--mx', mx + '%');
+        panel.style.setProperty('--my', my + '%');
+      }, { passive: true });
+    });
+  })();
+
   /* ---------------- PAGE ROUTING ---------------- */
-  var landing = document.getElementById('landing');
   var contentShell = document.getElementById('content-shell');
   var pages = document.querySelectorAll('.page');
   var mnavButtons = document.querySelectorAll('.mnav-btn');
-
-  function updateRockyVisibility(name) {
-    if (!rockyWrap) return;
-    if (name === 'intro') {
-      if (bootDone) rockyWrap.classList.remove('rocky-hidden');
-    } else {
-      rockyWrap.classList.add('rocky-hidden');
-    }
-  }
 
   window.showPage = function (name) {
     if (landing) landing.style.display = 'none';
@@ -336,15 +450,84 @@
       mnavButtons[j].classList.toggle('active', mnavButtons[j].id === 'mnav-' + name);
     }
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-    updateRockyVisibility(name);
+    updateRockyVisibility();
+    fireMissionToast(name);
   };
+
+  /* ---------------- MISSION-LOG TOAST ----------------
+     Fires once per page per visit, echoing each section's own
+     CATALOG id (pulled straight from the .sec-cat markup already
+     on the page) so it reads like a real log entry, not a generic pop-up. */
+  var visitedPages = {};
+  var missionToast = document.getElementById('mission-toast');
+  var missionToastBody = document.getElementById('mission-toast-body');
+  var missionToastSub = document.getElementById('mission-toast-sub');
+  var missionToastTimer = null;
+
+  var PAGE_LABELS = {
+    intro: 'EARTH-01 · HOME BASE',
+    projects: null,   /* pulled live from .sec-cat when present */
+    writing: null,
+    experience: null,
+    campus: null
+  };
+
+  function fireMissionToast(name) {
+    if (!missionToast || visitedPages[name]) return;
+    visitedPages[name] = true;
+
+    var label = PAGE_LABELS[name];
+    if (!label) {
+      var target = document.getElementById('page-' + name);
+      var catEl = target && target.querySelector('.sec-cat');
+      label = catEl ? catEl.textContent : name.toUpperCase();
+    }
+    if (missionToastBody) missionToastBody.textContent = name.charAt(0).toUpperCase() + name.slice(1) + ' logged.';
+    if (missionToastSub) missionToastSub.textContent = label;
+
+    clearTimeout(missionToastTimer);
+    missionToast.classList.add('show');
+    missionToastTimer = setTimeout(function () {
+      missionToast.classList.remove('show');
+    }, 3200);
+  }
 
   window.showLanding = function () {
     if (contentShell) contentShell.classList.remove('visible');
     if (landing) landing.style.display = 'flex';
     for (var j = 0; j < mnavButtons.length; j++) mnavButtons[j].classList.remove('active');
     window.scrollTo({ top: 0, behavior: 'auto' });
-    updateRockyVisibility(null);
+    updateRockyVisibility();
+  };
+
+  /* ---------------- PLANET-NAV MASK TRANSITION ----------------
+     Selecting a destination IS the transition: the viewport "irises"
+     shut around the point you clicked, the new page swaps in underneath,
+     then the iris opens back up on the destination. */
+  var transitionWipe = document.getElementById('transition-wipe');
+  var wipeBusy = false;
+
+  window.handleDestinationClick = function (evt, name) {
+    if (wipeBusy) return;
+    if (!transitionWipe || REDUCED_MOTION) {
+      window.showPage(name);
+      return;
+    }
+    wipeBusy = true;
+    var x = (evt && evt.clientX) || window.innerWidth / 2;
+    var y = (evt && evt.clientY) || window.innerHeight / 2;
+    transitionWipe.style.setProperty('--tx', x + 'px');
+    transitionWipe.style.setProperty('--ty', y + 'px');
+    transitionWipe.classList.add('closing');
+    setTimeout(function () {
+      window.showPage(name);
+      transitionWipe.classList.remove('closing');
+      transitionWipe.classList.add('opening');
+      setTimeout(function () {
+        transitionWipe.classList.remove('opening');
+        wipeBusy = false;
+      }, 420);
+    }, 360);
   };
 
   /* ---------------- EMAIL POPOVER ---------------- */
