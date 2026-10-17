@@ -31,8 +31,9 @@ const projectStore = useProjectStore()
 
 //Visual glitch toggle for the call to action button
 const isActiveGlitch = useRandomToggle(500, 4000)
-// Reduce the title glitch frequency by 90% while keeping its existing effect.
-const isNameGlitch = useRandomToggle(3330, 26670)
+const isNameGlitch = ref(false)
+let nameGlitchInterval: number | undefined
+let nameGlitchResetTimeout: number | undefined
 
 //Component toggles
 const showContactDetails = ref(false)
@@ -45,6 +46,13 @@ useP5Canvas(canvasContainer, sketch)
 
 onMounted(() => {
   useP5Canvas(canvasContainer, sketch)
+  nameGlitchInterval = window.setInterval(() => {
+    isNameGlitch.value = true
+    nameGlitchResetTimeout = window.setTimeout(() => {
+      isNameGlitch.value = false
+      nameGlitchResetTimeout = undefined
+    }, 1500)
+  }, 120_000)
 })
 
 //Reset the visual selectr of the 3D view if route as changed
@@ -57,6 +65,8 @@ watchEffect(() => {
 
 //Reset spaceStore
 onBeforeUnmount(() => {
+  if (nameGlitchInterval !== undefined) window.clearInterval(nameGlitchInterval)
+  if (nameGlitchResetTimeout !== undefined) window.clearTimeout(nameGlitchResetTimeout)
   resetStore()
 })
 </script>
