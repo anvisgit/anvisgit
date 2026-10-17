@@ -161,9 +161,11 @@ const device = useDevice()
 .category-section-title {
   margin: 0 0 .5rem;
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.3;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 .category-description-title { color: var(--category-accent) !important; }
 .category-list-title { margin: 1.35rem 0 .75rem; color: var(--category-accent-alt) !important; }
@@ -195,7 +197,7 @@ const device = useDevice()
   margin: 0;
   color: var(--retro-chalk, #e8e5d9);
   font-family: 'Funnel Display', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -203,10 +205,12 @@ const device = useDevice()
 .category-date {
   margin: .2rem 0 0;
   color: var(--category-accent-alt);
-  font: 500 .95rem/1.5 'Funnel Display', sans-serif;
+  font: 700 .78rem/1.5 'Doto', monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 .category-entry-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: .85rem; margin: .8rem 0 0 2rem; }
-.category-copy { min-width: 0; color: rgba(232, 229, 217, .88); font: 300 1rem/1.7 'Funnel Display', sans-serif; overflow-wrap: anywhere; }
+.category-copy { min-width: 0; color: rgba(232, 229, 217, .88); font: 350 1.05rem/1.8 'Funnel Display', sans-serif; overflow-wrap: anywhere; }
 .category-copy :deep(p) { margin: 0 0 .65rem; }
 .category-copy :deep(p:last-child) { margin-bottom: 0; }
 .category-copy :deep(ul) { margin: .55rem 0 0; padding-left: 1.2rem; list-style: disc; }
