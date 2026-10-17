@@ -37,7 +37,7 @@ const device = useDevice()
     fullscreenOnMobile
     fullscreenable
     :dissmissable="device.size > MediaQuery.sm"
-    :fixed="device.size < MediaQuery.sm"
+    :fixed="device.size <= MediaQuery.sm"
   >
     <template v-slot:title>
       <h2 class="doto-text text-xl text-white text-center content-center max-h-[20vh]">

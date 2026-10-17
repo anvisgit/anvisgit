@@ -6,6 +6,10 @@ export let hasFocus = false
 export function useP5Canvas(container: Ref<HTMLElement | null>, sketchFn: (p: p5) => void) {
   let instance: p5 | null = null
   let canvas = undefined
+  let canvasInteractionLayer: Element | null = null
+  const updateCanvasFocus = (event: PointerEvent) => {
+    hasFocus = event.target === canvasInteractionLayer
+  }
 
   onMounted(() => {
     if (!container.value) return
@@ -17,24 +21,15 @@ export function useP5Canvas(container: Ref<HTMLElement | null>, sketchFn: (p: p5
     }, 1000)
 
     window.addEventListener('resize', onResize)
-    const canvasClick = document.querySelector(
-      '#app > main > div.grid.grid-cols-12.grid-rows-12.fixed.left-0.top-0.w-full.h-full',
-    )
-    window.addEventListener('mouseover', (e) => {
-      const element = e?.target as HTMLElement
-      hasFocus = element == canvasClick
-    })
+    canvasInteractionLayer = document.querySelector('.planet-interaction-layer')
+    window.addEventListener('pointerover', updateCanvasFocus)
   })
 
   onBeforeUnmount(() => {
     window.removeEventListener('resize', onResize)
-    const canvasClick = document.querySelector(
-      '#app > main > div.grid.grid-cols-12.grid-rows-12.fixed.left-0.top-0.w-full.h-full',
-    )
-    window.removeEventListener('mouseover', (e) => {
-      const element = e?.target as HTMLElement
-      hasFocus = element == canvasClick
-    })
+    window.removeEventListener('pointerover', updateCanvasFocus)
+    canvasInteractionLayer = null
+    hasFocus = false
     instance?.remove()
     instance = null
   })

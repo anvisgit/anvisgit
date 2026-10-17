@@ -44,7 +44,7 @@ watch(fullscreenToggle, () => {
   }
   isInFullscreen.value =
     props.fullscreen ||
-    (props.fullscreenOnMobile && device.size < MediaQuery.sm) ||
+    (props.fullscreenOnMobile && device.size <= MediaQuery.sm) ||
     fullscreenToggle.value
 })
 
@@ -206,7 +206,7 @@ function focus() {
     class="draggable-window glass-effect flex flex-col"
     :class="{
       docked: useWindowZIndexStore().windows[props.id]?.docked,
-      mobile: (device.size < MediaQuery.sm && props.fullscreenOnMobile) || props.fullscreen,
+      mobile: (device.size <= MediaQuery.sm && props.fullscreenOnMobile) || props.fullscreen,
       minifiedwindow: minify,
       fullscreen: isInFullscreen,
       resizable: props.resizable,

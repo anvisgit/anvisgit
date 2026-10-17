@@ -399,7 +399,7 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   border-image: linear-gradient(145deg, rgba(232,229,217,.9), rgba(232,229,217,.4), rgba(232,229,217,.55), rgba(232,229,217,.9)) 1;
 }
 #portfolio-root .planetary-systems-window.resizable { resize: both; }
-@media (max-width: 639px) {
+@media (max-width: 1023px) {
   #portfolio-root .planetary-systems-window.planetary-systems-mobile {
     top: auto;
     left: 0;
@@ -585,4 +585,168 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   #portfolio-root .project-window.project-window-archive .archive-card-grid { grid-template-columns: 1fr; }
   #portfolio-root .project-window.project-window-archive .archive-about { padding: 16px; }
   #portfolio-root .project-window.project-window-archive .archive-card header { flex-direction: column; gap: 4px; }
+}
+
+/* Keep the orbital home screen and its archive windows comfortable on phones. */
+@media (max-width: 1023px) {
+  #portfolio-root .mobiletitleblock {
+    left: 0;
+    right: 0;
+    align-items: center;
+    padding: calc(1rem + env(safe-area-inset-top)) .75rem 0;
+  }
+  #portfolio-root .title.mobile {
+    width: auto;
+    max-width: 100%;
+    font-size: clamp(2rem, 9vw, 2.7rem);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  #portfolio-root .mobiletitleblock > span {
+    max-width: 100%;
+    padding: 0 .35rem;
+    font-size: clamp(.7rem, 3vw, .9rem);
+    line-height: 1.4;
+    text-align: center;
+  }
+  #portfolio-root .planetary-systems-window.planetary-systems-mobile {
+    left: 0;
+    right: 0;
+    bottom: env(safe-area-inset-bottom);
+    width: 100vw;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    max-width: 100vw;
+    max-height: min(36dvh, 16rem);
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    resize: none;
+  }
+  #portfolio-root .planetary-systems-mobile .Header {
+    min-height: 2.75rem;
+    height: auto;
+    padding: .3rem .75rem;
+  }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-title {
+    margin: 0;
+    font-size: .9rem;
+    line-height: 1.25;
+  }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+  }
+  #portfolio-root .planetary-systems-mobile > .box {
+    min-width: 0;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons {
+    gap: .45rem;
+    min-height: 0;
+    padding: .35rem .75rem .65rem;
+    scroll-snap-type: x proximity;
+  }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: .45rem .8rem;
+    scroll-snap-align: start;
+  }
+  #portfolio-root > button.contact-button {
+    right: auto;
+    bottom: calc(7.25rem + env(safe-area-inset-bottom));
+    left: 1rem;
+    min-height: 2.75rem;
+    max-width: calc(100vw - 2rem);
+    padding: .65rem 1rem;
+    font-size: .7rem;
+    line-height: 1.2;
+  }
+  #portfolio-root .draggable-window.mobile {
+    position: fixed;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+    box-sizing: border-box;
+    border-radius: 0;
+    transform: none !important;
+  }
+  #portfolio-root .draggable-window.mobile > .Header {
+    flex: 0 0 auto;
+    min-height: calc(3.25rem + env(safe-area-inset-top));
+    height: auto;
+    padding: calc(.4rem + env(safe-area-inset-top)) .5rem .4rem .75rem;
+    cursor: default;
+  }
+  #portfolio-root .draggable-window.mobile .Header-title {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  #portfolio-root .draggable-window.mobile .Header-title h2 {
+    width: auto;
+    min-width: 0;
+    max-height: none !important;
+    font-size: clamp(.9rem, 4vw, 1.1rem) !important;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+  #portfolio-root .draggable-window.mobile .Header-action {
+    flex: 0 0 auto;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    margin: 0 .1rem;
+  }
+  #portfolio-root .draggable-window.mobile .box {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+  #portfolio-root .draggable-window.mobile .category-view {
+    width: 100%;
+    max-width: 100%;
+    padding: .9rem .85rem calc(1rem + env(safe-area-inset-bottom));
+  }
+  #portfolio-root .draggable-window.mobile .category-entry-title h3 {
+    font-size: clamp(.95rem, 4vw, 1.1rem);
+  }
+  #portfolio-root .project-window.project-window-archive.mobile .content .archive-portfolio {
+    padding: .85rem;
+    font-size: .95rem;
+    line-height: 1.6;
+  }
+  #portfolio-root .project-window.project-window-archive.mobile .archive-card,
+  #portfolio-root .project-window.project-window-archive.mobile .archive-panel {
+    padding: .8rem;
+  }
+  #portfolio-root .project-window.project-window-archive.mobile .content .archive-body a {
+    min-height: 2.75rem;
+    padding: .25rem .1rem;
+    vertical-align: middle;
+  }
+  #portfolio-root .planetary-systems-window { touch-action: auto; }
+}
+
+@media (max-width: 359px) {
+  #portfolio-root .title.mobile { font-size: 1.9rem; }
+  #portfolio-root > button.contact-button { left: .65rem; bottom: calc(7rem + env(safe-area-inset-bottom)); }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons button { padding-inline: .6rem; }
 }

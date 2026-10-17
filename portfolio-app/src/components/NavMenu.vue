@@ -21,7 +21,7 @@ const selectedCategoryMinimized = computed(() => {
 
 <template>
   <div>
-    <div :class="{ mobile: device.size < MediaQuery.sm }" class="fixed bottom-10 right-20">
+    <div :class="{ mobile: device.size <= MediaQuery.sm }" class="fixed bottom-10 right-20">
       <div v-if="device.size > MediaQuery.xs" class="frame-cutout cutout-right"></div>
       <div v-if="device.size > MediaQuery.xs" class="frame-cutout cutout-left"></div>
 
@@ -34,9 +34,9 @@ const selectedCategoryMinimized = computed(() => {
         id="planetary-systems-menu"
         :display-name="t('projectsmenutitle')"
         class="planetary-systems-window"
-        :class="{ 'planetary-systems-mobile': device.size < MediaQuery.sm }"
-        :fixed="device.size < MediaQuery.sm"
-        :resizable="device.size >= MediaQuery.sm"
+        :class="{ 'planetary-systems-mobile': device.size <= MediaQuery.sm }"
+        :fixed="device.size <= MediaQuery.sm"
+        :resizable="device.size > MediaQuery.sm"
       >
         <template #title>
           <h3 class="planetary-systems-title doto-text text-xl text-center content-center">

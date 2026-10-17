@@ -45,7 +45,6 @@ const canvasContainer = ref<HTMLDivElement | null>(null)
 useP5Canvas(canvasContainer, sketch)
 
 onMounted(() => {
-  useP5Canvas(canvasContainer, sketch)
   nameGlitchInterval = window.setInterval(() => {
     isNameGlitch.value = true
     nameGlitchResetTimeout = window.setTimeout(() => {
@@ -75,7 +74,7 @@ onBeforeUnmount(() => {
   <main
     id="portfolio-root"
     class="relative z-0 overflow-hidden h-full"
-    :class="{ mobile: device.size < MediaQuery.sm }"
+    :class="{ mobile: device.size <= MediaQuery.sm }"
   >
     <div class="fixed block h-full w-full pointer-events-none left-0 right-0 top-0">
       <div class="grid-render w-full h-full fixed -z-10 flickAtStart-2"></div>
@@ -88,7 +87,7 @@ onBeforeUnmount(() => {
       <div class="grid-compose w-full h-full fixed -z-10 flickAtStart-2"></div>
     </div>
 
-    <div class="grid grid-cols-12 grid-rows-12 fixed left-0 top-0 w-full h-full">
+    <div class="planet-interaction-layer grid grid-cols-12 grid-rows-12 fixed left-0 top-0 w-full h-full">
       <div class="fixed top-20 right-20" v-if="device.size > MediaQuery.sm">
         <PerformancePanel> </PerformancePanel>
         <TextWritter
@@ -134,11 +133,11 @@ onBeforeUnmount(() => {
     <div class="fixed top-0 left-0 bg-black w-2/6 h-1/4 blur-3xl"></div>
     <div
       class="flex flex-col pl-[5%] pt-[5vh] z-3 absolute"
-      :class="{ mobiletitleblock: device.size < MediaQuery.sm }"
+      :class="{ mobiletitleblock: device.size <= MediaQuery.sm }"
     >
       <h1
         class="title m-auto md:m-0 w-max md:w-max"
-        :class="{ glitch: isNameGlitch, mobile: device.size < MediaQuery.sm }"
+        :class="{ glitch: isNameGlitch, mobile: device.size <= MediaQuery.sm }"
         data-text="Anvi Wadhwa"
         ref="name"
       >
@@ -153,7 +152,8 @@ onBeforeUnmount(() => {
     </div>
 
     <button
-      class="contact-button fixed bottom-24 left-5 z-20 min-h-[46px] px-5 text-sm doto-text uppercase sm:hidden"
+      v-if="device.size <= MediaQuery.sm"
+      class="contact-button fixed bottom-24 left-5 z-20 min-h-[46px] px-5 text-sm doto-text uppercase"
       @click="showContactDetails = true"
     >
       LET’S GET IN TOUCH
@@ -179,7 +179,7 @@ onBeforeUnmount(() => {
       :display-name="LocalTranslator.getLT('carouselview')"
       class="flickAtStart-3"
       docked
-      :fixed="device.size < MediaQuery.sm"
+      :fixed="device.size <= MediaQuery.sm"
       :dissmissable="device.size > MediaQuery.sm"
       dockable
       fullscreenOnMobile
@@ -256,7 +256,8 @@ onBeforeUnmount(() => {
 <style scoped>
 main {
   background-color: black;
-  width: 100vw;
+  width: 100%;
+  height: 100vh;
   height: 100dvh;
   display: block;
 }

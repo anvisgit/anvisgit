@@ -19,7 +19,7 @@ export const sketch = (p: p5) => {
   let camPosX = 0
   let camPosY = 0
   let camPosZ = 0
-  const camDist = useDevice().size < MediaQuery.sm ? 500 : 1
+  const camDist = useDevice().size <= MediaQuery.sm ? 500 : 1
   let selectedSystem: System | null = null
   let planetList: Planet[] = []
 
@@ -147,7 +147,7 @@ export const sketch = (p: p5) => {
   }
 
   p.draw = () => {
-    if (!ready || (useDevice().size < MediaQuery.sm && selector.selectedObject != null)) return
+    if (!ready || (useDevice().size <= MediaQuery.sm && selector.selectedObject != null)) return
 
     /*
     Max framerate is 30 in the sketch,
@@ -288,6 +288,10 @@ export const sketch = (p: p5) => {
   }
 
   let isMiddleDragging = false
+  let isTouchDragging = false
+  let touchStartX = 0
+  let touchStartY = 0
+  let hasTouchMoved = false
   let lastMX = 0
   let lastMY = 0
 
@@ -304,24 +308,47 @@ export const sketch = (p: p5) => {
 
   // @ts-expect-error touchStarted not defined in types/p5 1.7.7
   p.touchStarted = () => {
-    console.log(p.touches)
     if (hasFocus) {
       isMiddleDragging = true
+      isTouchDragging = true
+      hasTouchMoved = false
       lastMX = p.mouseX
       lastMY = p.mouseY
+      touchStartX = lastMX
+      touchStartY = lastMY
       raycastClickOnElements()
     }
+    return false
   }
   // @ts-expect-error touchStarted not defined in types/p5 1.7.7
   p.touchMoved = () => {
-    if (hasFocus) {
-      raycastClickOnElements()
+    if (hasFocus && isTouchDragging) {
+      const touch = p.touches[0] as { x: number; y: number } | undefined
+      const x = touch?.x ?? p.mouseX
+      const y = touch?.y ?? p.mouseY
+
+      if (!hasTouchMoved && Math.hypot(x - touchStartX, y - touchStartY) < 8) return false
+
+      hasTouchMoved = true
+      selector.selectedObject = null
+      selector.preselectedObject = null
+      selectedSystemRef.value = null
+      selectedSystem = null
+      camPosX -= x - lastMX
+      camPosZ += y - lastMY
+      lastMX = x
+      lastMY = y
     }
+    return false
   }
 
   // @ts-expect-error touchStarted not defined in types/p5 1.7.7
   p.touchEnded = () => {
+    if (hasFocus && isTouchDragging && !hasTouchMoved) raycastClickOnElements()
     isMiddleDragging = false
+    isTouchDragging = false
+    hasTouchMoved = false
+    return false
   }
 
   p.mouseMoved = () => {
@@ -337,7 +364,7 @@ export const sketch = (p: p5) => {
   }
 
   p.mouseDragged = () => {
-    if (isMiddleDragging) {
+    if (isMiddleDragging && !isTouchDragging) {
       selectedSystemRef.value = null
       selectedSystem = null
 
