@@ -147,6 +147,11 @@ const device = useDevice()
   --category-accent-alt: var(--category-yellow);
   --category-accent-soft: rgba(255, 59, 141, .09);
 }
+.category-view-about-anvi {
+  --category-accent: var(--category-yellow);
+  --category-accent-alt: var(--category-cyan);
+  --category-accent-soft: rgba(255, 230, 0, .08);
+}
 .category-intro {
   max-width: 52rem;
   margin: 0 auto 1.5rem;

@@ -27,7 +27,10 @@ const device = useDevice()
 <template>
   <DraggableWindow
     class="w-2/3 max-h-[80vh] h-[600px] window flickAtStart"
-    :class="{ sm: device.size < MediaQuery.sm, md: device.size < MediaQuery.md }"
+    :class="[
+      { sm: device.size < MediaQuery.sm, md: device.size < MediaQuery.md },
+      `project-window project-window-${data.slug}`,
+    ]"
     :onClose="
       () => {
         useProjectStore().selectProject()
