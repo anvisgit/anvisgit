@@ -18,6 +18,7 @@ const props = defineProps<{
   centerAtStart?: boolean
   fullscreenOnMobile?: boolean
   fullscreen?: boolean
+  resizable?: boolean
 }>()
 
 const windowStore = useWindowZIndexStore()
@@ -208,6 +209,7 @@ function focus() {
       mobile: (device.size < MediaQuery.sm && props.fullscreenOnMobile) || props.fullscreen,
       minifiedwindow: minify,
       fullscreen: isInFullscreen,
+      resizable: props.resizable,
     }"
     ref="toDrag"
     @touchstart="

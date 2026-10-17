@@ -3,6 +3,7 @@
   --retro-green: #44ff00;
   --retro-hot: #44ff00;
   --retro-white: #ffffff;
+  --retro-chalk: #e8e5d9;
   --retro-ink: #030706;
   --retro-panel: rgba(2, 12, 8, 0.88);
   --retro-line: rgba(68, 255, 0, 0.62);
@@ -36,14 +37,98 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
   box-shadow: 0 0 22px rgba(68,255,0,.12), inset 0 0 18px rgba(68,255,0,.045);
   backdrop-filter: blur(10px);
 }
-#portfolio-root #menu .menu-buttons button {
-  background: linear-gradient(145deg, rgba(255,255,255,.13), transparent 45%, transparent 55%, rgba(255,255,255,.08));
-  border-image: linear-gradient(145deg, #ffffff, #ffffff33, #ffffff55, #ffffff) 1;
+#portfolio-root .planetary-systems-window {
+  position: fixed;
+  top: auto;
+  left: auto;
+  right: 5rem;
+  bottom: 2.5rem;
+  width: 18rem;
+  height: 20rem;
+  min-width: 18rem;
+  min-height: 14rem;
+  max-width: calc(100vw - 1rem);
+  max-height: calc(100dvh - 1rem);
+  overflow: hidden;
+  resize: both;
+  color: var(--retro-chalk);
+  background: rgba(8, 11, 9, .94);
+  border: 1px solid rgba(232,229,217,.65);
+  border-image: none;
+  box-shadow: 0 5px 22px rgba(0,0,0,.48), 0 0 8px rgba(232,229,217,.08);
+  backdrop-filter: blur(8px);
 }
-#portfolio-root #menu .menu-buttons button:hover,
-#portfolio-root #menu .menu-buttons button.selectedButton {
-  box-shadow: 0 0 14px 3px rgba(255,255,255,.65), inset 0 0 14px rgba(255,255,255,.2);
-  border-image: linear-gradient(145deg, #ffffff, #ffffffcc, #ffffffcc, #ffffff) 1;
+#portfolio-root .planetary-systems-window .Header {
+  flex: 0 0 auto;
+  min-height: 2.5rem;
+  height: auto;
+  color: var(--retro-chalk);
+  border-color: rgba(232,229,217,.55);
+}
+#portfolio-root .planetary-systems-window > .box {
+  min-width: 0;
+  min-height: 0;
+}
+#portfolio-root .planetary-systems-title { color: var(--retro-chalk); }
+#portfolio-root .planetary-systems-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: .75rem;
+  background: rgba(8, 11, 9, .94);
+}
+#portfolio-root .planetary-systems-content .menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 100%;
+  min-height: 100%;
+  padding: 4px;
+}
+#portfolio-root .planetary-systems-content .menu-buttons button {
+  flex: 0 0 auto;
+  min-height: 2.5rem;
+  color: var(--retro-chalk);
+  background: rgba(232,229,217,.035);
+  border-color: rgba(232,229,217,.56);
+  border-image: linear-gradient(145deg, rgba(232,229,217,.75), rgba(232,229,217,.28), rgba(232,229,217,.45), rgba(232,229,217,.75)) 1;
+}
+#portfolio-root .planetary-systems-content .menu-buttons button:hover,
+#portfolio-root .planetary-systems-content .menu-buttons button.selectedButton {
+  color: var(--retro-chalk);
+  background: rgba(232,229,217,.09);
+  box-shadow: 0 0 7px 1px rgba(232,229,217,.2), inset 0 0 5px rgba(232,229,217,.07);
+  border-image: linear-gradient(145deg, rgba(232,229,217,.9), rgba(232,229,217,.4), rgba(232,229,217,.55), rgba(232,229,217,.9)) 1;
+}
+#portfolio-root .planetary-systems-window.resizable { resize: both; }
+@media (max-width: 639px) {
+  #portfolio-root .planetary-systems-window.planetary-systems-mobile {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100vw;
+    max-height: 36vh;
+    resize: none;
+  }
+  #portfolio-root .planetary-systems-mobile .Header {
+    min-height: 2rem;
+    padding: .25rem .75rem;
+  }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons {
+    flex-direction: row;
+    width: max-content;
+    min-height: 0;
+    padding-bottom: .5rem;
+  }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons button {
+    width: max-content;
+    min-width: max-content;
+  }
 }
 #portfolio-root a.space-button { transition: box-shadow 150ms ease, border-color 150ms ease, filter 150ms ease; }
 #portfolio-root a.space-button:hover {

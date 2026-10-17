@@ -3,6 +3,7 @@ import { systemsRef, p5Ready, selectedSystemRef } from '@/stores/spaceStore'
 import { useDevice, MediaQuery } from '@/composables/UseMediaQueries'
 import { useWindowZIndexStore } from '@/stores/draggableWindowsStore'
 import draggableWindowDocker from '@/components/DraggableWindowDocker.vue'
+import DraggableWindow from '@/components/DraggableWindow.vue'
 import { LocalTranslator } from '@/composables/UseLocalTranslator'
 
 const t = (key: string) => LocalTranslator.getLT(key)
@@ -20,33 +21,38 @@ const device = useDevice()
         v-if="device.size <= MediaQuery.xs"
         class="space-scrollbar draggableWindowDocker"
       ></draggableWindowDocker>
-      <div
+      <DraggableWindow
         v-if="!useWindowZIndexStore().isAnyWindowDocked || device.size > MediaQuery.xs"
-        id="menu"
-        class="w-72 p-4 glass-effect relative"
+        id="planetary-systems-menu"
+        :display-name="t('projectsmenutitle')"
+        class="planetary-systems-window"
+        :class="{ 'planetary-systems-mobile': device.size < MediaQuery.sm }"
+        :fixed="device.size < MediaQuery.sm"
+        :resizable="device.size >= MediaQuery.sm"
       >
-        <h3
-          class="doto-text text-xl mb-3 text-white text-center content-center h-1/6"
-          :data-text="t('projectsmenutitle')"
-        >
-          {{ t('projectsmenutitle') }}
-        </h3>
+        <template #title>
+          <h3 class="planetary-systems-title doto-text text-xl text-center content-center">
+            {{ t('projectsmenutitle') }}
+          </h3>
+        </template>
 
-        <div class="menu-buttons space-scrollbar" v-if="p5Ready">
-          <button
-            v-for="(system, index) in systemsRef"
-            :key="index"
-            class="doto-text text-white w-full h-full glass-effect px-6 py-2"
-            v-on:click="() => (selectedSystemRef = system)"
-            :class="{
-              selectedButton: system === selectedSystemRef,
-            }"
-            :data-text="system.name"
-          >
-            {{ system.name }}
-          </button>
+        <div class="planetary-systems-content" v-if="p5Ready">
+          <div class="menu-buttons space-scrollbar">
+            <button
+              v-for="(system, index) in systemsRef"
+              :key="index"
+              class="doto-text text-white w-full h-full glass-effect px-6 py-2"
+              v-on:click="() => (selectedSystemRef = system)"
+              :class="{
+                selectedButton: system === selectedSystemRef,
+              }"
+              :data-text="system.name"
+            >
+              {{ system.name }}
+            </button>
+          </div>
         </div>
-      </div>
+      </DraggableWindow>
     </div>
   </div>
 </template>
@@ -87,12 +93,6 @@ button:hover {
   width: 100%;
   left: 0;
   bottom: 0;
-}
-.mobile > #menu {
-  width: 100%;
-}
-.mobile > #menu > div > button {
-  padding: 0.5rem;
 }
 .mobile .menu-buttons {
   flex-direction: row;
