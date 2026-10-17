@@ -1,15 +1,13 @@
 :root {
   color-scheme: dark;
   --retro-green: #44ff00;
-  --retro-hot: #00e5ff;
-  --retro-yellow: #ffffff;
-  --retro-cyan: #00e5ff;
-  --retro-purple: #00e5ff;
+  --retro-hot: #44ff00;
+  --retro-white: #ffffff;
   --retro-ink: #030706;
   --retro-panel: rgba(2, 12, 8, 0.88);
   --retro-line: rgba(68, 255, 0, 0.62);
 }
-html, body, #app { background: var(--retro-ink); color: #ffffff; }
+html, body, #app { background: var(--retro-ink); color: var(--retro-white); }
 body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
 #portfolio-root { isolation: isolate; }
 #portfolio-root::after {
@@ -18,19 +16,41 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
   box-shadow: inset 0 0 100px rgba(68,255,0,.07);
   mix-blend-mode: screen;
 }
-#portfolio-root .title { color: var(--retro-green) !important; text-shadow: 0 0 12px rgba(68,255,0,.55); }
+#portfolio-root .title { color: var(--retro-white) !important; text-shadow: 0 0 12px rgba(68,255,0,.4); }
 #portfolio-root .glitch:before, #portfolio-root .glitch:after,
 #portfolio-root .dotoglitch:before, #portfolio-root .dotoglitch:after { color: var(--retro-hot); }
+#portfolio-root .glitch:before, #portfolio-root .dotoglitch:before { text-shadow: 1px 0 var(--retro-green); }
+#portfolio-root .glitch:after, #portfolio-root .dotoglitch:after { text-shadow: -1px 0 var(--retro-white); }
+#portfolio-root .title.glitch:before { animation-duration: 2s; }
+#portfolio-root .title.glitch:after { animation-duration: 1.333s; }
 #portfolio-root .grid-render {
   background-image: linear-gradient(to right, rgba(68,255,0,.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(68,255,0,.12) 1px, transparent 1px);
 }
-#portfolio-root .grid-better { background-image: radial-gradient(rgba(0,229,255,.18) 1.5px, transparent 0); }
+#portfolio-root .grid-better { background-image: radial-gradient(rgba(255,255,255,.12) 1.5px, transparent 0); }
 #portfolio-root .frame-box { border-color: var(--retro-green); box-shadow: inset 0 0 24px rgba(68,255,0,.08), 0 0 12px rgba(68,255,0,.22); }
 #portfolio-root .frame-cutout { background-color: var(--retro-green); }
-#portfolio-root .selectors::before, #portfolio-root .selectors::after { border-color: var(--retro-hot); filter: drop-shadow(0 0 5px rgba(0,229,255,.8)); }
+#portfolio-root .selectors::before, #portfolio-root .selectors::after { border-color: var(--retro-white); filter: drop-shadow(0 0 5px rgba(255,255,255,.65)); }
 #portfolio-root .cornerTL, #portfolio-root .cornerTR, #portfolio-root .cornerBL, #portfolio-root .cornerBR { filter: none; }
 #portfolio-root .glass-effect, #portfolio-root #menu {
-  background-color: var(--retro-panel); border-color: var(--retro-line); color: #ffffff;
+  background-color: var(--retro-panel); border-color: var(--retro-white); color: var(--retro-white);
   box-shadow: 0 0 22px rgba(68,255,0,.12), inset 0 0 18px rgba(68,255,0,.045);
   backdrop-filter: blur(10px);
+}
+#portfolio-root #menu .menu-buttons button {
+  background: linear-gradient(145deg, rgba(255,255,255,.13), transparent 45%, transparent 55%, rgba(255,255,255,.08));
+  border-image: linear-gradient(145deg, #ffffff, #ffffff33, #ffffff55, #ffffff) 1;
+}
+#portfolio-root #menu .menu-buttons button:hover,
+#portfolio-root #menu .menu-buttons button.selectedButton {
+  box-shadow: 0 0 14px 3px rgba(255,255,255,.65), inset 0 0 14px rgba(255,255,255,.2);
+  border-image: linear-gradient(145deg, #ffffff, #ffffffcc, #ffffffcc, #ffffff) 1;
+}
+#portfolio-root a.space-button { transition: box-shadow 150ms ease, border-color 150ms ease, filter 150ms ease; }
+#portfolio-root a.space-button:hover {
+  color: var(--retro-green);
+  border-color: var(--retro-green);
+  box-shadow: 0 0 12px 3px rgba(68,255,0,.7), inset 0 0 10px rgba(68,255,0,.25);
+}
+#portfolio-root a.space-button:hover img {
+  filter: brightness(0) saturate(100%) invert(75%) sepia(96%) saturate(1724%) hue-rotate(35deg) brightness(100%) contrast(105%);
 }

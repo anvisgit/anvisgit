@@ -41,22 +41,6 @@ const device = useDevice()
             :class="{
               selectedButton: system === selectedSystemRef,
             }"
-            :style="{
-              background: `linear-gradient(
-              145deg,
-              ${system.colorPalette[0]?.trimEnd() + '20' || '#ffffff80'},
-              ${system.colorPalette[0]?.trimEnd() + '00' || '#ffffff00'},
-              ${system.colorPalette[0]?.trimEnd() + '00' || '#ffffff00'},
-              ${system.colorPalette[0]?.trimEnd() + '20' || '#ffffff80'}
-              )`,
-              borderImage: `linear-gradient(
-                145deg,
-                ${system.colorPalette[0]?.trimEnd() + 'aa'},
-                ${system.colorPalette[0]?.trimEnd() + '00' || '#ffffff1a'},
-                ${system.colorPalette[0]?.trimEnd() + '00' || '#ffffff42'},
-                ${system.colorPalette[0]?.trimEnd() + 'aa'}
-                ) 1`,
-            }"
             :data-text="system.name"
           >
             {{ system.name }}

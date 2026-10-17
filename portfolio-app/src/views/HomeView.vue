@@ -31,6 +31,7 @@ const projectStore = useProjectStore()
 
 //Visual glitch toggle for the call to action button
 const isActiveGlitch = useRandomToggle(500, 4000)
+const isNameGlitch = useRandomToggle(333, 2667)
 
 //Component toggles
 const showContactDetails = ref(false)
@@ -126,7 +127,7 @@ onBeforeUnmount(() => {
     >
       <h1
         class="title m-auto md:m-0 w-max md:w-max"
-        :class="{ glitch: isActiveGlitch, mobile: device.size < MediaQuery.sm }"
+        :class="{ glitch: isNameGlitch, mobile: device.size < MediaQuery.sm }"
         data-text="Anvi Wadhwa"
         ref="name"
       >

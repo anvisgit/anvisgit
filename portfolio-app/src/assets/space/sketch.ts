@@ -72,9 +72,8 @@ export const sketch = (p: p5) => {
     const dataLoaderInstance = new dataLoader()
     dataLoaderInstance.generateSystemsFromData(systems, ctx)
 
-    const palette = ["#44ff00", "#00e5ff"]
-    systems.forEach((system, index) => {
-      if (palette[index]) system.setColor(palette[index]!)
+    systems.forEach((system) => {
+      system.setColor('#ffffff')
       if (system.sun) system.sun.sunShader = shaderUnicolor
       if (system.planets) {
         planetList = planetList.concat(system.planets)
@@ -461,16 +460,17 @@ export const sketch = (p: p5) => {
     }
 
     for (const system of systems) {
-       if (system.sun) {
-        if (objectClicked(system.sun)) {
+      for (const planet of system.planets ?? []) {
+        if (objectClicked(planet)) {
           if (p.mouseIsPressed) {
-            clicked = system.sun
+            clicked = planet
           } else {
-            hovered = system.sun
+            hovered = planet
           }
           break
         }
       }
+      if (hovered || clicked) break
     }
 
     useProjectStore().preselectedData = hovered?.data
