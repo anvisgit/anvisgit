@@ -122,7 +122,7 @@ const device = useDevice()
 .category-view {
   container-type: inline-size;
   --category-cyan: #00e5ff;
-  --category-yellow: #ffe600;
+  --category-yellow: #fff;
   --category-hot: #ff3b8d;
   --category-purple: #a855f7;
   --category-green: #44ff00;

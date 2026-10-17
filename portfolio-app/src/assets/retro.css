@@ -209,9 +209,9 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
 #portfolio-root .category-window .category-list-title {
   margin: 1rem 0 .25rem;
   padding: .4rem .65rem;
-  border: 1px solid rgba(255,230,0,.65);
-  background: rgba(255,230,0,.07);
-  color: #ffe600 !important;
+  border: 1px solid rgba(255,255,255,.65);
+  background: rgba(255,255,255,.07);
+  color: #fff !important;
   font-size: clamp(1.05rem, 1rem + .2cqi, 1.22rem) !important;
 }
 #portfolio-root .category-window .category-section-title { font-size: clamp(1.05rem, 1rem + .2cqi, 1.22rem) !important; }
@@ -237,13 +237,19 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
 #portfolio-root .category-window .category-entry:nth-child(5n + 3) .category-entry-title h3 { color: #ff3b8d !important; }
 #portfolio-root .category-window .category-entry:nth-child(5n + 4) .category-entry-title h3 { color: #b77bff !important; }
 #portfolio-root .category-window .category-entry:nth-child(5n) .category-entry-title h3 { color: #7eff45 !important; }
+#portfolio-root .category-window .category-entry-title h3 { color: #fff !important; }
+#portfolio-root .category-window .category-copy h1,
+#portfolio-root .category-window .category-copy h2,
+#portfolio-root .category-window .category-copy h3,
+#portfolio-root .category-window .category-copy h4,
+#portfolio-root .category-window .category-copy h5,
+#portfolio-root .category-window .category-copy h6 { color: #fff !important; }
 #portfolio-root .category-window .category-date { color: #00e5ff; font-size: .64rem; letter-spacing: .04em; }
 #portfolio-root .category-window .category-copy { color: var(--retro-chalk); font-size: clamp(.78rem, .76rem + .12cqi, .86rem); line-height: 1.65; }
 #portfolio-root .category-window .category-copy b,
 #portfolio-root .category-window .category-copy strong,
 #portfolio-root .project-window .content b,
 #portfolio-root .project-window .content strong { color: #ff3b8d; }
-#portfolio-root .category-window .category-copy a,
 #portfolio-root .project-window .content a {
   display: inline !important;
   margin: 0 .1rem !important;
@@ -262,9 +268,31 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   text-underline-offset: .18em;
   text-shadow: none !important;
 }
-#portfolio-root .category-window .category-copy a:hover,
+#portfolio-root .category-window .category-copy a {
+  display: inline-block !important;
+  margin: 0 .1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .015em;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transform-origin: center;
+  transition: transform .16s ease;
+}
+#portfolio-root .category-window .category-copy a:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+  transform: scale(1.05) !important;
+}
 #portfolio-root .project-window .content a:hover { color: #ffe600 !important; text-decoration-color: #ffe600; }
-#portfolio-root .category-window .category-copy a:focus-visible,
+#portfolio-root .category-window .category-copy a:focus-visible { outline: 1px solid #fff; outline-offset: 2px; }
 #portfolio-root .project-window .content a:focus-visible { outline: 1px solid #ffe600; outline-offset: 2px; }
 #portfolio-root .category-window .category-tags { margin: .25rem 0 0; gap: .25rem; }
 #portfolio-root .category-window .category-tags .tag,
@@ -276,7 +304,7 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   font-size: .66rem !important;
   box-shadow: none !important;
 }
-#portfolio-root .category-window .category-tags .tag .text-sm::before { content: '· '; color: #ffe600; }
+#portfolio-root .category-window .category-tags .tag .text-sm::before { content: '· '; color: #fff; }
 #portfolio-root .category-window .category-pages span { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
 #portfolio-root .project-window .content h2 { color: #ffe600 !important; font-size: clamp(1.18rem, 1.1rem + .3cqi, 1.42rem); line-height: 1.28; }
 #portfolio-root .project-window .content h3 { color: #00e5ff !important; font-size: clamp(.98rem, .94rem + .18cqi, 1.1rem); line-height: 1.35; }
