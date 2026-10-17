@@ -40,9 +40,12 @@ const restoreWindow = (windowId: string) => {
 .window-dock {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   z-index: 9999;
   padding: 10px 0px;
@@ -52,6 +55,7 @@ const restoreWindow = (windowId: string) => {
 }
 
 .dock-button {
+  flex: 0 0 auto;
   background: rgb(0, 0, 0);
   border: 2px solid white;
   color: white;

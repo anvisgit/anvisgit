@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { systemsRef, p5Ready, selectedSystemRef } from '@/stores/spaceStore'
 import { useDevice, MediaQuery } from '@/composables/UseMediaQueries'
 import { useWindowZIndexStore } from '@/stores/draggableWindowsStore'
+import { useProjectStore } from '@/stores/projectStore'
 import draggableWindowDocker from '@/components/DraggableWindowDocker.vue'
 import DraggableWindow from '@/components/DraggableWindow.vue'
 import { LocalTranslator } from '@/composables/UseLocalTranslator'
@@ -9,6 +11,12 @@ import { LocalTranslator } from '@/composables/UseLocalTranslator'
 const t = (key: string) => LocalTranslator.getLT(key)
 
 const device = useDevice()
+const windowStore = useWindowZIndexStore()
+const projectStore = useProjectStore()
+const selectedCategoryMinimized = computed(() => {
+  const selected = projectStore.selectedData
+  return selected?.type === 'CategoryData' && Boolean(windowStore.windows[selected.slug]?.docked)
+})
 </script>
 
 <template>
@@ -22,7 +30,7 @@ const device = useDevice()
         class="space-scrollbar draggableWindowDocker"
       ></draggableWindowDocker>
       <DraggableWindow
-        v-if="!useWindowZIndexStore().isAnyWindowDocked || device.size > MediaQuery.xs"
+        v-if="!selectedCategoryMinimized"
         id="planetary-systems-menu"
         :display-name="t('projectsmenutitle')"
         class="planetary-systems-window"
