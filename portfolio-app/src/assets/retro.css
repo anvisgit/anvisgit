@@ -2,14 +2,14 @@
   color-scheme: dark;
   --retro-green: #44ff00;
   --retro-hot: #44ff00;
-  --retro-white: #ffffff;
   --retro-chalk: #e8e5d9;
+  --retro-white: var(--retro-chalk);
   --retro-ink: #030706;
   --retro-panel: rgba(2, 12, 8, 0.88);
   --retro-line: rgba(68, 255, 0, 0.62);
 }
 html, body, #app { background: var(--retro-ink); color: var(--retro-white); }
-body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
+body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
 #portfolio-root { isolation: isolate; }
 #portfolio-root::after {
   content: ""; position: fixed; inset: 0; z-index: 30; pointer-events: none;
@@ -17,11 +17,12 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
   box-shadow: inset 0 0 100px rgba(68,255,0,.07);
   mix-blend-mode: screen;
 }
-#portfolio-root .title { color: var(--retro-white) !important; text-shadow: 0 0 12px rgba(68,255,0,.4); }
+#portfolio-root .title { color: var(--retro-chalk) !important; text-shadow: 0 0 2px rgba(232,229,217,.16); }
+#portfolio-root .text-white { color: var(--retro-chalk) !important; text-shadow: 0 0 .5px rgba(232,229,217,.35); }
 #portfolio-root .glitch:before, #portfolio-root .glitch:after,
 #portfolio-root .dotoglitch:before, #portfolio-root .dotoglitch:after { color: var(--retro-hot); }
 #portfolio-root .glitch:before, #portfolio-root .dotoglitch:before { text-shadow: 1px 0 var(--retro-green); }
-#portfolio-root .glitch:after, #portfolio-root .dotoglitch:after { text-shadow: -1px 0 var(--retro-white); }
+#portfolio-root .glitch:after, #portfolio-root .dotoglitch:after { text-shadow: -1px 0 var(--retro-chalk); }
 #portfolio-root .title.glitch:before { animation-duration: 2s; }
 #portfolio-root .title.glitch:after { animation-duration: 1.333s; }
 #portfolio-root .grid-render {
@@ -30,7 +31,7 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
 #portfolio-root .grid-better { background-image: radial-gradient(rgba(255,255,255,.12) 1.5px, transparent 0); }
 #portfolio-root .frame-box { border-color: var(--retro-green); box-shadow: inset 0 0 24px rgba(68,255,0,.08), 0 0 12px rgba(68,255,0,.22); }
 #portfolio-root .frame-cutout { background-color: var(--retro-green); }
-#portfolio-root .selectors::before, #portfolio-root .selectors::after { border-color: var(--retro-white); filter: drop-shadow(0 0 5px rgba(255,255,255,.65)); }
+#portfolio-root .selectors::before, #portfolio-root .selectors::after { border-color: var(--retro-chalk); filter: drop-shadow(0 0 2px rgba(232,229,217,.25)); }
 #portfolio-root .cornerTL, #portfolio-root .cornerTR, #portfolio-root .cornerBL, #portfolio-root .cornerBR { filter: none; }
 #portfolio-root .glass-effect, #portfolio-root #menu {
   background-color: var(--retro-panel); border-color: var(--retro-white); color: var(--retro-white);
@@ -66,6 +67,8 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
   border-color: rgba(232,229,217,.55);
 }
 #portfolio-root .planetary-systems-window > .box {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   min-height: 0;
 }
@@ -73,6 +76,8 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
 #portfolio-root .planetary-systems-content {
   flex: 1;
   min-height: 0;
+  container-type: size;
+  container-name: planetary-menu;
   overflow: auto;
   padding: .75rem;
   background: rgba(8, 11, 9, .94);
@@ -87,7 +92,14 @@ body { text-shadow: 0 0 8px rgba(68,255,0,.2); }
 }
 #portfolio-root .planetary-systems-content .menu-buttons button {
   flex: 0 0 auto;
-  min-height: 2.5rem;
+  align-self: stretch;
+  width: 100%;
+  min-height: clamp(2rem, 12cqb, 3.5rem);
+  padding: clamp(.45rem, 3cqb, .8rem) clamp(.5rem, 4cqi, 1.5rem);
+  font-size: clamp(.7rem, 4.5cqi, .95rem);
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
   color: var(--retro-chalk);
   background: rgba(232,229,217,.035);
   border-color: rgba(232,229,217,.56);
