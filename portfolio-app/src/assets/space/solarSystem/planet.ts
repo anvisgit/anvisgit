@@ -138,7 +138,7 @@ export class Planet extends SpaceObject {
       this.p.push()
       this.drawOrbit(d)
       this.p.noStroke()
-      this.p.fill(this.color)
+      this.p.fill(255)
       this.p.translate(this.x, this.y, 0)
       this.p.scale(1 + sizeOffset / 10)
       this.p.shader(this.planetShader)
@@ -147,7 +147,7 @@ export class Planet extends SpaceObject {
       const r = this.p.red(this.color) // 120
       const g = this.p.green(this.color) // 200
       const b = this.p.blue(this.color) // 8
-      this.planetShader.setUniform('uColor', [r / 255.0, g / 255.0, b / 255.0, 1])
+      this.planetShader.setUniform('uColor', [1, 1, 1, 1])
       this.p.model(d > 2000 ? (d > 4000 ? this.shapeLOD2 : this.shapeLOD) : this.shape)
       this.p.pop()
     }
