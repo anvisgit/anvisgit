@@ -76,28 +76,29 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
 #portfolio-root .planetary-systems-content {
   flex: 1;
   min-height: 0;
-  container-type: size;
+  container-type: inline-size;
   container-name: planetary-menu;
-  overflow: auto;
+  overflow: hidden;
   padding: .75rem;
   background: rgba(8, 11, 9, .94);
 }
 #portfolio-root .planetary-systems-content .menu-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
+  display: grid;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: clamp(.25rem, 1.25cqi, .5rem);
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  min-height: 0;
   padding: 4px;
 }
 #portfolio-root .planetary-systems-content .menu-buttons button {
-  flex: 0 0 auto;
-  align-self: stretch;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 0;
   width: 100%;
-  min-height: clamp(2rem, 12cqb, 3.5rem);
-  padding: clamp(.45rem, 3cqb, .8rem) clamp(.5rem, 4cqi, 1.5rem);
-  font-size: clamp(.7rem, 4.5cqi, .95rem);
-  line-height: 1.3;
+  padding: clamp(.2rem, 1.2cqi, .55rem) clamp(.35rem, 2cqi, 1rem);
+  font-size: clamp(.65rem, 3.2cqi, .85rem);
+  line-height: 1.15;
   white-space: normal;
   overflow-wrap: anywhere;
   color: var(--retro-chalk);
@@ -131,15 +132,26 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
     min-height: 2rem;
     padding: .25rem .75rem;
   }
+  #portfolio-root .planetary-systems-mobile .planetary-systems-content {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
   #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons {
+    display: flex;
     flex-direction: row;
     width: max-content;
+    height: auto;
     min-height: 0;
     padding-bottom: .5rem;
   }
   #portfolio-root .planetary-systems-mobile .planetary-systems-content .menu-buttons button {
+    flex: 0 0 auto;
     width: max-content;
     min-width: max-content;
+    min-height: 2rem;
+    padding: .35rem .65rem;
+    font-size: .75rem;
+    white-space: nowrap;
   }
 }
 #portfolio-root a.space-button { transition: box-shadow 150ms ease, border-color 150ms ease, filter 150ms ease; }
