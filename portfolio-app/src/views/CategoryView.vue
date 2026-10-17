@@ -46,17 +46,17 @@ const device = useDevice()
     </template>
     <div class="view category-view p-5" :class="`category-view-${props.data.slug}`">
       <header class="category-intro">
-        <p class="category-kicker">{{ t('inthissystem') }}</p>
-        <h2 class="category-heading">{{ props.data.name }}</h2>
+        <h3 class="title category-section-title category-description-title">{{ t('description') }}</h3>
         <p class="category-description" v-html="props.data.description" />
       </header>
 
+      <h3 class="title category-section-title category-list-title">{{ t('inthissystem') }}</h3>
       <div class="category-list">
         <article class="category-entry" v-for="(project, index) in props.data.projects" :key="index">
           <div class="category-entry-heading">
             <span class="category-index">{{ String(index + 1).padStart(2, '0') }}</span>
             <div class="category-entry-title">
-              <h3>{{ project.name }}</h3>
+              <h3 class="title-2">{{ project.name }}</h3>
               <p v-if="project.date" class="category-date">{{ project.date }}</p>
             </div>
           </div>
@@ -158,22 +158,20 @@ const device = useDevice()
   padding: 0 0 1.1rem;
   border-bottom: 1px solid color-mix(in srgb, var(--category-accent-alt) 55%, transparent);
 }
-.category-kicker {
-  margin: 0 0 .35rem;
-  color: var(--category-accent);
-  font: 600 .7rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+.category-section-title {
+  margin: 0 0 .5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
 }
-.category-heading {
-  margin: 0;
-  color: var(--retro-chalk, #e8e5d9);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  line-height: 1.2;
-}
+.category-description-title { color: var(--category-accent) !important; }
+.category-list-title { margin: 1.35rem 0 .75rem; color: var(--category-accent-alt) !important; }
 .category-description {
   margin: .55rem 0 0;
   color: rgba(232, 229, 217, .75);
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 1rem;
   line-height: 1.65;
 }
 .category-list { display: grid; gap: 1rem; }
@@ -196,17 +194,19 @@ const device = useDevice()
 .category-entry-title h3 {
   margin: 0;
   color: var(--retro-chalk, #e8e5d9);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
   line-height: 1.4;
   overflow-wrap: anywhere;
 }
 .category-date {
   margin: .2rem 0 0;
   color: var(--category-accent-alt);
-  font: 500 .78rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+  font: 500 .95rem/1.5 'Funnel Display', sans-serif;
 }
 .category-entry-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: .85rem; margin: .8rem 0 0 2rem; }
-.category-copy { min-width: 0; color: rgba(232, 229, 217, .88); line-height: 1.7; overflow-wrap: anywhere; }
+.category-copy { min-width: 0; color: rgba(232, 229, 217, .88); font: 300 1rem/1.7 'Funnel Display', sans-serif; overflow-wrap: anywhere; }
 .category-copy :deep(p) { margin: 0 0 .65rem; }
 .category-copy :deep(p:last-child) { margin-bottom: 0; }
 .category-copy :deep(ul) { margin: .55rem 0 0; padding-left: 1.2rem; list-style: disc; }

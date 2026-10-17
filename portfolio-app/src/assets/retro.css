@@ -82,8 +82,8 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   color: var(--popup-yellow) !important;
   text-shadow: 0 0 8px rgba(255,230,0,.32);
 }
-#portfolio-root .category-window .category-kicker { color: var(--popup-cyan); text-shadow: 0 0 8px rgba(0,229,255,.35); }
-#portfolio-root .category-window .category-heading { color: var(--popup-yellow); text-shadow: 0 0 10px rgba(255,230,0,.24); }
+#portfolio-root .category-window .category-description-title { color: var(--popup-cyan) !important; text-shadow: 0 0 8px rgba(0,229,255,.35); }
+#portfolio-root .category-window .category-list-title { color: var(--popup-yellow) !important; text-shadow: 0 0 10px rgba(255,230,0,.24); }
 #portfolio-root .category-window .category-intro { border-bottom-color: rgba(0,229,255,.58); }
 #portfolio-root .category-window .category-entry {
   border-color: rgba(0,229,255,.36);
