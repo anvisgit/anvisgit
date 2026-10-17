@@ -569,8 +569,8 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   font: inherit;
   letter-spacing: normal;
   text-decoration: none !important;
-  text-shadow: none !important;
-  transition: transform 160ms ease;
+  text-shadow: 0 0 4px rgba(232, 229, 217, .24) !important;
+  transition: transform 160ms ease, text-shadow 160ms ease;
   transform-origin: left center;
 }
 #portfolio-root .project-window.project-window-archive .content .archive-body a:hover {
@@ -578,7 +578,7 @@ body { text-shadow: 0 0 4px rgba(232,229,217,.08); }
   border: 0;
   background: transparent;
   color: var(--retro-white) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 10px rgba(232, 229, 217, .72) !important;
 }
 #portfolio-root .project-window.project-window-archive .content .archive-body a:focus-visible { outline: 2px solid var(--retro-white); outline-offset: 3px; }
 @media (max-width: 680px) {
