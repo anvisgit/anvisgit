@@ -1,0 +1,396 @@
+@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Funnel+Display:wght@300..800&family=Orbitron:wght@400..900&display=swap');
+
+/* ---------------------------------------------------------------------------------- Fonts */
+
+.doto-text {
+  font-family: 'Doto', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings: 'ROND' 0;
+}
+
+.orbitron-text {
+  font-family: 'Orbitron', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.funnel-text {
+  font-family: 'Funnel Display', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: light;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.title-2 {
+  font-size: 1.2rem;
+  font-family: 'Funnel Display', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ---------------------------------------------------------------------------------- General styles */
+
+#app {
+  margin: 0 auto;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* ---------------------------------------------------------------------------------- Elements */
+
+.space-button {
+  cursor: pointer;
+  border-radius: 0.125rem;
+  border-width: 1px;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.space-button:hover,
+.selectedButton {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.space-scrollbar {
+  scrollbar-color: rgb(255, 255, 255) rgba(255, 166, 0, 0);
+  scrollbar-width: thin;
+}
+
+#defaultCanvas0 {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.contact-button {
+  -webkit-clip-path: polygon(12% 0, 100% 0, 100% 67%, 84% 100%, 0 100%, 0 35%);
+  clip-path: polygon(12% 0, 100% 0, 100% 67%, 88% 100%, 0 100%, 0 35%);
+  background: white;
+  color: black;
+  border: none;
+  transition: all 200ms;
+  position: relative;
+}
+.contact-button::before,
+.contact-button::after {
+  width: 10px;
+  height: 10px;
+  content: '';
+  position: absolute;
+  transition: all 200ms;
+}
+.contact-button::before {
+  top: 5px;
+  right: 5px;
+  border-top: black solid 2px;
+  border-right: black solid 2px;
+}
+.contact-button::after {
+  bottom: 5px;
+  left: 5px;
+  border-bottom: black solid 2px;
+  border-left: black solid 2px;
+}
+
+.contact-button:hover::before {
+  width: 20px;
+  height: 20px;
+  top: 1px;
+  right: 1px;
+  border-top: black solid 2px;
+  border-right: black solid 2px;
+}
+.contact-button:hover::after {
+  width: 20px;
+  height: 20px;
+  bottom: 1px;
+  left: 1px;
+
+  border-bottom: black solid 2px;
+  border-left: black solid 2px;
+}
+
+/* ---------------------------------------------------------------------------------- Effects and animations */
+
+/* Entrance animation */
+
+@keyframes entrance {
+  to,
+  20%,
+  40%,
+  60%,
+  80% {
+    opacity: 1;
+  }
+  from,
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    opacity: 0;
+  }
+}
+
+.flickAtStart {
+  animation: entrance 400ms linear backwards 1;
+}
+.flickAtStart-2 {
+  animation: entrance 400ms linear backwards 2;
+}
+.flickAtStart-3 {
+  animation: entrance 600ms linear backwards 1;
+}
+
+/* Glitch effect */
+@media (min-width: 640px) {
+  .glitch,
+  .dotoglitch {
+    color: white;
+    position: relative;
+  }
+
+  .glitch:before,
+  .glitch:after,
+  .dotoglitch:before,
+  .dotoglitch:after {
+    width: 100%;
+    content: attr(data-text);
+    position: absolute;
+
+    top: 0;
+    color: white;
+    background: black;
+    overflow: hidden;
+  }
+
+  .glitch:before,
+  .glitch:after {
+    clip: rect(0, 4rem, 0, 0);
+    font-size: 4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .dotoglitch:after,
+  .dotoglitch:before {
+    clip: rect(0, 1.25rem, 0, 0);
+    line-height: 1.75rem;
+    font-family: 'Doto', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings: 'ROND' 0;
+  }
+
+  .glitch:after,
+  .dotoglitch:after {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    animation: noise-anim 2s infinite steps(10);
+  }
+
+  .glitch:before,
+  .dotoglitch:before {
+    left: -2px;
+    text-shadow: 1px 0 blue;
+    animation: noise-anim 3s infinite steps(10) reverse;
+  }
+
+  @keyframes noise-anim {
+    0% {
+      clip: rect(10px, 9999px, 80px, 0);
+    }
+    5% {
+      clip: rect(50px, 9999px, 100px, 0);
+    }
+    10% {
+      clip: rect(80px, 9999px, 90px, 0);
+    }
+    15% {
+      clip: rect(20px, 9999px, 70px, 0);
+    }
+    20% {
+      clip: rect(60px, 9999px, 120px, 0);
+    }
+    25% {
+      clip: rect(30px, 9999px, 60px, 0);
+    }
+    30% {
+      clip: rect(100px, 9999px, 140px, 0);
+    }
+    35% {
+      clip: rect(40px, 9999px, 80px, 0);
+    }
+    40% {
+      clip: rect(70px, 9999px, 100px, 0);
+    }
+    45% {
+      clip: rect(90px, 9999px, 130px, 0);
+    }
+    50% {
+      clip: rect(110px, 9999px, 150px, 0);
+    }
+    55% {
+      clip: rect(10px, 9999px, 60px, 0);
+    }
+    60% {
+      clip: rect(50px, 9999px, 90px, 0);
+    }
+    65% {
+      clip: rect(80px, 9999px, 110px, 0);
+    }
+    70% {
+      clip: rect(20px, 9999px, 70px, 0);
+    }
+    75% {
+      clip: rect(60px, 9999px, 120px, 0);
+    }
+    80% {
+      clip: rect(30px, 9999px, 60px, 0);
+    }
+    85% {
+      clip: rect(100px, 9999px, 140px, 0);
+    }
+    90% {
+      clip: rect(40px, 9999px, 80px, 0);
+    }
+    95% {
+      clip: rect(70px, 9999px, 100px, 0);
+    }
+    100% {
+      clip: rect(90px, 9999px, 130px, 0);
+    }
+  }
+}
+
+.glass-effect {
+  /* From https://css.glass */
+  background: linear-gradient(145deg, #ffffff25, #ffffff00, #ffffff00, #ffffff13);
+  border: 2px solid rgb(255, 255, 255);
+  border-image: linear-gradient(145deg, #ffffffff, #ffffff1a, #ffffff42, #ffffffff) 1;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+}
+
+/*.glass-glow:before,
+.glass-glow:after,*/
+.glass-glow-element {
+  mix-blend-mode: plus-lighter;
+  position: absolute;
+  content: '';
+  border: 4px solid rgb(255, 255, 255);
+  background: linear-gradient(145deg, #86571625, #ffffff00, #ffffff00, #86571613);
+  border-image: linear-gradient(145deg, #865716ff, #8657161a, #86571642, #865716ff) 1;
+  width: 102%;
+  height: 108%;
+  left: -1%;
+  top: -4%;
+  filter: blur(5px);
+}
+.glass-glow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mouse tuto */
+
+body,
+html {
+  background-color: #000;
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.scroll-downs {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  width: 34px;
+  height: 55px;
+}
+.mousey {
+  width: 3px;
+  padding: 10px 15px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  opacity: 0.75;
+  box-sizing: content-box;
+  animation-name: move;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 200px;
+}
+.scroller {
+  width: 3px;
+  height: 10px;
+  border-radius: 25%;
+  background-color: #fff;
+  animation-name: middlebuttonclick;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
+}
+
+@keyframes middlebuttonclick {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  90% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes move {
+  50% {
+    transform: rotateZ(0deg);
+  }
+  62.5% {
+    transform: rotateZ(-5deg);
+  }
+  87.5% {
+    transform: rotateZ(5deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

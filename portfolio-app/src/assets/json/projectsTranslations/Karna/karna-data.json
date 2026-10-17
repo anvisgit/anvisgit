@@ -1,0 +1,34 @@
+{
+  "fr": {
+    "t1-c1": "Conception et implémentation d’un <b>système de sauvegarde complet</b> permettant de gérer les <b>niveaux</b>, les <b>entités</b> et les <b>paramètres du jeu</b>.</br></br>Les données sont stockées dans des <i>fichiers structurés personnalisés</i>, offrant :</br>- le <b>chargement dynamique des niveaux</b></br>- la <b>sérialisation des états du jeu</b></br>- une <b>séparation claire des données</b> (niveaux, entités, options)",
+
+    "t1-c2": "Le système s’appuie sur :</br>- un <b>fichier central</b> référençant les niveaux et leurs <i>métadonnées</i></br>- des <b>fichiers dédiés</b> décrivant la structure des mondes (grille, blocs, propriétés)</br>- un <b>format extensible</b> permettant d’ajouter facilement de <i>nouveaux comportements</i> (gravité, interactions, triggers, etc.)",
+
+    "t1-c3": "Chaque <b>bloc de niveau</b> peut intégrer des <i>propriétés spécifiques</i> (collision, effets, événements), permettant de créer des <b>mécaniques dynamiques</b> directement via les données.</br></br>Exemple :</br>[ 1 , true , ... ] → [ <i>sprite</i> , <i>collision</i> , <i>données</i> ]</br></br>Ce système m’a permis de travailler sur :</br>- la <b>conception de formats de données</b></br>- le <b>parsing</b> et la <b>lecture de fichiers</b></br>- la <b>séparation entre logique moteur et contenu</b>",
+
+    "t1-s1-i1": "savedata.jpg",
+    "t1-s1-id": "Exemple de fichier de sauvegarde",
+
+    "t1-s1-ic": "<b>Gestion complète</b> des niveaux, entités et paramètres via des <i>fichiers structurés personnalisés</i>, avec <b>chargement dynamique</b> et <b>sérialisation des états</b>.",
+
+    "t1-s2": "Architecture",
+
+    "t1-s2-c1": "Organisation reposant sur un <b>fichier central</b> et des <b>fichiers dédiés aux mondes</b>, avec un <i>format extensible</i> permettant de supporter de <b>nouveaux comportements</b> et des <b>mécaniques dynamiques</b>."
+  },
+  "en": {
+    "t1-c1": "Design and implementation of a <b>complete save system</b> handling <b>levels</b>, <b>entities</b>, and <b>game settings</b>.</br></br>Data is stored in <i>custom structured files</i>, enabling:</br>- <b>dynamic level loading</b></br>- <b>game state serialization</b></br>- a <b>clear separation of data</b> (levels, entities, options)",
+
+    "t1-c2": "The system is based on:</br>- a <b>central file</b> referencing levels and their <i>metadata</i></br>- <b>dedicated files</b> describing world structures (grid, blocks, properties)</br>- an <b>extensible format</b> allowing easy addition of <i>new behaviors</i> (gravity, interactions, triggers, etc.)",
+
+    "t1-c3": "Each <b>level block</b> can include <i>specific properties</i> (collision, effects, events), enabling the creation of <b>dynamic mechanics</b> directly through data.</br></br>Example:</br>[ 1 , true , ... ] → [ <i>sprite</i> , <i>collision</i> , <i>data</i> ]</br></br>This system allowed me to work on:</br>- <b>data format design</b></br>- <b>parsing</b> and <b>file reading</b></br>- the <b>separation between engine logic and content</b>",
+
+    "t1-s1-i1": "savedata.jpg",
+    "t1-s1-id": "Save file example",
+
+    "t1-s1-ic": "<b>Complete management</b> of levels, entities, and settings via <i>custom structured files</i>, with <b>dynamic loading</b> and <b>state serialization</b>.",
+
+    "t1-s2": "Architecture",
+
+    "t1-s2-c1": "Structure based on a <b>central file</b> and <b>world-specific files</b>, with an <i>extensible format</i> supporting <b>new behaviors</b> and <b>dynamic mechanics</b>."
+  }
+}

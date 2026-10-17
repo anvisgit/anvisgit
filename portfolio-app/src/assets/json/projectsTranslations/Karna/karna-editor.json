@@ -1,0 +1,27 @@
+{
+  "fr": {
+    "t1-c1": "L’éditeur a été fait grâce aux éléments d’<b>UI</b> que j’ai conçu pour le jeu. Il se veut <b>ergonomique</b> avec une <i>prise en main facile</i>.</br></br>Le jeu n’utilise pas d’<b>assets préfaits</b>. L’utilisateur peut donc <i>combiner les textures</i> qu’il veut aux fonctionnalités souhaitées. Cela rend la chose <i>plus compliquée</i> lors de la création mais permet une <b>plus grande liberté</b> pour la réalisation de <b>maps complexes</b>.</br></br>Il se présente de la façon suivante : ",
+    "t1-i1": "editeur.gif",
+    "t1-id1": "Éditeur de niveaux",
+    "t1-s1-i1": "editeur.jpg",
+    "t1-s1-id1": "Éditeur de niveaux",
+    "t1-s1-ic": "À droite, le <b>panneau des textures</b> disponibles. </br>En bas les différentes <b>fonctionnalités de gameplay</b> (<i>collisions</i>, <i>inverseur de gravité</i>, etc...) </br>Au centre la <b>vue du niveau</b> avec <i>caméra libre</i>.</br></br>Un carré d’UI suit la souris avec une <i>image de la texture sélectionnée</i> pour le placement. La <b>molette</b> permet de <i>changer de texture facilement</i>. ",
+    "t1-s2": "Fonctionnalitées avancées",
+    "t1-s2-c1": "Les blocs peuvent avoir des rôles de <b>détecteurs</b> et <b>receveurs</b>. Le bloc détecteur envoie un <i>signal au runtime</i> du jeu lors du contact avec un joueur pour mettre à jour le bloc receveur dans sa <b>deuxième forme</b> (<i>changement de texture</i>, <i>collisions</i>, <i>capacités</i>). Un bloc détecteur peut <b>mettre à jour plusieurs autres blocs</b>. </br></br>Ce système est utilisé dans les <b>niveaux officiels</b> pour, par exemple, <i>monter le drapeau</i> lorsque le joueur atteint le <b>checkpoint</b>. Il permet aussi d’<b>ouvrir les portes</b> grâce à des <i>boutons</i>."
+  },
+  "en": {
+    "t1-c1": "The editor was built using the <b>UI</b> elements I designed for the game. It is intended to be <b>ergonomic</b> with <i>easy onboarding</i>.</br></br>The game does not use any <b>pre-made assets</b>. This allows the user to <i>combine textures</i> freely with the desired gameplay features. While this makes content creation <i>more complex</i>, it enables <b>greater freedom</b> for building <b>complex maps</b>.</br></br>It is presented as follows:",
+
+    "t1-i1": "editeur.gif",
+    "t1-id1": "Level editor",
+
+    "t1-s1-i1": "editeur.jpg",
+    "t1-s1-id1": "Level editor",
+
+    "t1-s1-ic": "On the right, the panel of available <b>textures</b>.</br>At the bottom, the different <b>gameplay features</b> (<i>collisions</i>, <i>gravity inverter</i>, etc.).</br>In the center, the <b>level view</b> with a <i>free camera</i>.</br></br>A UI square follows the mouse, showing a <i>preview of the selected texture</i> for placement. The <b>mouse wheel</b> allows easy <i>texture switching</i>.",
+
+    "t1-s2": "Advanced features",
+
+    "t1-s2-c1": "Blocks can act as <b>detectors</b> and <b>receivers</b>. The detector block sends a <i>runtime signal</i> when it comes into contact with a player, updating the receiver block into its <b>second state</b> (<i>texture change</i>, <i>collisions</i>, <i>abilities</i>). A detector block can <b>update multiple other blocks</b>.</br></br>This system is used in <b>official levels</b> to, for example, <i>raise the flag</i> when the player reaches the <b>checkpoint</b>. It is also used to <b>open doors</b> via <i>buttons</i>."
+  }
+}

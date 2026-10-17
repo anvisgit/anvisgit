@@ -1,0 +1,34 @@
+{
+  "fr": {
+    "t1": "Aspect Graphique",
+    "t1-c1": "<strong>Direction artistique minimaliste basée sur la lisibilité et les contrastes</strong>.<br><br>Le projet a débuté par une phase de pré-production centrée sur la définition d’un langage visuel clair et efficace.<br><br>Le temps de production limité a orienté le style vers une approche épurée, avec une palette restreinte proche du monochrome.",
+
+    "t2-i1": "Silhouettes.jpg",
+    "t2-id1": "Silhouettes des personnages",
+    "t2-i2": "Volumes.jpg",
+    "t2-id2": "Volumes des personnages",
+
+    "t3": "Décors",
+    "t3-c1": "Le décor a été conçu en 3D dans Blender afin de faciliter la mise en scène et les mouvements de caméra.<br><br>Les animations 2D ont ensuite été intégrées dans cet environnement via un shader toon, assurant une cohérence visuelle entre personnages et décors.<br><br>L’ensemble repose sur un travail de contrastes forts et une palette limitée à deux couleurs, renforçant la lisibilité et l’impact visuel.",
+
+    "t4-i1": "Shot_11.jpg",
+    "t4-i2": "DSTP_02.jpg",
+    "t4-i3": "DSTP_05.jpg"
+  },
+  "en": {
+    "t1": "Art Direction",
+    "t1-c1": "<strong>Minimalist art direction focused on readability and contrast</strong>.<br><br>The project started with a pre-production phase dedicated to defining a clear and efficient visual language.<br><br>Due to the short production time, the style leans toward a clean approach with a reduced, near-monochrome color palette.",
+
+    "t2-i1": "Silhouettes.jpg",
+    "t2-id1": "Character silhouettes",
+    "t2-i2": "Volumes.jpg",
+    "t2-id2": "Character volumes",
+
+    "t3": "Environment",
+    "t3-c1": "The environment was built in 3D using Blender to enable dynamic staging and camera movement.<br><br>2D character animations were then integrated into this setup using a toon shader, ensuring visual consistency between characters and environment.<br><br>The overall look relies on strong contrast and a two-color palette, enhancing readability and visual impact.",
+
+    "t4-i1": "Shot_11.jpg",
+    "t4-i2": "DSTP_02.jpg",
+    "t4-i3": "DSTP_05.jpg"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "fr": {
+    "contexttitle": "Contexte",
+    "contextcontent": "Film étudiant réalisé en <strong>3 mois de production</strong> en collaboration avec <em>Muller Rafael</em>, <em>Lazari Mathieu</em>, <em>Camilli Diego</em>, <em>Lemau De Talancé Lancelot</em>, <em>Rocchi Elisa</em> et <em>Schaerer Laurine</em>.<br><br>Sélectionné en compétition dans <strong>15 festivals à travers le monde</strong> et ayant remporté le <strong>prix du public</strong> et du <strong>jury</strong> dans sa catégorie au <em>Festival International du Film d’Animation de Melbourne</em>.",
+
+    "estivetitle": "Estive",
+    "role": "Rôle",
+    "rolecontent": "- <strong>Animation rough, Tie-down et clean</strong>.<br>- <strong>Compositing</strong><br>- <strong>Organisation et création du Leadsheet</strong><br>- <strong>Organisation de la structure de fichiers</strong> et mise en place des nomenclatures<br>- <strong>Technical Director</strong>",
+
+    "movement": "Mouvement",
+    "movementcontent": "Compréhension du <strong>mouvement</strong> et de la <strong>hiérarchie visuelle</strong> :<br><br>Dans l’animation, rien n’est laissé au hasard. La lecture du mouvement, des silhouettes et des expressions est essentielle pour la <strong>compréhension du spectateur</strong>. Il faut anticiper les <em>centres d’attention</em> à l’image et le <em>message</em> (conscient et inconscient) que fait passer la scène.<br><br>La trame narrative, élément fondateur de la compréhension, est d’abord conçue à travers une suite d'images (<strong>storyboard / animatique</strong>) qui évolue le plus possible en fonction des retours tests avant de commencer la production officielle du court-métrage.<br><br>Ces itérations de pré-production se retrouvent également dans le <strong>design des personnages</strong>, de la <strong>nature</strong> et du <strong>monde</strong> qui enrobe l’histoire.",
+
+    "organisation": "Organisation et structure",
+    "organisationcontent": "Dans un tel projet, il est important de maintenir des <strong>règles d’organisation et de structuration</strong> lors de la réalisation.<br>Des <strong>audits réguliers</strong>, un <strong>tracking du temps précis</strong> et des <strong>assignations claires</strong> sont nécessaires livrer le film dans les <strong>délais</strong>.<br><br>Pour assurer la qualité des scènes, des <strong>retours</strong> étaient donnés par le chef de secteur désigné afin de valider ou non le passage de la scène à la prochaine étape de production. Tant que la qualité requise n’était pas atteinte, la scène faisait l’objet d’une nouvelle itération à l’étape concernée.<br><br>Chaque étape de production comporte donc l’un des statuts suivants : <em>A faire, En cours, À valider, Retake, Définitif ou En attente</em>.",
+
+    "gantt": "Diagrame de Gantt",
+    "leadsheet": "Leadsheet",
+
+    "tooldev": "Développement d’outils et scripts",
+    "tooldevcontent": "Afin de <strong>faciliter l’organisation</strong> et d'améliorer le <strong>temps de production</strong>, j’ai développé quelques outils :",
+
+    "harmonytool": "Outil d’export rapide sur Toonboom Harmony",
+    "harmonytoolcontent": "Cet outil permet de <strong>sélectionner plusieurs layers</strong> simultanément et de cliquer sur un bouton pour ajouter un <strong>node d’export</strong>. Le nommage se fait automatiquement ainsi que le <strong>formatage en séquence d’images PNG</strong>. Cet outil a permis de <strong>gagner beaucoup de temps</strong> sur la phase d’animation du projet.",
+
+    "sheettool": "Outil de synchronisation des cellules sur Google Sheet",
+    "sheettoolcontent": "J’ai développé cet outil pour <strong>synchroniser les cellules</strong> entre différentes feuilles sur Google Sheet. Il prend en compte les modifications dans les deux sens, pour les chiffres comme pour les statuts.<br>Il permet également de <strong>valider automatiquement des statuts</strong> en fonction de plusieurs autres statuts (par exemple, si les FXs <strong>ET</strong> l’animation <strong>ET</strong> le BG sont validés, alors la scène est validée).<br>Cela a permis de <strong>faciliter la gestion des statuts</strong> et <strong>fluidifier le suivi</strong>, réduisant ainsi considérablement les efforts nécessaires."
+  },
+  "en": {
+    "contexttitle": "Context",
+    "contextcontent": "Student film produced over a <strong>3-month production period</strong> in collaboration with <em>Muller Rafael</em>, <em>Lazari Mathieu</em>, <em>Camilli Diego</em>, <em>Lemau De Talancé Lancelot</em>, <em>Rocchi Elisa</em>, and <em>Schaerer Laurine</em>.<br><br>Selected in competition at <strong>15 festivals worldwide</strong> and awarded both the <strong>audience award</strong> and the <strong>jury award</strong> in its category at the <em>Melbourne International Animation Festival</em>.",
+
+    "estivetitle": "Estive",
+    "role": "Role",
+    "rolecontent": "- <strong>Rough, tie-down, and clean animation</strong>.<br>- <strong>Compositing</strong><br>- <strong>Organization and creation of the dope sheet</strong><br>- <strong>File structure organization</strong> and naming conventions setup<br>- <strong>Technical Director</strong>",
+
+    "movement": "Movement",
+    "movementcontent": "Understanding <strong>motion</strong> and <strong>visual hierarchy</strong>:<br><br>In animation, nothing is left to chance. Reading motion, silhouettes, and expressions is essential for <strong>viewer comprehension</strong>. Attention points in each frame must be anticipated, along with the <em>message</em> (both conscious and subconscious) conveyed by the scene.<br><br>The narrative structure, which is the foundation of understanding, is first built through a sequence of images (<strong>storyboard / animatic</strong>) and iteratively refined based on test feedback before starting official production of the short film.<br><br>These pre-production iterations also extend to <strong>character design</strong>, <strong>environment design</strong>, and the <strong>worldbuilding</strong> surrounding the story.",
+
+    "organisation": "Organization and structure",
+    "organisationcontent": "In such a project, maintaining <strong>clear organizational and structural rules</strong> during production is essential.<br>Regular <strong>audits</strong>, precise <strong>time tracking</strong>, and clear <strong>task assignments</strong> are necessary to deliver the film on <strong>schedule</strong>.<br><br>To ensure scene quality, <strong>feedback</strong> was provided by the designated department lead to validate or reject progression to the next production stage. As long as the required quality was not met, the scene went through additional iterations at the relevant stage.<br><br>Each production stage therefore has one of the following statuses: <em>To do, In progress, To validate, Retake, Final, or On hold</em>.",
+
+    "gantt": "Gantt chart",
+    "leadsheet": "Dope sheet",
+
+    "tooldev": "Tool and script development",
+    "tooldevcontent": "To <strong>improve organization</strong> and increase <strong>production efficiency</strong>, I developed several tools:",
+
+    "harmonytool": "Quick export tool for Toon Boom Harmony",
+    "harmonytoolcontent": "This tool allows <strong>multiple layers to be selected</strong> at once and adds an <strong>export node</strong> with a single click. Naming is handled automatically, as well as <strong>PNG image sequence formatting</strong>. This tool saved a significant amount of time during the animation phase of the project.",
+
+    "sheettool": "Google Sheets cell synchronization tool",
+    "sheettoolcontent": "I developed this tool to <strong>synchronize cells</strong> across different Google Sheets. It handles bidirectional updates for both numeric values and statuses.<br>It also allows <strong>automatic status validation</strong> based on multiple conditions (for example, if FX <strong>AND</strong> animation <strong>AND</strong> background are validated, then the scene is marked as validated).<br>This helped <strong>streamline status management</strong> and improve tracking efficiency, significantly reducing manual effort."
+  }
+}

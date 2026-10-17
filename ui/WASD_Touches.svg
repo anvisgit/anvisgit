@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="226"
+   height="226"
+   viewBox="0 0 59.795833 59.795836"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <pattern
+       xlink:href="#pattern6-7"
+       preserveAspectRatio="xMidYMid"
+       id="pattern1"
+       patternTransform="translate(190,350)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="29"
+       height="20"
+       patternTransform="translate(190,350)"
+       preserveAspectRatio="xMidYMid"
+       style="fill:#000000"
+       id="pattern6-7">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-dasharray:none;paint-order:stroke markers fill;stop-color:#000000"
+         d="M 0,5 C 19,5 10,15 29,15"
+         id="path4-2" />
+    </pattern>
+    <linearGradient
+       id="swatch1">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+    </linearGradient>
+  </defs>
+   <style>
+    #logo { transform-origin: center; }
+  </style>
+
+  <g
+     id="layer1"
+     style="display:inline;opacity:1;fill:url(#pattern1);fill-opacity:1">
+    <g
+       id="logo">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.309709"
+         id="rect3"
+         width="17.77047"
+         height="17.77047"
+         transform="translate(21.012682 30.625441)"
+         x="0"
+         y="0"
+         ry="1.196098" >
+      </rect>
+
+      <text
+         xml:space="preserve"
+         style="font-size:9.87778px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         x="26.487961"
+         y="43.151489"
+         id="text7"><tspan
+           id="tspan7"
+           style="font-size:9.87778px;fill:#000000;stroke-width:0.264583"
+           x="26.487961"
+           y="43.151489">S</tspan>
+      </text>
+      <animateTransform
+            id="first"
+            attributeName="transform"
+            type="scale"
+            values="1;0.88;1"
+            dur="0.5s"
+            begin="0s; fourth.end"
+            additive="sum"
+      />
+
+    </g>
+    <g
+       id="logo">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.309709"
+         id="rect5"
+         width="17.77047"
+         height="17.77047"
+         x="21.012682"
+         y="11.885671"
+         ry="1.5799125" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87778px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         x="26.487961"
+         y="23.829926"
+         id="text6"><tspan
+           id="tspan6"
+           style="font-size:9.87778px;fill:#000000;stroke-width:0.264583"
+           x="26.487961"
+           y="23.829926">W</tspan></text>
+      <animateTransform
+         id="sec"
+         attributeName="transform"
+         type="scale"
+         values="1;0.88;1"
+         dur="0.5s"
+         begin="first.end"
+         additive="sum"
+      />
+    </g>
+    <g
+       id="logo">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         id="rect6"
+         width="15.181227"
+         height="15.181227"
+         x="38.183083"
+         y="33.214684"
+         d="M 39.204902,33.214684 H 52.34249 c 0.566088,0 1.021819,0.455731 1.021819,1.021819 v 13.137588 c 0,0.566088 -0.455731,1.021819 -1.021819,1.021819 H 39.204902 c -0.566088,0 -1.021819,-0.455731 -1.021819,-1.021819 V 34.236503 c 0,-0.566088 0.455731,-1.021819 1.021819,-1.021819 z"
+         transform="matrix(1.1705555,0,0,1.1705555,-4.8692369,-8.2541909)"
+         ry="1.0218197" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87778px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         x="45.349483"
+         y="43.151489"
+         id="text9"><tspan
+           id="tspan9"
+           style="font-size:9.87778px;fill:#000000;stroke-width:0.264583"
+           x="45.349483"
+           y="43.151489">D</tspan></text>
+      <animateTransform
+         id="third"
+         attributeName="transform"
+         type="scale"
+         values="1;0.88;1"
+         dur="0.5s"
+         begin="sec.end"
+         additive="sum"
+      />
+    </g>
+    <g
+       id="logo">
+      <path
+         transform="matrix(-1.1705555,0,0,1.1705555,64.665071,-8.2541909)"
+         id="path9"
+         d="M 39.204902,33.214684 H 52.34249 c 0.566088,0 1.021819,0.455731 1.021819,1.021819 v 13.137588 c 0,0.566088 -0.455731,1.021819 -1.021819,1.021819 H 39.204902 c -0.566088,0 -1.021819,-0.455731 -1.021819,-1.021819 V 34.236503 c 0,-0.566088 0.455731,-1.021819 1.021819,-1.021819 z"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87778px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         x="7.1892772"
+         y="43.151489"
+         id="text8"><tspan
+           id="tspan8"
+           style="font-size:9.87778px;fill:#000000;stroke-width:0.264583"
+           x="7.1892772"
+           y="43.151489">A</tspan></text>
+      <animateTransform
+         id="fourth"
+         attributeName="transform"
+         type="scale"
+         values="1;0.88;1"
+         dur="0.5s"
+         begin="third.end"
+         additive="sum"
+      />
+    </g>
+  </g>
+</svg>

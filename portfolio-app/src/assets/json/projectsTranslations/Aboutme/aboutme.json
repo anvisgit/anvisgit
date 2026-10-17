@@ -1,0 +1,14 @@
+{
+  "fr": {
+    "t1": "À propos de moi",
+    "t1-c1": "Hello ! Je m’appelle Allan, développeur junior passionné par la programmation, les systèmes de jeux et l’animation ! <br /><br />Toujours à la recherche de nouvelles idées et de nouvelles technos à apprendre, j’aime créer des systèmes interactifs en explorant des approches expérimentales tout en m’appuyant sur les standards de l’industrie.<br /><br />Issu d’un parcours mêlant développement et animation (DUT MMI puis bachelor 2D/3D),<br />J’ai pendant ces années réalisé beaucoup de projets, avec des workflows intenses et structurés. <br /><br />Je me suis notamment occupé de l’organisation technique de mon équipe ainsi que de la structuration sur plusieurs de ces projets.<br />J’ai dernièrement participé à une introduction en animation 2D/3D (animation, compositing, 3D, FXs et rigging ) pour un documentaire visant à être diffusé par le groupe Canal+. <br /><br />Aujourd’hui, je souhaite rejoindre une équipe pour contribuer à des productions mêlant technique et créativité.",
+    "t2": "En bref",
+    "t2-c1": "Développeur interactif spécialisé en expériences temps réel (web / Unity), combinant programmation, animation et création d’outils.",
+    "t3": "Ce que je sais faire concrètement :",
+    "t3-c1": "-Interactive web (Vue / WebGL / p5)<br/>- Unity (physique, comportement, UI overlay)<br/>- Pipeline 2D/3D (Blender → moteur)<br/>- Tools / scripting / automation<br/>- Data-driven systems"
+  },
+  "en": {
+    "t1": "About me",
+    "t1-c1": "Hello! My name is Allan, a junior developer passionate about programming, game systems, and animation! <br /><br />Always looking for new ideas and technologies to learn, I enjoy building interactive systems by exploring experimental approaches while still relying on industry standards.<br /><br />With a background combining development and animation (DUT MMI followed by a 2D/3D bachelor's degree),<br />I have completed many projects over the years, with intensive and structured workflows.<br /><br />I was notably responsible for the technical organization of my team as well as the structuring of several projects.<br />Recently, I contributed to an introduction to 2D/3D animation (animation, compositing, 3D, FX, and rigging) for a documentary intended for broadcast by the Canal+ group.<br /><br />Today, I want to join a team to keep improving and contribute to productions that blend technical work and creativity."
+  }
+}

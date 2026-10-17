@@ -1,0 +1,652 @@
+{
+  "en": {
+    "categories": [
+      {
+        "slug": "about-anvi",
+        "name": "About",
+        "description": "A note from mission control.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "profile",
+            "name": "Anvi Wadhwa",
+            "description": "CS undergraduate at VIT Chennai; ML, physical sciences, and reinforcement learning.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<h2>Hi, I’m Anvi — CS undergraduate at VIT Chennai.</h2><p>Welcome to my website. I don’t really have a neat, well-defined answer to who I am. The only thing I’m reasonably certain about is that I enjoy an unhealthy amount of larping. So, for now, let me just be Anvi Wadhwa, and welcome to Larpland.</p><p>Most of my curiosity currently lives in machine learning, particularly in areas involving physical and space sciences, probabilistic modeling, uncertainty quantification, and high-dimensional systems. Lately, I’ve been going deeper into reinforcement learning and the mathematics behind how agents learn, make decisions, and optimize behavior. Partly because it’s interesting. Partly because humans don’t seem particularly good at it either.</p><p>Outside computer science, I’m into philosophy, business, psychology, literature, and art. I love writing and chasing ideas that push boundaries. I appreciate anything that makes me question the obvious and look at the world sideways.</p><p>I don’t have a grand philosophy beyond staying curious. There are too many interesting things to learn, too many ideas to explore, and too many questions worth asking.</p><p><b>Congratulations. Now you’re about as me as I am.</b></p><p><a href=\"mailto:anviwadhwa7@gmail.com\">Personal email</a> · <a href=\"mailto:anvi.wadhwa2024@vitstudent.ac.in\">VIT email</a> · <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/anvisgit\">GitHub</a> · <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://in.linkedin.com/in/anviwadhwa7\">LinkedIn</a> · <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7\">Medium</a></p>",
+            "tags": [
+              "VIT Chennai",
+              "Machine Learning",
+              "Space & Physical Sciences",
+              "Reinforcement Learning"
+            ],
+            "thumbnails": []
+          }
+        ]
+      },
+      {
+        "slug": "research-projects",
+        "name": "Projects",
+        "description": "Research and systems experiments currently in orbit.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "predicting-offline-rl-failure",
+            "name": "Predicting Failure in Offline Reinforcement Learning from Dataset Quality",
+            "description": "Investigating how fixed offline dataset quality and coverage drive failure modes in conservative offline RL (CQL, IQL) on D4RL. I study coverage reduction, quality degradation, and noise injection to predict failure before training; currently tracing a CQL collapse under degraded data quality.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Investigating how fixed offline dataset quality and coverage drive failure modes in conservative offline RL (CQL, IQL) on D4RL. I study coverage reduction, quality degradation, and noise injection to predict failure before training; currently tracing a CQL collapse under degraded data quality.</p><p><b>Status:</b> Ongoing</p>",
+            "tags": [
+              "CQL",
+              "IQL",
+              "D4RL",
+              "Offline RL"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "ppo-grpo-wordle",
+            "name": "Comparative Analysis of PPO and GRPO for Solving Wordle",
+            "description": "Trained PPO and GRPO agents across 2,309 official answer words. Compared win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO later collapsed, exposing a gap between information-seeking and acting on information.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Trained PPO and GRPO agents across 2,309 official answer words. Compared win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO later collapsed, exposing a gap between information-seeking and acting on information.</p><p><b>Status:</b> Research project</p>",
+            "tags": [
+              "89.6% PPO win rate",
+              "5.8% GRPO win rate",
+              "PPO",
+              "GRPO",
+              "RL"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "modern-llms-from-scratch",
+            "name": "Implementing Modern Large Language Models from First Principles",
+            "description": "Built a four-layer transformer from scratch on a personal-essay corpus. The first 10,000-step run overfit, with validation loss bottoming near step 1,100, so I capped training at 1,200 steps. The corpus is too small; scaling the data is next.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Built a four-layer transformer from scratch on a personal-essay corpus. The first 10,000-step run overfit, with validation loss bottoming near step 1,100, so I capped training at 1,200 steps. The corpus is too small; scaling the data is next.</p><p><b>Status:</b> In progress</p>",
+            "tags": [
+              "Transformer",
+              "PyTorch",
+              "From Scratch",
+              "NLP"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "rl-ftl-garbage-collection",
+            "name": "Reinforcement Learning for FTL Garbage Collection",
+            "description": "Built an FTL garbage-collection simulator in C and connected Python PPO agents through socket IPC. Benchmarked write amplification factor: PPO reached 15.1 versus 1.18 for greedy and 1.53 for random, motivating further training and tuning.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Built an FTL garbage-collection simulator in C and connected Python PPO agents through socket IPC. Benchmarked write amplification factor: PPO reached 15.1 versus 1.18 for greedy and 1.53 for random, motivating further training and tuning.</p><p><b>Status:</b> Research project</p>",
+            "tags": [
+              "PPO",
+              "C",
+              "IPC",
+              "Systems"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "stellar-photometry-sequences",
+            "name": "Deep Sequence Learning for Stellar Photometry",
+            "description": "Designed an attention BiLSTM to predict stellar light curves from synthetic astronomical data. Evaluated sliding-window predictions across noise levels and window sizes using R², MAE, and MSE.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Designed an attention BiLSTM to predict stellar light curves from synthetic astronomical data. Evaluated sliding-window predictions across noise levels and window sizes using R², MAE, and MSE.</p><p><b>Status:</b> Research project</p>",
+            "tags": [
+              "Attention",
+              "BiLSTM",
+              "PyTorch",
+              "Astro ML"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "applied-reinforcement-learning",
+            "name": "Applied Reinforcement Learning",
+            "description": "A growing from-scratch RL library spanning Gymnasium CartPole, BipedalWalker, and Ant-v4, with training and evaluation pipelines for Q-Learning, DQN variants, PPO, and actor-critic methods.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>A growing from-scratch RL library spanning Gymnasium CartPole, BipedalWalker, and Ant-v4, with training and evaluation pipelines for Q-Learning, DQN variants, PPO, and actor-critic methods.</p><p><b>Status:</b> Ongoing</p>",
+            "tags": [
+              "RL",
+              "Gymnasium",
+              "DQN",
+              "PPO"
+            ],
+            "thumbnails": []
+          }
+        ]
+      },
+      {
+        "slug": "writing-transmissions",
+        "name": "Writing",
+        "description": "Essays and ideas sent from the edges of the map.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "sex-work-machines-fear",
+            "name": "Sex Work, Machines, and the Fear of Becoming Unnecessary",
+            "description": "On labour, intimacy, artificial companions, and the fear that machines unsettle our identity and work.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>On labour, intimacy, artificial companions, and the fear that machines unsettle our identity and work.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/sex-work-machines-and-the-fear-of-becoming-unnecessary-bb423668304c\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Jun 2026 · 4 min"
+          },
+          {
+            "slug": "tesseract",
+            "name": "Can we Just Stick to a Tesseract?",
+            "description": "Higher-dimensional geometry, and why our brains resist imagining it.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Higher-dimensional geometry, and why our brains resist imagining it.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/can-we-just-stick-to-a-tesseract-657c9b8df08a\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Apr 2026 · 5 min"
+          },
+          {
+            "slug": "god-serves-man",
+            "name": "God Serves Man, but He is Not a Servant",
+            "description": "The tension between utility and dignity.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>The tension between utility and dignity.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/god-serves-man-but-he-is-not-a-servant-821517560c3a\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Apr 2026 · 4 min"
+          },
+          {
+            "slug": "dimensions-punishment",
+            "name": "The Philosophical and Political Dimensions of Punishment",
+            "description": "Deterrence, retribution, and rehabilitation as competing philosophies of punishment.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Deterrence, retribution, and rehabilitation as competing philosophies of punishment.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/the-philosophical-and-political-dimensions-of-punishment-teaching-suffering-and-power-ab18340b3044\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Feb 2026 · 8 min"
+          },
+          {
+            "slug": "bayes-awakening",
+            "name": "The Bayes’ Awakening",
+            "description": "Bayesian reasoning and the practice of updating our beliefs.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Bayesian reasoning and the practice of updating our beliefs.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/the-bayes-awakening-5af7ffcdd2e2\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Sep 2025 · 6 min"
+          },
+          {
+            "slug": "fiction-absurdity",
+            "name": "A Man’s Need For Fiction Triumphs Over The Evidence Of Absurdity",
+            "description": "Absurdity, suffering, religion, and the human need for meaning.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Absurdity, suffering, religion, and the human need for meaning.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/a-mans-need-for-fiction-triumphs-over-the-evidence-of-absurdity-7e4325b39f78\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Aug 2025 · 6 min"
+          },
+          {
+            "slug": "pls-spell-vheck-me",
+            "name": "pls spell vheck me",
+            "description": "Edit distance, Levenshtein, dynamic programming, and how spell checkers work.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Edit distance, Levenshtein, dynamic programming, and how spell checkers work.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/pls-spell-vheck-me-3481fce8e891\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Jul 2025 · 3 min"
+          },
+          {
+            "slug": "schrodinger-cat",
+            "name": "The Adventures of Schrodinger’s Cat",
+            "description": "A journey through superposition, observation, entanglement, and the famous cat.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>A journey through superposition, observation, entanglement, and the famous cat.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/the-adventures-of-schrodingers-cat-469c28f8c04d\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Jul 2025 · 18 min"
+          }
+        ]
+      },
+      {
+        "slug": "research-experience",
+        "name": "Experience",
+        "description": "Research work and field notes.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "iiser-bhopal-research-intern",
+            "name": "Research Intern — IISER Bhopal",
+            "description": "Advised by Prof. Vivek Delukar · Grid Foundation Models for power systems",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Advised by Prof. Vivek Delukar</p><p>Grid Foundation Models for power systems</p><ul><li>Researching self-supervised and graph-based power-grid representations.</li><li>Adapting and fine-tuning foundation models for grid analytics and forecasting.</li><li>Contributing literature and experimental analysis in AI for next-generation power systems.</li></ul>",
+            "tags": [
+              "Research",
+              "Machine Learning"
+            ],
+            "thumbnails": [],
+            "date": "Jun 2026–Present"
+          },
+          {
+            "slug": "iit-bhu-cv-intern",
+            "name": "Computer Vision Research Intern — IIT (BHU) Varanasi",
+            "description": "Advised by Prof. Pankhuri Jain · Lower-Limb Pose Estimation for Physiotherapy Monitoring",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Advised by Prof. Pankhuri Jain</p><p>Lower-Limb Pose Estimation for Physiotherapy Monitoring</p><ul><li>Built real-time tracking with MediaPipe and OpenCV for hip, knee, and ankle landmarks from webcam video.</li><li>Estimated joint angles and studied robustness across lighting, occlusion, and viewpoints.</li><li>Logged motion to CSV, visualized trajectories, and preprocessed exercise datasets.</li></ul>",
+            "tags": [
+              "Research",
+              "Machine Learning"
+            ],
+            "thumbnails": [],
+            "date": "May–July"
+          }
+        ]
+      },
+      {
+        "slug": "campus-communities",
+        "name": "Campus",
+        "description": "Leadership, community building, and events.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "bic-vit-chennai",
+            "name": "Business Innovation Community (BIC), VIT Chennai",
+            "description": "Progressed from curation member to chairperson, leading direction and core execution. Hosted events, workshops, and speaker sessions; led research on technology, startups, AI, and business; planned innovation initiatives and curated community content. Run the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@businessinnovationcommunityvit\">BIC Medium publication</a> and built the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://bic-vitcc.github.io/BIC-website/#home\">official website</a>.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Progressed from curation member to chairperson, leading direction and core execution. Hosted events, workshops, and speaker sessions; led research on technology, startups, AI, and business; planned innovation initiatives and curated community content. Run the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@businessinnovationcommunityvit\">BIC Medium publication</a> and built the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://bic-vitcc.github.io/BIC-website/#home\">official website</a>.</p>",
+            "tags": [
+              "Leadership",
+              "Research",
+              "Community"
+            ],
+            "thumbnails": [],
+            "date": "Chairperson · Jul 2025–Present; R&D and Curation Lead · May–Jul 2025; Curation Member · Aug 2024–Apr 2025"
+          },
+          {
+            "slug": "defy-hackathons",
+            "name": "Core Committee Member & Evaluator — DEFY Hackathons",
+            "description": "Evaluated startup, Web3, and technology projects on innovation, scalability, and product-market fit. Mentored teams on pitches, business models, and validation; designed rubrics, streamlined workflows, and supported event operations, onboarding, outreach, and sponsorship.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Evaluated startup, Web3, and technology projects on innovation, scalability, and product-market fit. Mentored teams on pitches, business models, and validation; designed rubrics, streamlined workflows, and supported event operations, onboarding, outreach, and sponsorship.</p>",
+            "tags": [
+              "Evaluation",
+              "Mentorship",
+              "Hackathons"
+            ],
+            "thumbnails": [],
+            "date": "2024–2025"
+          }
+        ]
+      }
+    ]
+  },
+  "fr": {
+    "categories": [
+      {
+        "slug": "about-anvi",
+        "name": "About",
+        "description": "A note from mission control.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "profile",
+            "name": "Anvi Wadhwa",
+            "description": "CS undergraduate at VIT Chennai; ML, physical sciences, and reinforcement learning.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<h2>Hi, I’m Anvi — CS undergraduate at VIT Chennai.</h2><p>Welcome to my website. I don’t really have a neat, well-defined answer to who I am. The only thing I’m reasonably certain about is that I enjoy an unhealthy amount of larping. So, for now, let me just be Anvi Wadhwa, and welcome to Larpland.</p><p>Most of my curiosity currently lives in machine learning, particularly in areas involving physical and space sciences, probabilistic modeling, uncertainty quantification, and high-dimensional systems. Lately, I’ve been going deeper into reinforcement learning and the mathematics behind how agents learn, make decisions, and optimize behavior. Partly because it’s interesting. Partly because humans don’t seem particularly good at it either.</p><p>Outside computer science, I’m into philosophy, business, psychology, literature, and art. I love writing and chasing ideas that push boundaries. I appreciate anything that makes me question the obvious and look at the world sideways.</p><p>I don’t have a grand philosophy beyond staying curious. There are too many interesting things to learn, too many ideas to explore, and too many questions worth asking.</p><p><b>Congratulations. Now you’re about as me as I am.</b></p><p><a href=\"mailto:anviwadhwa7@gmail.com\">Personal email</a> · <a href=\"mailto:anvi.wadhwa2024@vitstudent.ac.in\">VIT email</a> · <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/anvisgit\">GitHub</a> · <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://in.linkedin.com/in/anviwadhwa7\">LinkedIn</a> · <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7\">Medium</a></p>",
+            "tags": [
+              "VIT Chennai",
+              "Machine Learning",
+              "Space & Physical Sciences",
+              "Reinforcement Learning"
+            ],
+            "thumbnails": []
+          }
+        ]
+      },
+      {
+        "slug": "research-projects",
+        "name": "Projects",
+        "description": "Research and systems experiments currently in orbit.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "predicting-offline-rl-failure",
+            "name": "Predicting Failure in Offline Reinforcement Learning from Dataset Quality",
+            "description": "Investigating how fixed offline dataset quality and coverage drive failure modes in conservative offline RL (CQL, IQL) on D4RL. I study coverage reduction, quality degradation, and noise injection to predict failure before training; currently tracing a CQL collapse under degraded data quality.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Investigating how fixed offline dataset quality and coverage drive failure modes in conservative offline RL (CQL, IQL) on D4RL. I study coverage reduction, quality degradation, and noise injection to predict failure before training; currently tracing a CQL collapse under degraded data quality.</p><p><b>Status:</b> Ongoing</p>",
+            "tags": [
+              "CQL",
+              "IQL",
+              "D4RL",
+              "Offline RL"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "ppo-grpo-wordle",
+            "name": "Comparative Analysis of PPO and GRPO for Solving Wordle",
+            "description": "Trained PPO and GRPO agents across 2,309 official answer words. Compared win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO later collapsed, exposing a gap between information-seeking and acting on information.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Trained PPO and GRPO agents across 2,309 official answer words. Compared win rate, guess efficiency, constraint reduction, policy entropy, and generalization. PPO converged to a stable, high-performing policy; GRPO later collapsed, exposing a gap between information-seeking and acting on information.</p><p><b>Status:</b> Research project</p>",
+            "tags": [
+              "89.6% PPO win rate",
+              "5.8% GRPO win rate",
+              "PPO",
+              "GRPO",
+              "RL"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "modern-llms-from-scratch",
+            "name": "Implementing Modern Large Language Models from First Principles",
+            "description": "Built a four-layer transformer from scratch on a personal-essay corpus. The first 10,000-step run overfit, with validation loss bottoming near step 1,100, so I capped training at 1,200 steps. The corpus is too small; scaling the data is next.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Built a four-layer transformer from scratch on a personal-essay corpus. The first 10,000-step run overfit, with validation loss bottoming near step 1,100, so I capped training at 1,200 steps. The corpus is too small; scaling the data is next.</p><p><b>Status:</b> In progress</p>",
+            "tags": [
+              "Transformer",
+              "PyTorch",
+              "From Scratch",
+              "NLP"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "rl-ftl-garbage-collection",
+            "name": "Reinforcement Learning for FTL Garbage Collection",
+            "description": "Built an FTL garbage-collection simulator in C and connected Python PPO agents through socket IPC. Benchmarked write amplification factor: PPO reached 15.1 versus 1.18 for greedy and 1.53 for random, motivating further training and tuning.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Built an FTL garbage-collection simulator in C and connected Python PPO agents through socket IPC. Benchmarked write amplification factor: PPO reached 15.1 versus 1.18 for greedy and 1.53 for random, motivating further training and tuning.</p><p><b>Status:</b> Research project</p>",
+            "tags": [
+              "PPO",
+              "C",
+              "IPC",
+              "Systems"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "stellar-photometry-sequences",
+            "name": "Deep Sequence Learning for Stellar Photometry",
+            "description": "Designed an attention BiLSTM to predict stellar light curves from synthetic astronomical data. Evaluated sliding-window predictions across noise levels and window sizes using R², MAE, and MSE.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Designed an attention BiLSTM to predict stellar light curves from synthetic astronomical data. Evaluated sliding-window predictions across noise levels and window sizes using R², MAE, and MSE.</p><p><b>Status:</b> Research project</p>",
+            "tags": [
+              "Attention",
+              "BiLSTM",
+              "PyTorch",
+              "Astro ML"
+            ],
+            "thumbnails": []
+          },
+          {
+            "slug": "applied-reinforcement-learning",
+            "name": "Applied Reinforcement Learning",
+            "description": "A growing from-scratch RL library spanning Gymnasium CartPole, BipedalWalker, and Ant-v4, with training and evaluation pipelines for Q-Learning, DQN variants, PPO, and actor-critic methods.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>A growing from-scratch RL library spanning Gymnasium CartPole, BipedalWalker, and Ant-v4, with training and evaluation pipelines for Q-Learning, DQN variants, PPO, and actor-critic methods.</p><p><b>Status:</b> Ongoing</p>",
+            "tags": [
+              "RL",
+              "Gymnasium",
+              "DQN",
+              "PPO"
+            ],
+            "thumbnails": []
+          }
+        ]
+      },
+      {
+        "slug": "writing-transmissions",
+        "name": "Writing",
+        "description": "Essays and ideas sent from the edges of the map.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "sex-work-machines-fear",
+            "name": "Sex Work, Machines, and the Fear of Becoming Unnecessary",
+            "description": "On labour, intimacy, artificial companions, and the fear that machines unsettle our identity and work.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>On labour, intimacy, artificial companions, and the fear that machines unsettle our identity and work.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/sex-work-machines-and-the-fear-of-becoming-unnecessary-bb423668304c\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Jun 2026 · 4 min"
+          },
+          {
+            "slug": "tesseract",
+            "name": "Can we Just Stick to a Tesseract?",
+            "description": "Higher-dimensional geometry, and why our brains resist imagining it.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Higher-dimensional geometry, and why our brains resist imagining it.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/can-we-just-stick-to-a-tesseract-657c9b8df08a\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Apr 2026 · 5 min"
+          },
+          {
+            "slug": "god-serves-man",
+            "name": "God Serves Man, but He is Not a Servant",
+            "description": "The tension between utility and dignity.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>The tension between utility and dignity.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/god-serves-man-but-he-is-not-a-servant-821517560c3a\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Apr 2026 · 4 min"
+          },
+          {
+            "slug": "dimensions-punishment",
+            "name": "The Philosophical and Political Dimensions of Punishment",
+            "description": "Deterrence, retribution, and rehabilitation as competing philosophies of punishment.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Deterrence, retribution, and rehabilitation as competing philosophies of punishment.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/the-philosophical-and-political-dimensions-of-punishment-teaching-suffering-and-power-ab18340b3044\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Feb 2026 · 8 min"
+          },
+          {
+            "slug": "bayes-awakening",
+            "name": "The Bayes’ Awakening",
+            "description": "Bayesian reasoning and the practice of updating our beliefs.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Bayesian reasoning and the practice of updating our beliefs.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/the-bayes-awakening-5af7ffcdd2e2\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Sep 2025 · 6 min"
+          },
+          {
+            "slug": "fiction-absurdity",
+            "name": "A Man’s Need For Fiction Triumphs Over The Evidence Of Absurdity",
+            "description": "Absurdity, suffering, religion, and the human need for meaning.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Absurdity, suffering, religion, and the human need for meaning.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/a-mans-need-for-fiction-triumphs-over-the-evidence-of-absurdity-7e4325b39f78\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Aug 2025 · 6 min"
+          },
+          {
+            "slug": "pls-spell-vheck-me",
+            "name": "pls spell vheck me",
+            "description": "Edit distance, Levenshtein, dynamic programming, and how spell checkers work.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Edit distance, Levenshtein, dynamic programming, and how spell checkers work.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/pls-spell-vheck-me-3481fce8e891\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Jul 2025 · 3 min"
+          },
+          {
+            "slug": "schrodinger-cat",
+            "name": "The Adventures of Schrodinger’s Cat",
+            "description": "A journey through superposition, observation, entanglement, and the famous cat.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>A journey through superposition, observation, entanglement, and the famous cat.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@anviwadhwa7/the-adventures-of-schrodingers-cat-469c28f8c04d\">Read on Medium ↗</a></p>",
+            "tags": [
+              "Writing",
+              "Medium"
+            ],
+            "thumbnails": [],
+            "date": "Jul 2025 · 18 min"
+          }
+        ]
+      },
+      {
+        "slug": "research-experience",
+        "name": "Experience",
+        "description": "Research work and field notes.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "iiser-bhopal-research-intern",
+            "name": "Research Intern — IISER Bhopal",
+            "description": "Advised by Prof. Vivek Delukar · Grid Foundation Models for power systems",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Advised by Prof. Vivek Delukar</p><p>Grid Foundation Models for power systems</p><ul><li>Researching self-supervised and graph-based power-grid representations.</li><li>Adapting and fine-tuning foundation models for grid analytics and forecasting.</li><li>Contributing literature and experimental analysis in AI for next-generation power systems.</li></ul>",
+            "tags": [
+              "Research",
+              "Machine Learning"
+            ],
+            "thumbnails": [],
+            "date": "Jun 2026–Present"
+          },
+          {
+            "slug": "iit-bhu-cv-intern",
+            "name": "Computer Vision Research Intern — IIT (BHU) Varanasi",
+            "description": "Advised by Prof. Pankhuri Jain · Lower-Limb Pose Estimation for Physiotherapy Monitoring",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Advised by Prof. Pankhuri Jain</p><p>Lower-Limb Pose Estimation for Physiotherapy Monitoring</p><ul><li>Built real-time tracking with MediaPipe and OpenCV for hip, knee, and ankle landmarks from webcam video.</li><li>Estimated joint angles and studied robustness across lighting, occlusion, and viewpoints.</li><li>Logged motion to CSV, visualized trajectories, and preprocessed exercise datasets.</li></ul>",
+            "tags": [
+              "Research",
+              "Machine Learning"
+            ],
+            "thumbnails": [],
+            "date": "May–July"
+          }
+        ]
+      },
+      {
+        "slug": "campus-communities",
+        "name": "Campus",
+        "description": "Leadership, community building, and events.",
+        "images": [],
+        "carousel": [],
+        "projects": [
+          {
+            "slug": "bic-vit-chennai",
+            "name": "Business Innovation Community (BIC), VIT Chennai",
+            "description": "Progressed from curation member to chairperson, leading direction and core execution. Hosted events, workshops, and speaker sessions; led research on technology, startups, AI, and business; planned innovation initiatives and curated community content. Run the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@businessinnovationcommunityvit\">BIC Medium publication</a> and built the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://bic-vitcc.github.io/BIC-website/#home\">official website</a>.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Progressed from curation member to chairperson, leading direction and core execution. Hosted events, workshops, and speaker sessions; led research on technology, startups, AI, and business; planned innovation initiatives and curated community content. Run the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://medium.com/@businessinnovationcommunityvit\">BIC Medium publication</a> and built the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://bic-vitcc.github.io/BIC-website/#home\">official website</a>.</p>",
+            "tags": [
+              "Leadership",
+              "Research",
+              "Community"
+            ],
+            "thumbnails": [],
+            "date": "Chairperson · Jul 2025–Present; R&D and Curation Lead · May–Jul 2025; Curation Member · Aug 2024–Apr 2025"
+          },
+          {
+            "slug": "defy-hackathons",
+            "name": "Core Committee Member & Evaluator — DEFY Hackathons",
+            "description": "Evaluated startup, Web3, and technology projects on innovation, scalability, and product-market fit. Mentored teams on pitches, business models, and validation; designed rubrics, streamlined workflows, and supported event operations, onboarding, outreach, and sponsorship.",
+            "images": [],
+            "carousel": [],
+            "displaytext": "<p>Evaluated startup, Web3, and technology projects on innovation, scalability, and product-market fit. Mentored teams on pitches, business models, and validation; designed rubrics, streamlined workflows, and supported event operations, onboarding, outreach, and sponsorship.</p>",
+            "tags": [
+              "Evaluation",
+              "Mentorship",
+              "Hackathons"
+            ],
+            "thumbnails": [],
+            "date": "2024–2025"
+          }
+        ]
+      }
+    ]
+  }
+}

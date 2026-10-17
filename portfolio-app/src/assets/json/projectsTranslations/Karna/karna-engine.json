@@ -1,0 +1,38 @@
+{
+  "fr": {
+    "t1-i1": "Karna_play.gif",
+
+    "t1-s1": "Présentation",
+
+    "t1-s1-c1": "Développement d’un <b>moteur de jeu 2D</b> entièrement conçu <i>from scratch en C++</i>, avec pour objectif de gérer <b>toutes les briques fondamentales</b> nécessaires à la création d’un jeu vidéo.</br></br>Le moteur intègre notamment :</br>- un <b>système de rendu</b> et de <i>gestion des textures</i></br>- un <b>moteur physique</b> (gravité, collisions, interactions)</br>- une <b>gestion des entités</b> et des <i>animations</i></br>- une <b>boucle de jeu complète</b> (<i>input, update, render</i>)",
+
+    "t1-s1-c2": "Un <b>système de sauvegarde et de chargement</b> basé sur des <i>fichiers personnalisés</i> a également été conçu, permettant de <b>créer, modifier et charger dynamiquement</b> des niveaux.</br></br>L’architecture <b>orientée objet</b> garantit une <i>séparation claire des responsabilités</i> (rendu, logique, données), ce qui facilite la <b>maintenance</b>, l’<b>évolution</b> du projet et l’ajout de <i>nouvelles fonctionnalités</i>.",
+
+    "t1-s2": "Structure",
+
+    "t1-s2-ic": "Le moteur repose sur une <b>architecture orientée objet</b> structurée, avec une <i>séparation des systèmes principaux</i> : <b>rendu</b>, <b>gestion des entités</b>, <b>chargement des niveaux</b> et <b>interface utilisateur</b>.",
+
+    "t1-s2-i1": "Structure_Karna.jpg",
+    "t1-s2-id1": "Structure du moteur Karna",
+
+    "t1-s3-c1": "Implémentation d’un <b>système de physique simple</b> incluant la <i>gestion des collisions</i> et de la <i>gravité</i>, ainsi qu’un <b>système de parsing</b> permettant le <b>chargement dynamique des niveaux</b> depuis des fichiers.</br></br>Un <b>éditeur de niveaux intégré</b>, directement connecté au moteur, permet de <i>créer et modifier du contenu</i> sans nécessiter de modification du code."
+  },
+  "en": {
+    "t1-i1": "Karna_play.gif",
+
+    "t1-s1": "Overview",
+
+    "t1-s1-c1": "Development of a <b>2D game engine</b> entirely built <i>from scratch in C++</i>, with the goal of handling <b>all the core building blocks</b> required to create a video game.</br></br>The engine includes in particular:</br>- a <b>rendering system</b> and <i>texture management</i></br>- a <b>physics engine</b> (gravity, collisions, interactions)</br>- an <b>entity management system</b> and <i>animations</i></br>- a <b>complete game loop</b> (<i>input, update, render</i>)",
+
+    "t1-s1-c2": "A <b>save and load system</b> based on <i>custom files</i> was also designed, allowing <b>dynamic creation, editing, and loading</b> of levels.</br></br>The <b>object-oriented architecture</b> ensures a <i>clear separation of responsibilities</i> (rendering, logic, data), which makes the project easier to <b>maintain</b>, <b>evolve</b>, and extend with <i>new features</i>.",
+
+    "t1-s2": "Structure",
+
+    "t1-s2-ic": "The engine is based on a structured <b>object-oriented architecture</b>, with a <i>clear separation of core systems</i>: <b>rendering</b>, <b>entity management</b>, <b>level loading</b>, and <b>user interface</b>.",
+
+    "t1-s2-i1": "Structure_Karna.jpg",
+    "t1-s2-id1": "Karna engine structure",
+
+    "t1-s3-c1": "Implementation of a <b>simple physics system</b> including <i>collision handling</i> and <i>gravity</i>, as well as a <b>parsing system</b> enabling <b>dynamic level loading</b> from files.</br></br>An <b>integrated level editor</b>, directly connected to the engine, allows <i>content creation and modification</i> without requiring code changes."
+  }
+}

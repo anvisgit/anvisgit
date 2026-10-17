@@ -1,0 +1,16 @@
+{
+  "fr": {
+    "t1": "Le système de traduction",
+    "t1-c1": "j'ai créé un système de traduction qui se base sur le fonctionnement de la librairie i18n. <br/> Il y a un fichier de traduction globale pour le site et un fichier pour chaque page du portfolio pour les projets complexes. <br/><br/> Le contenu des projets moins complexes se trouve directement dans le fichier json qui déclare leur structure. La traduction se fait alors au même endroit.",
+
+    "t2": "Langues",
+    "t2-c1": "Le système de traduction détècte et utilise automatiquement les langues disponibles dans les fichiers de traduction d'après la langue définie dans le navigateur. <br/><br/>Si la langue n'est pas détectée ou qu'une partie de la traduction manque dans cette langue, le traducteur prend par défaut la traduction anglaise. Si aucune traduction n'existe il affiche alors la clef en lieu de texte et renvoie un warning dans la console."
+  },
+  "en": {
+    "t1": "The translation system",
+    "t1-c1": "I built a translation system inspired by how the i18n library works. <br/> There is a global translation file for the site and a separate file for each portfolio page for more complex projects. <br/><br/> Content for simpler projects is stored directly in the JSON file that defines their structure. Translation then happens in the same place.",
+
+    "t2": "Languages",
+    "t2-c1": "The translation system automatically detects and uses available languages from the translation files based on the browser’s language setting. <br/><br/>If a language is not detected or if some translations are missing for that language, the system falls back to English by default. If no translation exists at all, it displays the key instead of text and logs a warning in the console."
+  }
+}

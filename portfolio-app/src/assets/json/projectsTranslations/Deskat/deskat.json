@@ -1,0 +1,29 @@
+{
+  "fr": {
+    "experimentalgameplay": "Gameplay expérimental",
+    "description": "L’utilisateur interagit avec le chat affiché en <strong>overlay sur le bureau</strong>. Ce compagnon nécessite de l’attention et propose différentes interactions, afin de créer une <strong>présence vivante.</strong>",
+    "physicsdriven": "Moteur basé sur la physique",
+    "physicsdrivencontent": "Le chat est simulé via un <strong>arbre de comportement</strong>, qui le dirige grâce à des forces appliquées à son collider. Il peut donc interagir avec son environnement basé sur un <strong>moteur physique 3D</strong> mais rendu dans un style 2D grâce à des sprites dessinés à la main et une caméra orthographique.<br/><br/>",
+    "behaviortree": "Arbre de comportement",
+    "editor": "Editeur",
+    "physicsdrivencontent2": "L’entité se déplace dans la profondeur du décors et peut ainsi passer derrière et devant les éléments du décors au besoin.<br/> Pour les déplacements, j’utilise actuellement le système de <strong>navmesh</strong> de Unity. <br/><br/>Si je devais reprendre ce projet aujourd’hui, je penserais éventuellement à intégrer un système de déplacement customisé afin de faciliter l'ajout de sauts sur des meubles et les interactions sur des points précis.",
+
+    "whatilearned": "Ce que j’ai appris sur ce projet",
+    "whatilearnedcontent": "- Intervention sur l’API de Windows pour gérer la fenêtre transparente et le click through. <br/>- Behavior three<br/>- Gestion de colliders et interaction via raycast<br/>- Moteur de physique Unity<br/>- Animations (via state machine) du chat dans Unity avec support pour les accessoirs<br/>- Interaction avec les objets via collider"
+  },
+  "en": {
+    "experimentalgameplay": "Experimental gameplay",
+    "description": "The user interacts with the chat displayed as an <strong>overlay on the desktop</strong>. This companion requires attention and offers various interactions, creating a <strong>living presence</strong>.",
+
+    "physicsdriven": "Physics-based engine",
+    "physicsdrivencontent": "The cat is simulated using a <strong>behavior tree</strong>, which drives it through forces applied to its collider. It can interact with its environment using a <strong>3D physics engine</strong>, while being rendered in a 2D style using hand-drawn sprites and an orthographic camera.<br/><br/>",
+
+    "behaviortree": "Behavior tree",
+    "editor": "Editor",
+
+    "physicsdrivencontent2": "The entity moves through the depth of the environment and can go behind or in front of objects as needed.<br/> For movement, I currently use Unity’s <strong>navmesh</strong> system. <br/><br/>If I were to revisit this project today, I might consider implementing a custom movement system to make it easier to add jumps on furniture and interactions with specific points.",
+
+    "whatilearned": "What I learned from this project",
+    "whatilearnedcontent": "- Windows API integration to manage transparent window and click-through behavior. <br/>- Behavior tree<br/>- Collider management and interaction via raycasts<br/>- Unity physics engine<br/>- Animations (via state machine) of the cat in Unity with accessory support<br/>- Interaction with objects via colliders"
+  }
+}

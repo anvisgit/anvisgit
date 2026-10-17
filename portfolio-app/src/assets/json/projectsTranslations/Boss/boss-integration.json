@@ -1,0 +1,14 @@
+{
+  "fr": {
+    "t1": "Integration",
+    "t1-c1": "L'integration s'est fait sur l'IDE Php storm. J'utilise un workflow simple basé sur babel, eslint et sass. Le code est disponible sur github dans la page du projet.",
+    "t1-s1-i1": "Structure_Code.jpg",
+    "t1-s1-id1": "Structure du code"
+  },
+  "en": {
+    "t1": "Integration",
+    "t1-c1": "Integration was done using the PhpStorm IDE. I use a simple workflow based on Babel, ESLint, and Sass. The code is available on GitHub on the project page.",
+    "t1-s1-i1": "Structure_Code.jpg",
+    "t1-s1-id1": "Code structure"
+  }
+}

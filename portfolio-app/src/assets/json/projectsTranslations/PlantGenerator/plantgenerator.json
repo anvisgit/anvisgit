@@ -1,0 +1,29 @@
+{
+  "fr": {
+    "t1": "Simulation de croissance procédurale de plantes",
+    "t1-c1": "Développement d’un jeu expérimental basé sur la génération procédurale, permettant de créer, modifier et faire évoluer des plantes en temps réel. <br/><br/> Le système repose sur une structure hiérarchique de nodes (branches, feuilles), permettant une croissance dynamique et des interactions complexes avec le joueur (coupe, suppression, fusion génétique).",
+
+    "t2": "Points techniques clés :",
+    "t2-c1": "- Génération procédurale de structures organiques<br/>- Système de croissance temps réel avec mise à jour contrôlée<br/>- Implémentation d’un système de fusion de paramètres<br/>- Gestion d’un inventaire interactif (drag & drop)<br/>- Sauvegarde et reconstruction d’un état complexe",
+
+    "t3": "Défis techniques :",
+    "t3-c1": "- Optimisation du chargement (reconstruction progressive des données)<br/>- Gestion des performances avec de nombreux objets dynamiques<br/>- Synchronisation entre logique de simulation et rendu graphique",
+
+    "t4": "Ce que j'ai appris",
+    "t4-c1": "Ce projet m’a permis de renforcer mes compétences en architecture de code, en optimisation et en gestion de systèmes interactifs complexes."
+  },
+
+  "en": {
+    "t1": "Procedural plant growth simulation",
+    "t1-c1": "Development of an experimental game based on procedural generation, allowing the creation, modification, and evolution of plants in real time. <br/><br/> The system is built on a hierarchical node structure (branches, leaves), enabling dynamic growth and complex interactions with the player (cutting, deletion, genetic merging).",
+
+    "t2": "Key technical points:",
+    "t2-c1": "- Procedural generation of organic structures<br/>- Real-time growth system with controlled updates<br/>- Implementation of a parameter blending system<br/>- Interactive inventory system (drag & drop)<br/>- Complex state saving and reconstruction",
+
+    "t3": "Technical challenges:",
+    "t3-c1": "- Load optimization (progressive data reconstruction)<br/>- Performance management with many dynamic objects<br/>- Synchronization between simulation logic and graphical rendering",
+
+    "t4": "What I learned",
+    "t4-c1": "This project helped me strengthen my skills in code architecture, optimization, and managing complex interactive systems."
+  }
+}

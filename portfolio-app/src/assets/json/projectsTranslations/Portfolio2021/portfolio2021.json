@@ -1,0 +1,28 @@
+{
+  "fr": {
+    "t1": "En bref",
+    "t1-c1": "Projet développé avec Vue.js et GSAP, sous forme de single-page application animée. L’expérience utilisateur est basée sur des animations déclenchées au scroll et une génération dynamique du contenu.</br></br>Le site repose sur une architecture modulaire avec des composants réutilisables et un système d’affichage data-driven permettant d’adapter automatiquement la mise en page au nombre de projets par catégorie.",
+
+    "t2": "Fonctionnalités clées",
+    "t2-c1": "- Front-end Vue.js avec structure component-based</br>- Animations avancées avec GSAP</br>- Backend PHP (API custom)</br>- Requêtes AJAX via Axios</br>- Système d’administration pour création et édition de projets</br>- Module de messagerie avec interface de gestion dédiée",
+
+    "t3": "Architecture",
+    "t3-c1": "- Génération dynamique des contenus</br>- Organisation modulaire par composants</br>- Affichage adaptatif selon les données",
+
+    "t4": "Retours techniques (contexte actuel)",
+    "t4-c1": "Le projet utilise aujourd’hui une stack datée (Vue 2, PHP sans framework moderne). Une refonte serait nécessaire pour une mise en production actuelle.</br></br>Sur le plan sécurité, l’ancienne version ne comportait pas de protection contre les injections SQL ni de sanitation des contenus HTML dynamiques. Dans une version moderne, cela serait corrigé via librairie de sanitization type DOMPurify.</br></br>La version actuelle sert uniquement de démonstration statique et ne repose plus sur son backend."
+  },
+  "en": {
+    "t1": "In short",
+    "t1-c1": "Project built with Vue.js and GSAP as a single-page animated application. The user experience is based on scroll-triggered animations and dynamic content generation.</br></br>The site relies on a modular architecture with reusable components and a data-driven display system that automatically adapts the layout based on the number of projects per category.",
+
+    "t2": "Key features",
+    "t2-c1": "- Vue.js front-end with component-based structure</br>- Advanced animations using GSAP</br>- PHP backend (custom API)</br>- AJAX requests via Axios</br>- Admin system for project creation and editing</br>- Messaging module with dedicated management interface</br>",
+
+    "t3": "Architecture",
+    "t3-c1": "- Dynamic content generation</br>- Modular component-based organization</br>- Adaptive display based on data</br>",
+
+    "t4": "Technical notes (current context)",
+    "t4-c1": "The project currently uses an outdated stack (Vue 2, PHP without a modern framework). A refactor would be required for a modern production deployment.</br></br>From a security standpoint, the previous version did not include protection against SQL injection or sanitization of dynamic HTML content. In a modern version, this would be addressed using a sanitization library such as DOMPurify.</br></br>The current version serves only as a static showcase and no longer relies on its backend."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "fr": {
+    "inShort": "En bref",
+    "inShortContent": " Application permettant de <strong>scanner des codes-barres</strong> afin de rechercher automatiquement des films édités en <strong>DVD</strong> et les ajouter à une <strong>bibliothèque personnelle</strong>.<br/><br/>En cas d’échec de l’API, une recherche manuelle est disponible ainsi qu’un mode hors ligne permettant d’ajouter un film via son titre et une photo de jaquette.<br/><br/>Les images sont compressées et optimisées pour limiter l’espace de stockage, et un moteur de recherche intelligent basé sur des mots-clés permet de retrouver rapidement un titre.",
+    "note": "Images disponibles dans le Dock.",
+
+    "techStack": "Tech Stack",
+    "library": "Bibiliothèques",
+    "keyTechniqueChoices": "Décisions techniques clés",
+    "keyTechniqueChoicesContent": "- API de recherche de films <br />- Recherche par titre <br /> - Ajouts manuels hors connexion <br />- Indique si déjà ajouté grace au code-barre<br/>- Design simpliste et accessible",
+
+    "download": "Télécharger l'apk"
+  },
+  "en": {
+    "inShort": "In short",
+    "inShortContent": "Application that allows <strong>barcode scanning</strong> to automatically search for films released on <strong>DVD</strong> and add them to a <strong>personal library</strong>.<br/><br/>If the API fails, a manual search is available as well as an offline mode allowing users to add a film using its title and a cover image.<br/><br/>Images are compressed and optimized to reduce storage usage, and an intelligent keyword-based search engine allows quick retrieval of titles.",
+    "note": "Images available in the Dock.",
+
+    "techStack": "Tech stack",
+    "library": "Libraries",
+    "keyTechniqueChoices": "Key technical decisions",
+    "keyTechniqueChoicesContent": "- Movie search API<br />- Search by title<br />- Offline manual additions<br />- Indicates if already added via barcode<br/>- Simple and accessible design",
+
+    "download": "Download the APK"
+  }
+}

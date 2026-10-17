@@ -1,0 +1,52 @@
+{
+  "fr": {
+    "inShort": "En bref",
+    "inShortContent": "<strong>Portfolio interactif expérimental data-driven</strong>, utilisant <i>Vue 3</i> et <i>p5.js</i>.<br />Système de rendu personnalisé, <strong>architecture pilotée par JSON</strong> et <strong>système de traduction fait main</strong.>",
+
+    "keyTechniqueChoices": "Décisions techniques clés",
+    "keyTechniqueChoicesContent": "- Système de fenêtres et docking gérées par store <br/>- <strong>Architecture pilotée par les données</strong> <br />- Architecture de projets basée sur <i>JSON personnalisé</i> <br /> - <strong>Système de traduction</strong> <br />- Formulaire de contact <i>EmailJS</i> avec <strong>honeypot anti-spam</strong> <br />- <strong>Architecture entièrement statique</strong> (sans backend) <br />- Génération des URL automatique pour les images <br />- <strong>Génération de palettes de couleurs pilotée par les données</strong> <br />",
+
+    "technicalChoices": "Choix techniques",
+    "translationSystem": "Système de traduction",
+    "translationSystemContent": "<strong>Système de localisation léger personnalisé</strong> conçu pour s’intégrer directement à la structure des données du projet.<br />J’ai d’abord envisagé d’utiliser la bibliothèque <i>i18n</i>. Cependant, comme je dois gérer des projets enregistrés dans un fichier <i>JSON</i>, il m’a semblé plus simple de gérer toutes les traductions dans ce même fichier plutôt que d’utiliser des clefs partout dans le projet.<br />J’ai donc construit <strong>mon propre système de traduction</strong> pour mieux correspondre à la structure du projet souhaitée.",
+
+    "contactFormTitle": "Formulaire de contact",
+    "contactFormContent": "Le formulaire de contact m’envoie directement un e-mail afin de pouvoir être notifié plus rapidement.<br />Le choix de la bibliothèque <i>EmailJS</i> permettait une mise en place <strong>plus simple qu’une stack avec backend</strong>.<br />J’ai ajouté un système <strong>\"honeypot\"</strong> pour empêcher le spam des bots pour le moment, dans l’éventualité d’ajouter une vérification <i>captcha</i> si le trafic augmente.",
+
+    "projectDataStructureTitle": "Structure des données du projet",
+    "projectDataStructureContent": "J’ai fait le choix d'une <strong>structure statique basée sur du JSON</strong> pour les données de mes projets.<br />J’ai construit des <strong>composants préfabriqués</strong> pour intégrer dans les fenêtres des projets (comme les tags, descriptions, images, liens) ainsi qu’un objet content pouvant accepter du HTML prêt à être rendu ou un lien vers un composant spécifique au projet.<br />Le choix des composants dans la page de contenu permet de <strong>simplifier la logique</strong>, de <strong>réutiliser les composants</strong> entre les projets, de <strong>faciliter la syntaxe</strong> et d’utiliser des outils comme <i>Tailwind</i>, <i>Prettier</i> ou <i>ESLint</i>.<br />Je voulais une <strong>architecture flexible</strong> capable de s’adapter aux besoins de chaque projet.",
+
+    "noBackendTitle": "Absence de backend",
+    "noBackendContent_01": "Le portfolio précédent que j’avais réalisé utilisait un <i>backend PHP</i> avec une page pour ajouter des projets, un système d’authentification et un accès administrateur pour voir les messages.",
+    "noBackendContent_02": "<strong>Pourquoi ne pas avoir conservé cette approche ?</strong>",
+    "noBackendContent_03": "Je voulais que le portfolio soit <strong>flexible dans la gestion des projets</strong>. Je les écris directement en format <i>JSON</i>, ce qui facilite la traduction et m’évite de devoir modifier toute l’architecture juste pour ajouter un nouveau type de données.<br />Ça favorise la <strong>maintenabilité</strong>, les <strong>itérations rapides</strong> et le <strong>déploiement</strong>.<br />Avec cette architecture, je peux facilement <strong>ajouter de nouvelles structures de projets</strong>.",
+
+    "performanceWatcher": "Analyseur de performance temps réel",
+    "performanceWatcherContent": "Ce module que j'ai développé permet de surveiller la performance du portfolio en temps réel dans le but d'adapter les graphismes. Il mesure le temps de rendu lissé sur plusieurs frames et ajuste dynamiquement la qualité en fonction des seuils de performance définis.</br></br>Cela garantit une expérience fluide même sur des machines moins puissantes, tout en offrant des graphismes de haute qualité lorsque les ressources le permettent."
+  },
+  "en": {
+    "inShort": "In short",
+    "inShortContent": "<strong>Experimental data-driven interactive portfolio</strong>, using <i>Vue 3</i> and <i>p5.js</i>.<br />Custom rendering system, <strong>JSON-driven architecture</strong> and <strong>handcrafted translation system</strong>.",
+
+    "keyTechniqueChoices": "Key technical decisions",
+    "keyTechniqueChoicesContent": "- Window system and docking managed by store <br/>- <strong>Data-driven architecture</strong> <br />- Project architecture based on <i>custom JSON</i> <br />- <strong>Translation system</strong> <br />- <i>EmailJS</i> contact form with <strong>anti-spam honeypot</strong> <br />- <strong>Fully static architecture</strong> (no backend) <br />- Automatic image URL generation <br />- <strong>Data-driven color palette generation</strong> <br />",
+
+    "technicalChoices": "Technical choices",
+    "translationSystem": "Translation system",
+    "translationSystemContent": "<strong>Custom lightweight localization system</strong> designed to integrate directly with the project’s data structure.<br />I initially considered using the <i>i18n</i> library. However, since I manage projects stored in a <i>JSON</i> file, it felt simpler to handle all translations within that same file rather than using keys throughout the project.<br />I therefore built <strong>my own translation system</strong> to better match the intended project structure.",
+
+    "contactFormTitle": "Contact form",
+    "contactFormContent": "The contact form sends me an email directly so I can be notified more quickly.<br />Using the <i>EmailJS</i> library allowed for a <strong>simpler setup than a backend stack</strong>.<br />I added a <strong>\"honeypot\"</strong> system to prevent bot spam for now, with the option to add <i>captcha</i> verification if traffic increases.",
+
+    "projectDataStructureTitle": "Project data structure",
+    "projectDataStructureContent": "I chose a <strong>static JSON-based structure</strong> for my project data.<br />I built <strong>pre-made components</strong> to integrate into project windows (such as tags, descriptions, images, links), along with a content object that can accept ready-to-render HTML or a link to a project-specific component.<br />Using components in the content page helps <strong>simplify logic</strong>, <strong>reuse components</strong> across projects, <strong>improve syntax</strong>, and leverage tools like <i>Tailwind</i>, <i>Prettier</i>, and <i>ESLint</i>.<br />I wanted a <strong>flexible architecture</strong> capable of adapting to each project's needs.",
+
+    "noBackendTitle": "No backend",
+    "noBackendContent_01": "My previous portfolio used a <i>PHP backend</i> with a page to add projects, an authentication system, and admin access to view messages.",
+    "noBackendContent_02": "<strong>Why not keep this approach?</strong>",
+    "noBackendContent_03": "I wanted the portfolio to be <strong>flexible in project management</strong>. I write them directly in <i>JSON</i>, which simplifies translation and avoids having to modify the entire architecture just to add a new type of data.<br />This improves <strong>maintainability</strong>, enables <strong>rapid iteration</strong>, and simplifies <strong>deployment</strong>.<br />With this architecture, I can easily <strong>add new project structures</strong>.",
+
+    "performanceWatcher": "Real-time performance monitor",
+    "performanceWatcherContent": "This module I developed monitors the portfolio’s performance in real time to adapt the graphics accordingly. It measures smoothed render time over several frames and dynamically adjusts quality based on defined performance thresholds.</br></br>This ensures a smooth experience even on less powerful machines, while delivering high-quality visuals when resources allow."
+  }
+}

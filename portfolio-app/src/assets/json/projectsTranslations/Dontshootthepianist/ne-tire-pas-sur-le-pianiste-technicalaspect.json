@@ -1,0 +1,18 @@
+{
+  "fr": {
+    "contexttitle": "Aspect Technique",
+    "contextcontent": "<strong>Pipeline hybride combinant 3D et animation 2D</strong>, utilisant Blender pour la modélisation et Animate pour l’animation.<br><br>Un shader toon réactif à la lumière permet de générer le rendu final, en contrôlant précisément les contrastes afin de guider le regard du spectateur et renforcer la lisibilité des plans.",
+
+    "shader": "Shader toon personnalisé piloté par la lumière de la scène, permettant de transformer un rendu 3D en image stylisée proche de la 2D.",
+    "details": "La scène de saloon a été volontairement modélisée de manière simple, afin de déléguer le détail visuel au shader et à l’éclairage, et ainsi garder un contrôle global sur l’ambiance et la lisibilité.",
+    "characterDetails": "Les personnages sont importés sous forme de séquences d’images projetées sur des plans 2D, eux-mêmes liés à des caméras spécifiques à chaque plan.<br><br>Cette approche permet d’intégrer naturellement la 2D dans un environnement 3D, tout en exploitant les ombres et la lumière pour renforcer la cohérence visuelle et offrir une grande flexibilité de rendu."
+  },
+  "en": {
+    "contexttitle": "Technical Overview",
+    "contextcontent": "<strong>Hybrid pipeline combining 3D and 2D animation</strong>, using Blender for modeling and Animate for animation.<br><br>A light-driven toon shader generates the final render, allowing precise control over contrast to guide the viewer’s eye and enhance visual clarity.",
+
+    "shader": "Custom toon shader driven by scene lighting, designed to transform 3D renders into a stylized 2D-like look.",
+    "details": "The saloon scene was intentionally kept simple in terms of modeling, allowing the shader and lighting to handle visual detail while maintaining strong control over mood and readability.",
+    "characterDetails": "Characters are imported as image sequences mapped onto 2D planes, each linked to dedicated cameras per shot.<br><br>This approach enables seamless integration of 2D elements into a 3D environment, while leveraging lighting and shadows to maintain visual consistency and offer high rendering flexibility."
+  }
+}

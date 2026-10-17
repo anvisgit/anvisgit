@@ -1,0 +1,28 @@
+{
+  "fr": {
+    "t1": "Les outils",
+    "t1-c1": "Différents outils permettent d'interagir avec les plantes et de modifier leur structure et leurs caractéristiques.",
+    "t1-s1": "Fusionneur de plante",
+    "t1-s1-ic": "Le fusionneur de plante combine les génomes de deux plantes pour créer un nouvel individu. Il analyse les attributs de chaque plante (forme des feuilles, couleur, taille du tronc, densité des branches, etc.) et sélectionne aléatoirement des gènes pour produire une progéniture unique. Le processus repose sur une approche procédurale garantissant la cohérence morphologique.",
+    "t1-s1-i1": "plant_generator_fusion.gif",
+    "t1-s1-id1": "Fusionneur de plante",
+    "t1-s2": "Sécateur",
+    "t1-s2-ic": "Le sécateur permet de supprimer des branches pour modeler les plantes. Lorsqu'une node est retirée, elle est éliminée de la simulation et toutes ses sous-branches sont également mises à jour, garantissant que la structure de l'arbre reste cohérente et que la croissance future s'adapte à la modification.",
+    "t1-s2-i1": "Cutter.gif",
+    "t1-s2-id1": "Sécateur"
+  },
+  "en": {
+    "t1": "Tools",
+    "t1-c1": "Different tools allow interaction with plants and modification of their structure and characteristics.",
+
+    "t1-s1": "Plant fusion tool",
+    "t1-s1-ic": "The plant fusion tool combines the genomes of two plants to create a new individual. It analyzes each plant’s attributes (leaf shape, color, trunk size, branch density, etc.) and randomly selects genes to produce a unique offspring. The process is based on a procedural approach ensuring morphological consistency.",
+    "t1-s1-i1": "plant_generator_fusion.gif",
+    "t1-s1-id1": "Plant fusion tool",
+
+    "t1-s2": "Pruner",
+    "t1-s2-ic": "The pruner allows branches to be removed in order to shape plants. When a node is deleted, it is removed from the simulation and all its sub-branches are also updated, ensuring that the tree structure remains consistent and that future growth adapts to the modification.",
+    "t1-s2-i1": "Cutter.gif",
+    "t1-s2-id1": "Pruner"
+  }
+}

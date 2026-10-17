@@ -1,0 +1,18 @@
+{
+  "fr": {
+    "contexttitle": "Contexte",
+    "contextcontent": "<strong>Court-métrage hybride 2D/3D réalisé en un mois</strong>, avec une approche visuelle minimaliste centrée sur la lisibilité et le contraste.<br><br>Le projet devait répondre aux contraintes techniques suivantes&nbsp;:<br>- 30 s<br>- 1080p<br>- 24 fps<br>- Format de rendu : H.264<br>- Style simple",
+
+    "title": "Ne tirez pas sur le pianiste",
+    "role": "Rôle",
+    "rolecontent": "- Écriture, réalisation, documentation<br>- <strong>Character design & concept art</strong><br>- <strong>Animation (rough, tie-down, clean)</strong><br>- <strong>Modélisation 3D</strong><br>- <strong>Montage</strong><br>- <strong>FX & sound design</strong>"
+  },
+  "en": {
+    "contexttitle": "Context",
+    "contextcontent": "<strong>2D/3D hybrid short film produced in one month</strong>, with a minimalist visual approach focused on clarity and contrast.<br><br>The project had to meet the following technical constraints:<br>- 30 s<br>- 1080p<br>- 24 fps<br>- Output format: H.264<br>- Simple visual style",
+
+    "title": "Don't Shoot the Pianist",
+    "role": "Role",
+    "rolecontent": "- Writing, directing, documentation<br>- <strong>Character design & concept art</strong><br>- <strong>Animation (rough, tie-down, clean)</strong><br>- <strong>3D modeling</strong><br>- <strong>Editing</strong><br>- <strong>FX & sound design</strong>"
+  }
+}

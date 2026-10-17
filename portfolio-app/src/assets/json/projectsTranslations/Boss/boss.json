@@ -1,0 +1,10 @@
+{
+  "fr": {
+    "t1": "Contexte",
+    "t1-c1": "Le \"BOSS\" est un projet qui faisait parti d'un partiel de 2 jours consécutif dont le but était de réaliser un site vitrine de A à Z.<br /><br />Le premier jour consistait en une étape de maquettage et design. Il fallait donc réflechir à la structure, l'expérience utilisateur et l'impacte visuel du site en allant à l'essentiel afin de tenir les délais. <br /><br />Le second jour était consacré à l'intégration du site sur le framwork Vuejs. Dans un soucis du respect du temps imparti, j'ai décidé d'uitliser bootstrap ce qui m'a permis d'optimiser le temps de création de l'interface et du design responsive."
+  },
+  "en": {
+    "t1": "Context",
+    "t1-c1": "“The BOSS” is a project that was part of a 2-day exam where the goal was to build a full showcase website from scratch.<br /><br />The first day was dedicated to wireframing and design. The focus was on defining structure, user experience, and visual impact while keeping things efficient in order to meet the deadline.<br /><br />The second day was dedicated to integrating the site using the Vue.js framework. To stay within the time constraints, I chose to use Bootstrap, which allowed me to speed up the creation of the interface and responsive design."
+  }
+}
